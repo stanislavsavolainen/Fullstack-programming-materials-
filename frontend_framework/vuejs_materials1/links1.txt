@@ -1,0 +1,11 @@
+google.com -> vue router
+https://router.vuejs.org/guide/essentials/nested-routes.html
+https://jsfiddle.net/yyx990803/L7hscd8h/
+__________________________________________
+
+https://en.wikipedia.org/wiki/Vue.js
+
+https://vuejs.org/v2/guide/
+
+https://www.w3schools.com/whatis/whatis_vue.asp
+

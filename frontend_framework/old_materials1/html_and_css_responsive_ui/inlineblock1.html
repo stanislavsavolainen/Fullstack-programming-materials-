@@ -1,0 +1,44 @@
+
+<!--
+ original source : 
+ https://jsfiddle.net/8zqqwu1n/
+ https://stackoverflow.com/questions/30141292/how-to-create-a-3-column-responsive-layout     
+-->
+
+<style type="text/css">
+
+.container {
+  font-size: 0; /*remove white space*/
+}
+
+.section {
+  font-size: 16px; /*reset font size*/
+  display: inline-block;
+  vertical-align: top;
+  width: 33.3333%;
+  border: 1px solid;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) { /*breakpoint*/
+  .section {
+    display: block;
+    width: auto;
+  }
+}
+
+</style>
+
+<html>
+
+ <body>
+ 
+ 	<div class="container">
+  		<div class="section">1</div>
+  		<div class="section">2</div>
+  		<div class="section">3</div>
+	</div>
+ 
+ </body>	
+
+</html>

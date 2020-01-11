@@ -1,0 +1,33 @@
+<script src="https://unpkg.com/vue"></script>
+<!--
+https://www.w3schools.com/whatis/whatis_vue.asp
+-->
+<script>
+	
+	var myObject;
+	
+	function initVue() {
+		
+		myObject = new Vue({
+  			el: '#app',
+  			data: {
+    		message: 'Hello Vue.js!'
+  			}
+		})
+	
+	}
+		
+</script>
+	
+<html>
+	<body onload="initVue()">
+		<div id="app">
+  			<p>{{ message }}</p>
+		</div>
+	</body>	
+<html>
+
+	
+	
+
+	
