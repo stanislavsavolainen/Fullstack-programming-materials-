@@ -19,6 +19,44 @@ Frontend frameworks:
 
     ```
 
+--------------------------------------------------------------------------
+
+   
+Java :
+
+- maven
+
+	-> configure maven enviroment variable
+	-> create maven project or download project from internet as we do in SpringBoot application, also default HelloWold - java project from Maven folder.
+
+--------------------------------------------------------------------------
+
+
+Backend framework:
+
+
+- SpringBoot and Kotlin ( not tried at the moment )
+
+- SpringBoot
+
+    ```	
+    https://start.spring.io/
+
+    Init SpringBoot in this web-page . 
+    Download project zip-file and extract at your worskpace folder. 
+    After that go project folder via Terminal or CMD where this project pom.xml and run "mvn install" 
+    ```
+
+
+- Java Servlet
+
+
+- Wildfly
+
+
+- Liferay
+
+
 
 --------------------------------------------------------------------------
 

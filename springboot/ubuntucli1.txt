@@ -1,0 +1,88 @@
+mvn install
+cd target
+java -jar demorest1-0.0.1-SNAPSHOT.jar
+ 
+ 
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1/target$ java -jar demorest1-0.0.1-SNAPSHOT.jar
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::  (v2.3.0.BUILD-SNAPSHOT)
+2020-01-20 16:31:26.581  INFO 6850 --- [           main] c.e.demorest1.Demorest1Application       : Starting Demorest1Application v0.0.1-SNAPSHOT on stanislav-lenovo with PID 6850 (/home/stanislav/tyo2020/springboot/demorest1/target/demorest1-0.0.1-SNAPSHOT.jar started by stanislav in /home/stanislav/tyo2020/springboot/demorest1/target)
+2020-01-20 16:31:26.589  INFO 6850 --- [           main] c.e.demorest1.Demorest1Application       : No active profile set, falling back to default profiles: default
+2020-01-20 16:31:28.976  INFO 6850 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-01-20 16:31:28.999  INFO 6850 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-20 16:31:28.999  INFO 6850 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-01-20 16:31:29.154  INFO 6850 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-20 16:31:29.154  INFO 6850 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2422 ms
+2020-01-20 16:31:29.534  INFO 6850 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-20 16:31:29.962  INFO 6850 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-01-20 16:31:29.971  INFO 6850 --- [           main] c.e.demorest1.Demorest1Application       : Started Demorest1Application in 4.745 seconds (JVM running for 5.662)
+2020-01-20 16:32:14.300  INFO 6850 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-20 16:32:14.300  INFO 6850 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-01-20 16:32:14.315  INFO 6850 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+^C2020-01-20 16:32:43.902  INFO 6850 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1/target$
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1/target$
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1/target$ cd ..
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1$ tree
+.
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── demorest1
+│   │   │               └── Demorest1Application.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       ├── static
+│   │       └── templates
+│   └── test
+│       └── java
+│           └── com
+│               └── example
+│                   └── demorest1
+│                       └── Demorest1ApplicationTests.java
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   └── com
+    │       └── example
+    │           └── demorest1
+    │               └── Demorest1Application.class
+    ├── demorest1-0.0.1-SNAPSHOT.jar
+    ├── demorest1-0.0.1-SNAPSHOT.jar.original
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-archiver
+    │   └── pom.properties
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       ├── compile
+    │       │   └── default-compile
+    │       │       ├── createdFiles.lst
+    │       │       └── inputFiles.lst
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    ├── surefire-reports
+    │   ├── com.example.demorest1.Demorest1ApplicationTests.txt
+    │   └── TEST-com.example.demorest1.Demorest1ApplicationTests.xml
+    └── test-classes
+        └── com
+            └── example
+                └── demorest1
+                    └── Demorest1ApplicationTests.class
+35 directories, 19 files
+stanislav@stanislav-lenovo:~/tyo2020/springboot/demorest1$
