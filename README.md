@@ -90,11 +90,12 @@ Java :
 
 - maven
 
-      
+
         ```
-	configure maven enviroment variable
-	create maven project or download project from internet as we do in SpringBoot application, 
-	also default HelloWold - java project from Maven folder.
+	Configure maven enviroment variable
+	create maven project or download project from internet as we 
+        do in SpringBoot application, 
+	also default HelloWold java project from Maven folder.
         ```
       - my maven hellowold project with executable jar :
 	maven/my-app
@@ -133,7 +134,7 @@ Backend framework:
 - Java Servlet
    
     https://github.com/stanislavsavolainen/Servlet_projects1
-    [a link](https://github.com/stanislavsavolainen/Servlet_projects1)
+    
 
 --------------------
 
