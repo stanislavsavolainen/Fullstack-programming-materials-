@@ -85,8 +85,15 @@ frontend_framework/vuejs_materials1/
 
 --------------------------------------------------------------------------
 
-   
-	Configure maven enviroment variable
+   Maven :   
+
+       helpfull maven links : 
+         
+        maven/info1.txt
+	[a link](maven/info1.txt)
+
+
+	- Configure maven enviroment variable
 	create maven project or download project from internet as we 
         do in SpringBoot application, 
 	also default HelloWold java project from Maven folder.
@@ -96,10 +103,7 @@ frontend_framework/vuejs_materials1/
 	maven/my-app
 	[a link](maven/my-app)
 
-       helpfull links : 
-         
-        maven/info1.txt
-	[a link](maven/info1.txt)
+       
 
 --------------------------------------------------------------------------
 
