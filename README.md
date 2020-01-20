@@ -86,10 +86,7 @@ frontend_framework/vuejs_materials1/
 --------------------------------------------------------------------------
 
    
-Java :
-
-- maven
-
+ - Maven:
 
         ```
 	Configure maven enviroment variable
@@ -97,11 +94,12 @@ Java :
         do in SpringBoot application, 
 	also default HelloWold java project from Maven folder.
         ```
-      - my maven hellowold project with executable jar :
+      
+	my maven hellowold project with executable jar :
 	maven/my-app
 	[a link](maven/my-app)
 
-       - helpfull maven links : 
+       helpfull maven links : 
          
         maven/info1.txt
 	[a link](maven/info1.txt)
@@ -127,7 +125,7 @@ Backend framework:
     After that go project folder via Terminal or CMD where this project pom.xml and run "mvn install" 
     ```
     springboot/demorest
-	[a link](maven/my-app)
+	[a link](springboot/demorest1)
 
 --------------------
 
