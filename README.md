@@ -31,16 +31,16 @@ Frontend frameworks:
     
     NodeJS in Ubuntu  :
     ```sh
-    	$ ng new myapp1
-	$ ng serve --open
-	```
+    $ ng new myapp1
+    $ ng serve --open
+    ```
 
    Angular create "home" - module
    
     NodeJS in Ubuntu  :
     ```sh
-    	$ ng g c home
-	```
+    $ ng g c home
+    ```
     Modify app-routing.module.ts file at your Angular project
 
     ```
@@ -90,17 +90,20 @@ Java :
 
 - maven
 
-       maven/info1.txt
-	[a link](maven/info1.txt)
-
+      
         ```
-	- configure maven enviroment variable
-	- create maven project or download project from internet as we do in SpringBoot application, 
+	configure maven enviroment variable
+	create maven project or download project from internet as we do in SpringBoot application, 
 	also default HelloWold - java project from Maven folder.
         ```
-
+      - my maven hellowold project with executable jar :
 	maven/my-app
 	[a link](maven/my-app)
+
+       - helpfull maven links : 
+         
+        maven/info1.txt
+	[a link](maven/info1.txt)
 
 --------------------------------------------------------------------------
 
@@ -115,7 +118,7 @@ Backend framework:
 
 - SpringBoot
 
-	 https://start.spring.io/
+    https://start.spring.io/
 
     ```	
     Init SpringBoot in this web-page . 
@@ -130,7 +133,7 @@ Backend framework:
 - Java Servlet
    
     https://github.com/stanislavsavolainen/Servlet_projects1
-    [a link](maven/ https://github.com/stanislavsavolainen/Servlet_projects1)
+    [a link](https://github.com/stanislavsavolainen/Servlet_projects1)
 
 --------------------
 
