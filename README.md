@@ -88,12 +88,11 @@ frontend_framework/vuejs_materials1/
    
  - Maven:
 
-        ```
 	Configure maven enviroment variable
 	create maven project or download project from internet as we 
         do in SpringBoot application, 
 	also default HelloWold java project from Maven folder.
-        ```
+        
       
 	my maven hellowold project with executable jar :
 	maven/my-app
