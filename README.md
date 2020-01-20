@@ -86,8 +86,6 @@ frontend_framework/vuejs_materials1/
 --------------------------------------------------------------------------
 
    
- - Maven:
-
 	Configure maven enviroment variable
 	create maven project or download project from internet as we 
         do in SpringBoot application, 
@@ -98,7 +96,7 @@ frontend_framework/vuejs_materials1/
 	maven/my-app
 	[a link](maven/my-app)
 
-       helpfull maven links : 
+       helpfull links : 
          
         maven/info1.txt
 	[a link](maven/info1.txt)
