@@ -1,0 +1,42 @@
+________________________________
+myapp1 : 
+
+-> if you already did project named "myapp1" ( ng new myapp1) and deleted "node_modules" for transfer
+Then follow this steps : 
+
+-> now you can start angular , open angular-project folder "myapp1"
+-> run command : "npm install"   (to install necessary node-modules)
+-> run command : "ng serve --open" ( open angular - project )  
+-> check home-component for source code
+location : myapp1 / src / app / home
+__________________________________________________________________________
+Angular + NodeJS installation ( first application)
+
+https://www.tutorialspoint.com/angular_material7/angular_material7_environment_setup.htm
+Install angular framework globaly using node package manager
+npm install -g @angular/cli
+Check installed angular version ( linux)
+ng -v
+Check installed angular version ( windows)
+ng --version
+
+Create angular project
+ng new myapplicaion1
+press y if ask about route, then select first option "CSS",
+then wait until npm complete installation.
+Lauch application
+ng serve --open
+Now you can open in browser following url : 127.0.0.1:4200 or localhost:4200
+and see your first angular application
+
+Check this video to see how work with angular framewrok
+https://www.youtube.com/watch?v=5wtnKulcquA
+install home module
+ng g c home
+Modify app-routing.module.ts file
+( location : myapplication1 / src / app / app-routing.module.ts )
+import { HomeComponent } from './home/home.component';  ( import library  )
+const routes: Routes = [
+  { path : '' , component : HomeComponent }
+];
+ 
