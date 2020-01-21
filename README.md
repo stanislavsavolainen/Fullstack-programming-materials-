@@ -61,6 +61,11 @@ Frontend frameworks:
     
     - You can use Javascript for TypeScript programming. TypeScript file have dot - ts extension. 
 
+    - Check my detailed installation guide ( originaly made spring 2019 ) :	
+
+     frontend_framework/angular_via_nodejs/angular_info1.txt
+	[a link](frontend_framework/angular_via_nodejs/angular_info1.txt)	
+
 
 --------------------
 
