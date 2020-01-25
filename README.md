@@ -11,6 +11,25 @@ Frontend frameworks:
 
 - React
 
+You can use react create https://github.com/facebook/create-react-app
+or use my light version of it based on old tutorial https://github.com/stanislavsavolainen/react_setup
+
+
+
+Project1 is React-Intl module test ( UI support multilanguage ) 
+
+frontend_framework/react/1
+
+[a link](frontend_framework/react/1)
+
+
+original links for react-intl module tutorial : 
+
+https://gist.github.com/eveningkid/6df7d35d1884854a6d9ecaaac89fd2ae
+
+https://codesandbox.io/s/i18n-i1y70
+
+
 --------------------
 
 - Angular & AngularJS   ( where Angular based on nodejs and AngularJS on JavaScript external library)
