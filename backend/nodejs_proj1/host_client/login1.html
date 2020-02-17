@@ -1,0 +1,68 @@
+
+<script type="text/javascript">
+
+	function login(){
+	
+		var text_login = document.getElementById("tlogin").value;
+		var text_password = document.getElementById("tpw").value;
+		
+		console.log("Login : " + text_login + " and Password : " + text_password);
+		
+		
+		let post_body = {
+			plogin : text_login,
+			ppasword : text_password
+		}
+		
+		
+		 //post body
+        	let postData = {
+            		method: 'POST',
+            		headers: {
+                		Accept: 'application/json',
+                		'Content-Type': 'application/json',
+            		},
+            		body: JSON.stringify(post_body),
+        	};
+
+        // ======== FETCH ====================
+
+        //fetch
+        let host = "http://127.0.0.1:1111";
+        let link = "/authenticate";
+
+         fetch(host + link, postData)
+        
+            .then(() => {
+                console.log("Fetch done");
+               
+            })
+            .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+		})
+		
+		
+		
+		
+		
+		
+	}
+
+
+</script>
+
+
+<html>
+	<body>
+		<div align="center">
+			<div> <div>Login <div> <div> <input type="text" id="tlogin" /> </div> </div>
+			<div> <div> Password </div> <div>  <input type="password" id="tpw"/> </div> </div>
+			<div> <button onclick="login()"> Login </button> </div>		
+		<div>
+		
+				
+	</body>
+</html>
+
+
+

@@ -1,0 +1,80 @@
+
+CREATE TABLE user_table1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    user_uuid VARCHAR(36),
+    password_hash_sha256 VARCHAR(64),
+    user_is_blocked TINYINT,
+    user_permission_level TINYINT,
+    user_is_online TINYINT,
+    registered_date datetime DEFAULT NULL , 
+    last_online_date datetime DEFAULT NULL , 
+    user_maintenance_info VARCHAR(500) ,
+
+    PRIMARY KEY (row_id)
+
+);
+
+
+
+mysql> CREATE TABLE user_table1 (
+    ->     row_id int(11) NOT NULL AUTO_INCREMENT,
+    ->     user_uuid VARCHAR(36),
+    ->     password_hash_sha256 VARCHAR(64),
+    ->     user_is_blocked TINYINT,
+    ->     user_permission_level TINYINT,
+    ->     user_is_online TINYINT,
+    ->     registered_date datetime DEFAULT NULL , 
+    ->     last_online_date datetime DEFAULT NULL , 
+    ->     user_maintenance_info VARCHAR(500) ,
+    -> 
+    ->     PRIMARY KEY (row_id)
+    -> 
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2020db1 |
++----------------------------+
+| user_table1                |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc user_table1;
++-----------------------+--------------+------+-----+---------+----------------+
+| Field                 | Type         | Null | Key | Default | Extra          |
++-----------------------+--------------+------+-----+---------+----------------+
+| row_id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_uuid             | varchar(36)  | YES  |     | NULL    |                |
+| password_hash_sha256  | varchar(64)  | YES  |     | NULL    |                |
+| user_is_blocked       | tinyint(4)   | YES  |     | NULL    |                |
+| user_permission_level | tinyint(4)   | YES  |     | NULL    |                |
+| user_is_online        | tinyint(4)   | YES  |     | NULL    |                |
+| registered_date       | datetime     | YES  |     | NULL    |                |
+| last_online_date      | datetime     | YES  |     | NULL    |                |
+| user_maintenance_info | varchar(500) | YES  |     | NULL    |                |
++-----------------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> ALTER TABLE user_table1 ADD username VARCHAR(40);
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user_table1;
++-----------------------+--------------+------+-----+---------+----------------+
+| Field                 | Type         | Null | Key | Default | Extra          |
++-----------------------+--------------+------+-----+---------+----------------+
+| row_id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_uuid             | varchar(36)  | YES  |     | NULL    |                |
+| password_hash_sha256  | varchar(64)  | YES  |     | NULL    |                |
+| user_is_blocked       | tinyint(4)   | YES  |     | NULL    |                |
+| user_permission_level | tinyint(4)   | YES  |     | NULL    |                |
+| user_is_online        | tinyint(4)   | YES  |     | NULL    |                |
+| registered_date       | datetime     | YES  |     | NULL    |                |
+| last_online_date      | datetime     | YES  |     | NULL    |                |
+| user_maintenance_info | varchar(500) | YES  |     | NULL    |                |
+| username              | varchar(40)  | YES  |     | NULL    |                |
++-----------------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.00 sec)

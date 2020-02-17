@@ -1,0 +1,69 @@
+
+<script type="text/javascript">
+
+    function registerUser_callback(){
+        console.log("register user");
+
+
+        var text_login = document.getElementById("tlogin").value;
+		var text_password = document.getElementById("tpw").value;
+		
+		console.log("Login : " + text_login + " and Password : " + text_password);
+		
+		
+		let post_body = {
+			plogin : text_login,
+			ppasword : text_password,
+            bearer_token : '111-222-333'
+		}
+		
+		
+		 //post body
+        	let postData = {
+            		method: 'POST',
+            		headers: {
+                		Accept: 'application/json',
+                		'Content-Type': 'application/json',
+            		},
+            		body: JSON.stringify(post_body),
+        	};
+
+        // ======== FETCH ====================
+
+        //fetch
+        let host = "http://127.0.0.1:1111";
+        let link = "/registeruser";
+
+         fetch(host + link, postData)
+        
+            .then(() => {
+                console.log("Fetch done");
+               
+            })
+            .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+		})
+
+
+
+
+
+    }
+
+
+</script>
+
+
+<html>
+    <body>
+        
+        <div align="center">
+            <h1> Register new user </h1>
+			<div> <div>Login <div> <div> <input type="text" id="tlogin" /> </div> </div>
+			<div> <div> Password </div> <div>  <input type="password" id="tpw"/> </div> </div>
+			<div>  <button onclick="registerUser_callback()"> Register user </button> </div>		
+		<div>
+
+       
+    </body>    
+</html>    
