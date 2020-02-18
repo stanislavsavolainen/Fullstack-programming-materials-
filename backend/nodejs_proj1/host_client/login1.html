@@ -33,9 +33,12 @@
 
          fetch(host + link, postData)
         
-            .then(() => {
+            .then(( response ) => {
                 console.log("Fetch done");
                
+				window.location.href = "http://127.0.0.1:1111/profile1.html";
+				
+
             })
             .catch(function (error_msg) {
                 console.log("Fetch error : " + error_msg);
@@ -54,6 +57,7 @@
 
 <html>
 	<body>
+		<p id="data1"></p>
 		<div align="center">
 			<div> <div>Login <div> <div> <input type="text" id="tlogin" /> </div> </div>
 			<div> <div> Password </div> <div>  <input type="password" id="tpw"/> </div> </div>
