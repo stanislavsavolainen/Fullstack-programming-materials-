@@ -1,65 +1,72 @@
-
 <script type="text/javascript">
+	function initProfile() {
 
-	function initProfile(){
-	
-	
-
-		fetch('http://127.0.0.1:1111/loadUserProfile') 
-            		.then((resp) => {
-                		return resp.text();
-            		})
-            		.then((response) => {
-             
-						document.getElementById("user_profile_content").innerHTML = response;
-             		
-                        			var isMyObjectEmpty = !Object.keys(response).length;
-
-						console.log(isMyObjectEmpty);
-
-						if( isMyObjectEmpty  ) {
-						//	window.location.href = "http://127.0.0.1:1111/login2.html";
-						 document.getElementById("user_profile_content").innerHTML = ' <font color="red"> Your username or password is incorect , please relogin </font>  <a href="http://127.0.0.1:1111/login2.html">Back to login</a> ';
-					    }
-
-             		});
+		var heartbeat_ch = 0;
 
 
-	
+		fetch('http://127.0.0.1:1111/loadUserProfile')
+			.then((resp) => {
+				return resp.text();
+			})
+			.then((response) => {
 
-		var hdelay = 30000; //check each 30 seconds if user is still online
-  
-		setInterval(function(){ 
-  
-  			fetch('http://127.0.0.1:1111/confirmOnlineStatus') 
-            		.then((resp) => {
-                		return resp.text();
-            		})
-            		.then((response) => {
-             			//user is still online  
-             			//console.log("1234");
-             			console.log(" user online , check :  " + heartbeat_ch + " timestamp : " + ( new Date ).toString() );
-             			
-             			heartbeat_ch++;	
-             		});
-  
-  			
-  
-		}, hdelay);
+				document.getElementById("user_profile_content").innerHTML = response;
+
+				var isMyObjectEmpty = !Object.keys(response).length;
+
+				console.log(isMyObjectEmpty);
+
+				if (isMyObjectEmpty) {
+					//	window.location.href = "http://127.0.0.1:1111/login2.html";
+					document.getElementById("user_profile_content").innerHTML = ' <font color="red"> Your username or password is incorect , please relogin </font>  <a href="http://127.0.0.1:1111/login2.html">Back to login</a> ';
+				} else {
+
+					//check user online status when user is logged in and authentication success
+
+					var hdelay = 30000; //check each 30 seconds if user is still online
+
+					setInterval(function () {
+
+						fetch('http://127.0.0.1:1111/confirmOnlineStatus')
+							.then((resp) => {
+								return resp.text();
+							})
+							.then((response2) => {
+								//user is still online  
+								//console.log("1234");
+								console.log(" user online , check :  " + heartbeat_ch + " timestamp : " + (new Date).toString());
+
+								heartbeat_ch++;
+							});
 
 
 
-	
+					}, hdelay);
+
+
+
+				}
+
+			});
+
+
+
+
+
+
+
+
+
 	}
-	
-	
 
 </script>
 
 
 <html>
+
 <body onload="initProfile()">
 	<h1> User profile page </h1>
-	<div id="user_profile_content" > </div>
+	<div id="user_profile_content"> </div>
 </body>
+
 </html>
