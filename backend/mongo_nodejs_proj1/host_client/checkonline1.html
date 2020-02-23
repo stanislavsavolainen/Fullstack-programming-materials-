@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body onload="myFunction()">
+
+<h1>Hello World!</h1>
+
+<script>
+
+var heartbeat_ch = 0;
+
+function myFunction() {
+  //alert("Page is loaded");
+  
+  console.log("heartbeat activated !");
+		
+		//check that user is still logged in
+		//HTTP is stateless protocol and need to know when client leave our web-page
+		var hdelay = 30000; //check each 30 seconds if user is still online
+  
+
+  setInterval(function(){ 
+  
+  			fetch('http://127.0.0.1:1111/confirmOnlineStatus') 
+            		.then((resp) => {
+                		return resp.text();
+            		})
+            		.then((response) => {
+             			//user is still online  
+             			//console.log("1234");
+             			console.log(" user online , check :  " + heartbeat_ch + " timestamp : " + ( new Date ).toString() );
+             			
+             			heartbeat_ch++;	
+             		});
+  
+  			
+  
+  }, hdelay);
+
+}
+</script>
+
+</body>
+</html>
