@@ -136,6 +136,27 @@ My backend nodejs demo ( not done ) :
 [a link](backend/nodejs_proj1/)
 
 
+MongoDB and NodeJS alternative nodejs demo project as replacement for knex-mysql
+
+console 1 ( install and start mongodb process) :
+
+```sh 
+$ sudo apt-get install -y mongodb-org
+$ mongo --version
+$sudo mongod
+```
+ 
+console 2  ( use mongodb, when console 1 is done, create collection, view collection and other mongodb commands ):
+
+```sh 
+$ mongo
+$ > show dbs;
+$ > use test
+$ > show collections
+$ > db.createCollection("user1", { capped : true, autoIndexId : true, size: 6142800, max : 10000 } )
+$ > db.user1.find();
+```sh
+
 
 
 
