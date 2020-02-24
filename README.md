@@ -155,7 +155,7 @@ $ > use test
 $ > show collections
 $ > db.createCollection("user1", { capped : true, autoIndexId : true, size: 6142800, max : 10000 } )
 $ > db.user1.find();
-```sh
+```
 
 
 
