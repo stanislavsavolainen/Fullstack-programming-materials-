@@ -1,0 +1,97 @@
+
+<!--
+MATERIAL USED
+1. https://angularjs.org/ 
+2. https://www.tutorialspoint.com/angularjs/angularjs_ajax.htm
+3. https://stackoverflow.com/questions/41503026/angularjs-binding-in-src-attribute-of-img-tag 
+4. https://raw.githubusercontent.com/itemsapi/itemsapi-example-data/master/items/cars.json
+-->
+
+<html>
+   <head>
+      <title>Angular JS Includes</title>
+      
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+   </head>
+   
+   <body>
+      <h2>AngularJS Sample Application</h2>
+      <div ng-app = "" ng-controller = "carController">
+      
+      <table>
+
+         <tr>
+            <th>image</th>
+               <th>title</th>
+               <th>year</th>
+               <th>class</th>
+            </tr>
+
+            <tr ng-repeat = "car in cars">
+               <td>
+                  <img ng-src="{{car.image}}"/>
+               </td>
+               <td>{{ car.title }}</td>
+               <td>{{ car.start_production }}</td>
+               <td>{{ car.class }}</td>
+            </tr>
+
+         </table>
+
+      </div>
+      
+      <script>
+         function carController($scope,$http) {
+            //var url = "https://openlibrary.org/api/books?bibkeys=ISBN:0451526538";
+            var url = "https://raw.githubusercontent.com/itemsapi/itemsapi-example-data/master/items/cars.json";
+
+            let modifiedResponse = ""
+            let dataBeginCharacterIndex = -1;
+ 
+            $http.get(url).then( function(response) {
+
+               /*
+               
+                console.log("-----------------------------------------")
+                console.log(response.data)
+                for( let index = 0; index < response.data.length; index++ ) {  
+                   console.log( index + " : " + response.data[index] ); 
+
+                   if( response.data[index] === "{" ) {
+                      dataBeginCharacterIndex = index;
+                   }
+
+                }
+                console.log("-----------------------------------------")
+
+                modifiedResponse = response.data.substring( dataBeginCharacterIndex, response.data.length - 2 );
+                console.log("==========================================")
+                console.log(modifiedResponse)
+                $scope.bookdata = JSON.parse(modifiedResponse);
+                console.log("==========================================")
+                */
+               //$scope.students = response.data;
+
+               $scope.cars = response.data;
+
+            });
+         }
+      </script>
+      
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js">
+      </script>
+      
+   </body>
+</html>
