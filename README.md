@@ -158,6 +158,34 @@ $ > db.user1.find();
 ```
 
 
+My backend project 2 (http and https server project)
+
+[a link](backend2/)
+
+following https tutorial:
+https://www.geeksforgeeks.org/how-to-create-https-server-with-node-js/
+
+SSL certificates deleted from project, so you have to generate your own using openSSL software tools
+
+```sh 
+$ cd ssl_certificates ( mkdir ssl_certificates )
+$ openssl req -nodes -new -x509 -keyout server.key -out server.cert
+$ > cd..
+$ > npm install
+```
+make sure "sl_certificates" subfolder contains 2 files : "server.cert" and "server.key" files 
+
+.
+├── package.json
+├── package-lock.json
+├── public_html
+│   └── index.html
+├── server1.js
+└── ssl_certificates
+    ├── server.cert
+    └── server.key
+
+--------------------------------------------------------------------------
 
 
 Backend framework:

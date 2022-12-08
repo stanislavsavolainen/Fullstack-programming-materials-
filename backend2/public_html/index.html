@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    function pageInit(){
+        //document.getElementById("pageUrl").innerHTML = window.location.href;	
+        let fullUrl = window.location.href;
+        let protocolName = fullUrl.substring(0, 5);
+        document.getElementById("pageUrl").innerHTML =protocolName;
+        let IndexPageClientMessage = "";
+        // if( protocolName === "https") IndexPageClientMessage += "display https content on page";  
+        //else if( protocolName === "http") IndexPageClientMessage += "display http content on page";
+        //document.getElementById("pageUrl").innerHTML = IndexPageClientMessage;    
+    }
+</script>	
+<html>
+  
+<head>
+    <title>https and http server server client</title>
+<head>
+
+<body onload="pageInit()">
+    <h1 id="pageUrl"> http/https server </h1>
+    <a href="/profile">profile page</a>
+    <br><br>
+    <a href="https://127.0.0.1:3000/">https-protocol</a>
+    <a href="http://127.0.0.1:3001/">http-protocol</a>
+</body>
+</html>
