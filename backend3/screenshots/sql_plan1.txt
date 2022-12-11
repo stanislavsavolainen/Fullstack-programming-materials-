@@ -1,0 +1,105 @@
+////////////////////////////////////////////////////////
+
+
+CREATE TABLE user_table1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    user_uuid VARCHAR(36),
+    password_hash_sha256 VARCHAR(64),
+    user_is_blocked TINYINT,
+    user_permission_level TINYINT,
+    user_is_online TINYINT,
+    registered_date datetime DEFAULT NULL , 
+    last_online_date datetime DEFAULT NULL , 
+    user_maintenance_info VARCHAR(500) ,
+	username VARCHAR(40),
+    PRIMARY KEY (row_id)
+
+);
+
+CREATE TABLE msg1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    message VARCHAR(100),
+    PRIMARY KEY (row_id)
+);
+
+mysql> INSERT INTO msg1(message) VALUES "my test message";
+
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+
+sudo apt install mysql-server
+
+sudo systemctl start mysql.service
+
+sudo mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+mysql -u root -p 
+password
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0,00 sec)
+
+mysql> create database fullstack2022db1;
+Query OK, 1 row affected (0,22 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| fullstack2022db1   |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0,00 sec)
+
+mysql> use fullstack2022db1;
+Database changed
+mysql> show tables;
+Empty set (0,00 sec)
+
+mysql> CREATE TABLE user_table1 (
+    ->     row_id int(11) NOT NULL AUTO_INCREMENT,
+    ->     user_uuid VARCHAR(36),
+    ->     password_hash_sha256 VARCHAR(64),
+    ->     user_is_blocked TINYINT,
+    ->     user_permission_level TINYINT,
+    ->     user_is_online TINYINT,
+    ->     registered_date datetime DEFAULT NULL , 
+    ->     last_online_date datetime DEFAULT NULL , 
+    ->     user_maintenance_info VARCHAR(500) ,
+    -> username VARCHAR(40),
+    ->     PRIMARY KEY (row_id)
+    -> 
+    -> );
+Query OK, 0 rows affected, 1 warning (1,46 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| user_table1                |
++----------------------------+
+1 row in set (0,00 sec)
+
+mysql> 
+
+
+
+
+
+
