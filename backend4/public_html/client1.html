@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<script type="text/javascript">
+
+
+function getAllUsers(){
+
+    fetch( 'https://127.0.0.1:3000/user' , { method: 'GET' })
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((users) => {
+
+	        document.getElementById("userResponse").innerHTML = "++++" + users[0].msg;	                
+
+            }) .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+            })
+
+}
+
+function getUserById( paramUserId ){
+
+	  fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'GET' })
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((users) => {
+
+	            displayResult(users);		                
+
+            }) .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+            })
+	
+
+}
+
+
+
+function updateUserById( paramUserId ){
+	
+	  fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'PUT' })
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((users) => {
+
+		        displayResult(users);	                
+
+            }) .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+            })
+	
+
+}
+
+
+function deleteUserById( paramUserId ){
+	
+	  fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'DELETE' })
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((users) => {
+
+		        displayResult(users);	                
+
+            }) .catch(function (error_msg) {
+                console.log("Fetch error : " + error_msg);
+            })
+	
+
+}
+
+
+function displayResult(users){
+	document.getElementById("userResponse").innerHTML =  "user action : " + users.action + " with message " + users.msg;
+}
+
+
+</script>
+
+<html>
+<title>test page 1</title>
+<body>
+<div align="center"><h1> shared html file</h1></div>
+
+<button onclick="getAllUsers()"> get all users </button>
+<button onclick="getUserById('admin666')"> get user by id </button>
+<button onclick="updateUserById('admin666')"> update user </button>
+<button onclick="deleteUserById('admin666')"> delete user </button>
+<div>
+	<font color="green">
+		<div id="userResponse"></div>
+	</font>
+</div>
+</body>
+<html>

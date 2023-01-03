@@ -1,0 +1,21 @@
+{
+  "name": "proj3",
+  "version": "1.0.0",
+  "description": "HTTPS-server with advanced stuff like .env, uuid, sha256 ,params and etc",
+  "main": "server3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "stanislavsavolainen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "sha256": "^0.2.0",
+    "uuid": "^3.4.0"
+  }
+}
