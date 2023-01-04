@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+
+<style type= text/css>
+
+    .divForm{
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .divstyle1cell{
+        padding-left: 7px;
+        display: table-cell;   
+    }
+
+    .divstyle1row {
+        display: table-row;
+    }
+
+    .divstyle1table  {
+        display: table;
+        background-color: bisque;
+    }
+
+    .button1style{
+        margin-top: 7px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+
+</style>
+
+<script type="text/javascript">
+
+
+    function getAllUsers(){
+
+        fetch( 'https://127.0.0.1:3000/user' , { method: 'GET' })
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                document.getElementById("userResponse").innerHTML = "++++" + users[0].msg;	                
+
+                }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+
+    }
+
+    function getUserById( paramUserId ){
+
+        fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'GET' })
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                    displayResult(users);		                
+
+                }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+        
+    }
+
+
+
+    function updateUserById( paramUserId ){
+        
+        fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'PUT' })
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                    displayResult(users);	                
+
+                }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+        
+
+    }
+
+
+    function deleteUserById( paramUserId ){
+        
+        fetch( 'https://127.0.0.1:3000/user/'+paramUserId, { method: 'DELETE' })
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                    displayResult(users);	                
+
+                }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+        
+    }
+
+
+    function login(){
+
+        let paramLogin = document.getElementById("fieldLogin").value;
+        let paramPassword = document.getElementById("fieldPassword").value;
+
+        //console.log("login : "+paramLogin + "password : "+paramPassword);
+        //convert password to sha256 hash at client side in future versions
+
+        let requestBodyParam = {
+            paramLogin : paramLogin,
+            paramPassword : paramPassword
+        }
+
+        //post body
+        let requestBody = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBodyParam),
+            };
+
+        
+        fetch('https://127.0.0.1:3000/authenticate' , requestBody)
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                    displayResult2(users);	                
+
+                    divForm }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+
+    }
+
+
+    function register(){
+
+        let paramLogin = document.getElementById("rfieldLogin").value;
+        let paramPassword = document.getElementById("rfieldPassword").value;
+        let paramPassword2 = document.getElementById("rfieldRepeatPassword").value;
+
+        console.log("login : "+paramLogin + "password : "+paramPassword);
+
+        //convert password to sha256 hash at client side in future versions
+
+        let requestBodyParam = {
+            paramLogin : paramLogin,
+            paramPassword : paramPassword,
+            paramPassword2 : paramPassword2
+        }
+
+
+        //post body
+        let requestBody = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBodyParam),
+            };
+
+        
+        fetch('https://127.0.0.1:3000/registration' , requestBody)
+        .then((resp) => {
+                    return resp.json();
+                })
+                .then((users) => {
+
+                    displayResult2(users);	                
+
+                }) .catch(function (error_msg) {
+                    console.log("Fetch error : " + error_msg);
+                })
+
+    }
+
+    function displayResult(users){
+        document.getElementById("userResponse").innerHTML =  "user method : " + users.method + " with message " + users.msg;
+    }
+
+
+    function displayResult2(users){
+        console.log(JSON.stringify(users, undefined, 2));
+        document.getElementById("userAuthResponse").innerHTML = JSON.stringify(users, undefined, 2);
+    }
+
+
+</script>
+
+<html>
+<title>shared html file, client 1</title>
+<body>
+<div align="center"><h1> shared html file, client 1</h1></div>
+
+<!--
+<button onclick="getAllUsers()"> get all users </button>
+<button onclick="getUserById('admin666')"> get user by id </button>
+<button onclick="updateUserById('admin666')"> update user </button>
+<button onclick="deleteUserById('admin666')"> delete user </button>
+<br>
+-->
+
+<h3>Authenticate</h3>
+
+<br>
+
+<div class="divstyle1table">
+    
+    <div class="divstyle1row"> 
+        <div class="divstyle1cell">login </div>
+        <div class="divstyle1cell">
+            <input type="text" id="fieldLogin"/>
+        </div>
+    </div> 
+    <div class="divstyle1row"> 
+        <div class="divstyle1cell">password</div>
+        <div class="divstyle1cell">
+            <input type="password" id="fieldPassword"/>
+         </div>
+    </div> 
+    <div class="divstyle1row"> 
+        <div class="divstyle1cell"> </div>
+        <div class="divstyle1cell">
+            <button onclick="login()" class="button1style"> Authenticate </button> 
+        </div>
+    </div>     
+</div>
+
+<br><br>
+
+<h3>Register</h3>
+<br>
+
+<div class="divstyle1table">
+    <div class="divstyle1row"> 
+        <div class="divstyle1cell">login </div> 
+        <div class="divstyle1cell"> 
+            <input type="text" id="rfieldLogin"/> 
+        </div>
+    </div>
+
+    <div class="divstyle1row"> 
+        <div class="divstyle1cell"> password </div>
+        <div class="divstyle1cell">
+            <input type="password" id="rfieldPassword"/> 
+        </div> 
+    </div>
+
+    <div class="divstyle1row">    
+        <div class="divstyle1cell">repeat password </div>
+        <div class="divstyle1cell">
+            <input type="password" id="rfieldRepeatPassword"/>
+        </div>
+    </div>
+    
+    <div class="divstyle1row">    
+        <div class="divstyle1cell"></div>
+        <div class="divstyle1cell">
+            <button onclick="register()" class="button1style"> Register </button>
+        </div>
+    </div>
+
+
+</div>
+
+<div>
+	<font color="green">
+		<div id="userResponse"></div>
+	</font>
+</div>
+<div>
+	<font color="blue">
+		<pre id="userAuthResponse"></pre>
+	</font>
+</div>
+
+</body>
+<html>
