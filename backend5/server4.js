@@ -9,7 +9,7 @@ const { validationResult } = require('express-validator');
 
 app.use(bodyParser.json());
 
-//share some html files in backend server -> document are available inside this folder
+//share some html files in backend server -> documents are available inside this folder
 app.use(express.static("public_html"));
 
 const allowCrossDomain = function (req, res, next) {
@@ -43,6 +43,7 @@ app.get("/profile", async function (req, res) {
 
 });
 
+
 app.get("/users", async function (req, res) {    
 
    let dbData = { msg :  "data not found" }; 
@@ -59,6 +60,7 @@ app.get("/users", async function (req, res) {
     res.send(DataArrayTemplate);
 
 });
+
 
 app.post("/authenticate", serverUtilityFunctions.authenticateValidate , async function (req, res) {
 
@@ -112,8 +114,6 @@ app.post("/authenticate", serverUtilityFunctions.authenticateValidate , async fu
 });
 
 
-
-
 app.post("/registration", serverUtilityFunctions.registerValidate , async function (req, res) {
     //res.send("write user = register user ");
 
@@ -124,20 +124,15 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
         if( req.body.paramPassword === req.body.paramPassword2 ){
 
             let foundUsernameDublicate = false;
-
             let dbData = await databaseFunctions.getAllUsers();
 
             //find username dublicate in exsisting database data
             if( dbData.length != 0 ){
-
                 dbData.forEach(function (dbElement) {
-
                     let userName = dbElement.username;
-
                     if( userName === req.body.paramLogin ){
                         foundUsernameDublicate = true;
                     }
-
                 });
             }
 
@@ -163,7 +158,6 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
                 10 rows in set (0,01 sec)
                 */
 
-
                 var userObject = {
                     username: req.body.paramLogin,
                     password_hash_sha256: serverUtilityFunctions.passwordSha256ToString(req.body.paramPassword),
@@ -180,37 +174,30 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
         
                 res.send({ 
                     msg: "registration complete users in system is : " + dbData.length, 
-                    
                     method: "POST",
                     apiCall : "/registration", 
                 });
 
 
             } else {
-
                 res.send({ 
                     msg: "error in registerion", 
-                    method: "GET", 
+                    method: "POST", 
                     apiCall : "/registration",
                     errorArr : [{"msg": "this username is already used !"}] 
                 });
-
             }
 
-
         } else {
-
             res.send({ 
                 msg: "error in register validation", 
                 method: "POST", 
                 apiCall : "/registration",
                 errorArr : [{"msg": "passwords not match"}] 
             });
-
         }
 
     } else {
-
         res.send({ 
             msg: "error in register validation", 
             method: "POST", 
@@ -228,12 +215,12 @@ app.get("/user/:userUUID", serverUtilityFunctions.validateUUID , async function 
     let error = validationResult(req);
 
     if( error.isEmpty()){
+
         let paramUserUUID = req.params.userUUID;
         console.log("get user by id triggered with param :" + paramUserUUID);
-
-       let dbObject =  await databaseFunctions.getSelectedUserByUUID( paramUserUUID )
-
+        let dbObject =  await databaseFunctions.getSelectedUserByUUID( paramUserUUID )
         res.send({ msg: dbObject , method: "GET", apiCall : "/user/:userUUID" });
+
     } else {
 
         res.send({ 
@@ -241,8 +228,8 @@ app.get("/user/:userUUID", serverUtilityFunctions.validateUUID , async function 
                     action: "GET", 
                     errorArr : error.array() 
                 });
+
     }
-  
    
 });
 
@@ -250,16 +237,14 @@ app.get("/user/:userUUID", serverUtilityFunctions.validateUUID , async function 
 app.put("/user/:userUUID", async function (req, res) {
 
     let paramUserUUID = req.params.userUUID;
-
     console.log("update user triggered with param  : " + paramUserUUID);
 
     //this service is unavailable at the moment
     //let dbData = await databaseFunctions.updateUser(paramUserUUID)
 
     res.send({ msg: "user is updated uuid " + paramUserUUID, method: "PUT" })
+
 });
-
-
 
 
 app.delete("/user/:userUUID", async function (req, res) {
@@ -279,6 +264,7 @@ const options = {
     key: fs.readFileSync(process.env.SSL_KEY),
     cert: fs.readFileSync(process.env.SSL_CERT),
 };
+
 
 https.createServer(options, app)
     .listen(process.env.HTTPS_PORT, function (req, res) {

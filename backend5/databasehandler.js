@@ -41,7 +41,6 @@ function testMSG() {
 
 function getAllUsers(){
 
-
     return new Promise((resolve, reject) => {
 
         knex(process.env.MYSQL_DB_USER_TABLE1).then(function (database_result) {
@@ -57,7 +56,6 @@ function getAllUsers(){
         })
 
     })	 //Promise	
-
 
 }
 
@@ -95,7 +93,6 @@ function registerUser(paramUserObject) {
 }
 
 
-
 function updateUser(userId) {
 
     return new Promise((resolve, reject) => {
@@ -113,6 +110,7 @@ function updateUser(userId) {
     })	 //Promise
 
 }
+
 
 function deleteUser(userId) {
 
@@ -134,6 +132,7 @@ function deleteUser(userId) {
 
 }
 
+
 function getSelectedUserByUUID( paramUserUUID ){
 
     return new Promise((resolve, reject) => {
@@ -149,9 +148,6 @@ function getSelectedUserByUUID( paramUserUUID ){
     })	 //Promise
 
 }
-
-
-
 
 
 module.exports = {
