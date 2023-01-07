@@ -133,9 +133,12 @@
                 })
                 .then((users) => {
 
-                    displayResult2(users);	                
+                    displayResult2(users);
+                    //window.location.replace();
 
-                    divForm }) .catch(function (error_msg) {
+                    if(typeof users.url != 'undefined' ) window.location.replace( users.url );
+
+                 }) .catch(function (error_msg) {
                     console.log("Fetch error : " + error_msg);
                 })
 

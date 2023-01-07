@@ -1,0 +1,358 @@
+<style type="text/css">
+	.messageForm {
+		background-color: bisque;
+	}
+
+	.trStyle1 {
+		background-color: white;
+	}
+
+	.trStyle2 {
+		background-color: bisque;
+	}
+</style>
+
+<script type="text/javascript">
+
+	//var serverIpAddress = "192.168.100.18:3000";
+	var serverIpAddress = location.hostname + ":3000";
+	console.log("server : " + serverIpAddress + " host front-end profile , welcome ! ");
+
+	let urlStr = (document.URL).split("/");
+	let pageUuid = urlStr[urlStr.length - 1];
+	let publicusers = [];
+
+	function formatDate(date) {
+
+		var d = new Date(date),
+			month = '' + (d.getMonth() + 1),
+			day = '' + d.getDate(),
+			year = d.getFullYear(),
+
+			hours = d.getHours(),
+			minutes = d.getMinutes(),
+			seconds = d.getSeconds();
+
+		if (month.length < 2)
+			month = '0' + month;
+
+		if (day.length < 2)
+			day = '0' + day;
+
+		if (hours.length < 2)
+			hours = '0' + hours;
+
+		if (minutes.length < 2)
+			minutes = '0' + minues;
+
+		if (seconds.length < 2)
+			seconds = '0' + seconds;
+
+		return ([year, month, day].join('-')) + " " + ([hours, minutes, seconds].join(":"));
+	}
+
+
+	function addMessage() {
+
+		let messageBlock = "";
+
+		let profiletable = document.getElementById('profile');
+		let messagetable = document.getElementById('messageid');
+		let messageSender = profiletable.rows[0].cells[1].innerHTML;
+		var totalRowCount = messagetable.rows.length;
+		let messageType = document.getElementById("messageType").value;
+		let messageReceiver = document.getElementById("messageType").value;
+		let messageContent = document.getElementById("messageContent").value;
+		//let messageTimestamp = "" + (new Date());
+		//const offset = yourDate.getTimezoneOffset()
+		//let yourDate = new Date(yourDate.getTime() - (offset*60*1000))
+		//let dateStr = yourDate.toISOString().split('T')[0]
+		let messageTimestamp = formatDate(new Date());
+
+		//let messageBlock = document.getElementById("messageid").value;
+		console.log(totalRowCount)
+		if (totalRowCount % 2 == 0) messageBlock += "<tr class='trStyle1'>";
+		else messageBlock += "<tr class='trStyle2'>";
+		messageBlock += "<td>" + messageSender + "</td>";
+		messageBlock += "<td>" + messageType + "</td>";
+		messageBlock += "<td>" + messageTimestamp + "</td>";
+		messageBlock += "<td>" + messageContent + "</td>";
+		messageBlock += "</tr>";
+		document.getElementById("messageid").innerHTML += messageBlock;
+	}
+
+
+
+	function addMessage2() {
+
+		let profiletable = document.getElementById('profile');
+		let messagetable = document.getElementById('messageid');
+		let messageSender = profiletable.rows[0].cells[1].innerHTML;
+		var totalRowCount = messagetable.rows.length;
+
+		let messageType = document.getElementById("messageType").value;
+		//let messageReceiver = document.getElementById("messageType").value;
+		messageReceiver = "empty"
+		let messageContent = document.getElementById("messageContent").value;
+
+		let messageTypeData = messageType.split("_");
+
+		if (messageTypeData[0] === "private") {
+			messageReceiver = messageTypeData[1];
+			messageType = messageTypeData[0];
+		}
+		else messageReceiver = "empty"
+
+		let requestMessageBodyParam = {
+			sender: messageSender,
+			receiver: messageReceiver,
+			content: messageContent,
+			type: messageType
+		}
+
+		//post body
+		let requestMessageBody = {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(requestMessageBodyParam),
+		};
+
+
+
+		if (pageUuid.length == 36) {
+
+			fetch('https://' + serverIpAddress + '/sendmessage/' + pageUuid, requestMessageBody)
+				.then((resp) => {
+					return resp.json();
+				})
+				.then((users) => {
+
+					location.reload();
+
+				}).catch(function (error_msg) {
+					console.log("Fetch error : " + error_msg);
+				})
+
+		}
+
+	}
+
+	function readAllMessages() {
+
+		let messageBlock = "";
+
+		if (pageUuid.length == 36) {
+
+
+			setTimeout(function () {
+
+
+
+				fetch('https://' + serverIpAddress + '/readallmessages/' + pageUuid, { method: 'GET' })
+					.then((resp) => {
+						return resp.json();
+					})
+					.then((messages) => {
+
+						let messagetable = document.getElementById('messageid');
+
+						console.log("read all root messages : ")
+						console.log(JSON.stringify(messages));
+						console.log("amount of messages : " + messages.msg.length);
+
+						let rowColor = false;
+
+						messageBlock += "<tr>";
+						messageBlock += "<th>sender</th>";
+						messageBlock += "<th>type</th>";
+						messageBlock += "<th>timestamp</th>";
+						messageBlock += "<th>content</th>";
+						messageBlock += "</tr>";
+
+						messages.msg.forEach(function (messageElement) {
+
+							console.log("read all messages : ")
+							console.log(messageElement);
+
+							let messageSender = messageElement.sender_uuid;
+							let messageType = messageElement.message_receiver_type;
+							let messageTimestamp = messageElement.timestamp;
+							let messageContent = messageElement.message_content;
+
+							publicusers.forEach(function (publicElement) {
+								if (messageSender === publicElement.user_uuid) {
+									messageSender = publicElement.username;
+								}
+							});
+
+							//let totalRowCount = messagetable.rows.length;
+							//if (totalRowCount % 2 == 0) messageBlock += "<tr class='trStyle1'>";
+							//else messageBlock += "<tr class='trStyle2'>";
+
+							if (rowColor) {
+								messageBlock += "<tr class='trStyle1'>";
+								rowColor = false;
+							}
+							else if (!rowColor) {
+								messageBlock += "<tr class='trStyle2'>";
+								rowColor = true;
+							}
+
+							//rowColor != rowColor;
+
+							messageBlock += "<td>" + messageSender + "</td>";
+							messageBlock += "<td>" + messageType + "</td>";
+							messageBlock += "<td>" + messageTimestamp + "</td>";
+							messageBlock += "<td>" + messageContent + "</td>";
+							messageBlock += "</tr>";
+
+
+
+						});
+
+
+						document.getElementById("messageid").innerHTML = messageBlock;
+
+
+
+
+					}).catch(function (error_msg) {
+						console.log("Fetch error : " + error_msg);
+					})
+
+			}, 2000); //setTimeout
+
+			//======================= public users ======================
+
+			fetch('https://' + serverIpAddress + '/publicusers', { method: 'GET' })
+				.then((resp) => {
+					return resp.json();
+				})
+				.then((users) => {
+
+					let messageType = document.getElementById('messageType');
+
+					users.forEach(function (userElement) {
+
+						let uuid = userElement.user_uuid
+						let username = userElement.username;
+
+						var typeElement = document.createElement('option');
+						typeElement.value = "private_" + uuid;
+						typeElement.innerHTML = "Private : " + username;
+						messageType.appendChild(typeElement);
+
+						publicusers.push(userElement);
+
+						//typeElement.value = "group_"+group_uuid;
+						//typeElement.innerHTML = "Group : " + groupname;
+						//messageType.appendChild(typeElement);
+
+					});
+
+				}).catch(function (error_msg) {
+					console.log("Fetch error : " + error_msg);
+				})
+
+		}//if uuid-6 lenght 36
+
+	}
+
+	function logout() {
+
+		//console.log( document.URL );
+		let urlStr = (document.URL).split("/");
+		//console.log(urlStr);
+		let pageUuid = urlStr[urlStr.length - 1];
+		//console.log(pageUuid.length);
+
+		if (pageUuid.length == 36) {
+
+			fetch('https://' + serverIpAddress + '/logout/' + pageUuid, { method: 'GET' })
+				.then((resp) => {
+					return resp.json();
+				})
+				.then((users) => {
+
+					console.log(users);
+					if (typeof users.url != 'undefined') window.location.replace(users.url);
+
+				}).catch(function (error_msg) {
+					console.log("Fetch error : " + error_msg);
+				})
+		}
+
+	}
+
+</script>
+
+<html>
+
+<body onload="readAllMessages()">
+
+	<br />
+	<div>
+		<h1> User profiles </h1>
+		<p align="right"> <button onclick="logout()">logout</button> </p>
+	</div>
+	<br />
+	<table border="3" id="profile">
+		<tr>
+			<td> Username : </td>
+			<td id="personal"> ***username***</td>
+		</tr>
+		<tr>
+			<td> You were here at : </td>
+			<td> ***lastonline***</td>
+		</tr>
+		<tr>
+			<td> and your registration were in : </td>
+			<td> ***register***</td>
+		</tr>
+		<tr>
+			<td> and your personal uuid is : </td>
+			<td> ***uuid***</td>
+		</tr>
+	</table>
+
+
+	<br />
+	<h1> Write message </h1>
+	<br />
+	<div class="messageForm">
+
+		<select id="messageType">
+		
+			<option value="personal">personal</option>
+			<option value="public">public</option>
+			<!--
+			<option value="private_receiver_uuid">tech-support</option>	
+			-->
+		</select>
+
+		<button onclick="addMessage2()">Send message</button>
+
+		<br />
+		<textarea id="messageContent"></textarea>
+		<br />
+	</div>
+
+	<br />
+	<h1> Previous messages </h1>
+	<br />
+	<table border="3" id="messageid">
+		<!--
+		<tr>
+			<th>sender</th>
+			<th>type</th>
+			<th>timestamp</th>
+			<th>content</th>
+		</tr>
+	-->
+	</table>
+</body>
+
+</html>

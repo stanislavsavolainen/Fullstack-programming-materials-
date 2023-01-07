@@ -157,6 +157,7 @@ $ > db.createCollection("user1", { capped : true, autoIndexId : true, size: 6142
 $ > db.user1.find();
 ```
 
+--------------------------------------------------------------------------
 
 My backend project 2 (http and https server project)
 
@@ -184,6 +185,21 @@ make sure "sl_certificates" subfolder contains 2 files : "server.cert" and "serv
 └── ssl_certificates
     ├── server.cert
     └── server.key
+
+
+My backend projects 3 - 6 :
+
+Project 3 : .env - credentials , split program to components- and services-files and import them , if required
+
+Project 4: GET/POST/PUT/DELETE methods and small usage
+
+Project 5 : backend-input validation ( express-validator) , regular-expression
+
+Project 6 ( http/https server project)
+
+User can authenticate/register. Authenticated user can send public or private messages. Limit message view for each user
+who have permission view message. 
+
 
 --------------------------------------------------------------------------
 

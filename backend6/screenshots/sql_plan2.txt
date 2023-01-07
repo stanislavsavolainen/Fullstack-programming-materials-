@@ -1,0 +1,71 @@
+
+Project 6 info and small plan:
+
+User can register and authenticate already created account. Also user can logout system ( there is one boolean/tinyint field in database to monitor user status ( dropInactivityScheduler not implemented).
+
+I did message sending service at backend6 project, wich is part of project2 - project6 development. User can send public, private and personal messages ( in future group messages is planned). This message sending idea is limit wich message each user can view. Small confidential/secret messages for selected person.    
+
+message_receiver_type = "public" , "group", "private" , "personal", "tech-support"  // tech-support == group ??? , personal is sending message for yourself
+
+connection_uuid service/feature provide me some better controll handing users, if they are connected same time
+
+=====================================================================================================
+
+friend -> status = "pending" , "canceled" , "accepted", "blocked/ignored" , "deleted" 
+
+group -> status = "pending" , "canceled" , "accepted", "blocked/ignored" , "deleted" 
+
+=====================================================================================================
+
+CREATE TABLE user_table1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    user_uuid VARCHAR(36),
+    password_hash_sha256 VARCHAR(64),
+    user_is_blocked TINYINT,
+    user_permission_level TINYINT,
+    user_is_online TINYINT,
+    registered_date datetime DEFAULT NULL , 
+    last_online_date datetime DEFAULT NULL , 
+    user_maintenance_info VARCHAR(500) ,
+	username VARCHAR(40),
+    PRIMARY KEY (row_id)
+
+);
+
+
+CREATE TABLE message1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    message_content VARCHAR(5000),
+    sender_uuid VARCHAR(36),
+    person_receiver_uuid VARCHAR(36),
+    group_receiver_uuid VARCHAR(36),
+    timestamp datetime DEFAULT NULL ,
+    message_receiver_type VARCHAR(16),
+    message_visible_status TINYINT,
+    PRIMARY KEY (row_id)
+)
+
+
+CREATE TABLE friendlist1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    user_uuid VARCHAR(36),
+    friend_uuid VARCHAR(36),
+    friend_description VARCHAR(300),
+    friend_is_blocked TINYINT,
+    status VARCHAR(16),
+    request_timestamp datetime DEFAULT NULL ,  
+    PRIMARY KEY (row_id)
+);
+
+
+CREATE TABLE grouplist1 (
+    row_id int(11) NOT NULL AUTO_INCREMENT,
+    group_name VARCHAR(100),
+    group_description VARCHAR(300),
+    group_uuid VARCHAR(36),
+    member_uuid VARCHAR(36),
+    member_is_blocked TINYINT,
+    status VARCHAR(16),
+    request_timestamp datetime DEFAULT NULL ,  
+    PRIMARY KEY (row_id)
+);
