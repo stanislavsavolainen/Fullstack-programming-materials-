@@ -101,7 +101,7 @@ app.get("/profile/:connectionUUID", async function (req, res) {
     res.setHeader('Content-Type', 'text/html');
     if(profileDataFound &&  ! connectionIpAddressNotMatch)  res.send(""+pageContentStr);
     else if (profileDataFound && connectionIpAddressNotMatch){
-        pageContentStr = "<html><body><div align='center'><font color='blue'><h1>ip-addess not match with authentication-session</h1></font></div></body></html>";
+        pageContentStr = "<html><body><div align='center'><font color='blue'><h1>ip-address not match with authentication-session</h1></font></div></body></html>";
         res.send(pageContentStr);    
     }
     else {
