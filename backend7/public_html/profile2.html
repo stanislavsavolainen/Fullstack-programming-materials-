@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title> shared html file, 2nd profile page , Angular JS Includes</title>
+
+    <style>
+        body {
+            background-color: bisque;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .messageForm {
+            background-color: #f2f2f2;
+            margin-left: 5%;
+            margin-top: 10px;
+            width: 90%;
+            box-shadow: 5px 10px darkgrey;
+            border: 1px solid;
+        }
+
+        .mystyle1 {
+            border-style: solid;
+            border-width: 1px;
+
+        }
+
+        .mystyle2 {
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        .mystyle2:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .mystyle3 {
+            margin-left: 5%;
+            margin-top: 10px;
+            width: 90%;
+            box-shadow: 5px 10px gray;
+            border: 1px solid;
+            background-color: #f1f1f1;
+        }
+
+        .titleTextStyle1 {
+            margin-left: 5%;
+            margin-top: 10px;
+            width: 90%;
+        }
+
+        .textAreaStyle1 {
+            margin-left: 2%;
+            padding-right: 2%;
+            width: 96%;
+            box-shadow: 5px 10px gray;
+            border: 1px solid;
+        }
+
+        .buttonStyle1 {
+            color: blue;
+            border: 0px;
+            background-color: darkgrey;
+
+        }
+
+        .buttonStyle1:hover {
+            color: red;
+            border: 0px;
+            background-color: bisque;
+        }
+
+    </style>
+</head>
+
+<body ng-app="angularJSProfileApp">
+
+    <h1 class="titleTextStyle1"> User profiles </h1>
+    <br />
+    <div ng-controller="LogoutController" class="mystyle3">
+
+        <button ng-click="logout()" class="mystyle3 buttonStyle1">logout</button>
+
+        <br />
+        <table id="profile" class="mystyle3">
+            <tr>
+                <td> Username : </td>
+                <td id="personal"> ***username***</td>
+            </tr>
+            <tr>
+                <td> You were here at : </td>
+                <td> ***lastonline***</td>
+            </tr>
+            <tr>
+                <td> and your registration was in : </td>
+                <td> ***register***</td>
+            </tr>
+            <tr>
+                <td> and your personal uuid is : </td>
+                <td> ***uuid***</td>
+            </tr>
+        </table>
+        <br><br>
+        <p></p>
+    </div>
+
+    <br />
+    <h1 class="titleTextStyle1"> Write message </h1>
+    <br />
+
+    <div class="messageForm" ng-controller="AddMessageController">
+
+
+        <select id="messageType" ng-model="MessageNgType">
+
+            <option value="personal" selected>personal</option>
+            <option value="public">public</option>
+
+            <option ng-value="{{user}}" ng-repeat="user in users"> private : {{user.username}} </option>
+
+        </select>
+
+        <button ng-click="addMessage()">Send message</button>
+
+        <br /><br />
+        <textarea class="textAreaStyle1" id="messageContent" ng-model="MessageNgContent"></textarea>
+        <br />
+        <p></p>
+    </div>
+
+
+    <br />
+    <h1 class="titleTextStyle1"> Previous messages </h1>
+    <br />
+
+    <div ng-controller="InitPage">
+
+        <!--
+        <table>
+
+            <tr>
+                <th>sender</th>
+                <th>type</th>
+                <th>timestamp</th>
+                <th>content</th>
+            </tr>
+
+            
+            <tr ng-repeat="message in messages">
+                <td>{{message.messageSender}}</td>
+                <td>{{message.messageType}}</td>
+                <td>{{message.messageTimestamp}}</td>
+                <td>{{message.messageContent}}</td>
+            </tr>
+
+        </table>
+        -->
+
+        <!-- bootstrap css styles -->
+        <div>
+            <div class="row mystyle3" ng-repeat="message in messages">
+
+                <div class="col-lg-4">
+                    <a ng-href="https://192.168.100.18:3000/user/{{message.messageSenderUUID}}">
+                        {{message.messageSender}}
+                    </a>
+                    messageType={{message.messageType}} ,
+                    messageTo={{ findNameByUUD(message.messagePersonReceiver)}} 
+                    {{findUUIDUsenameAnswer}}
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">{{formatDate(message.messageTimestamp)}}</div>
+                <div class="col-lg-12 mystyle1">
+                    <br>
+                    {{message.messageContent}}
+                    <br>
+                    <p></p>
+                </div>
+
+            </div>
+        </div>
+
+        <br><br>
+        <p></p>
+    </div>
+
+    <script>
+
+        let messagesArray = [];
+
+        var app = angular.module('angularJSProfileApp', []);
+       
+        app.controller('InitPage', function ($scope, $http) {
+
+            profileInitController($scope, $http);
+
+            clientInactivityScheduler($http);
+
+            $scope.findUUIDUsenameAnswer = "";
+
+            $scope.findNameByUUD = function (paramUUID) {
+
+                let answer = "x";
+                let found = false;
+
+                console.log("function found findNameByUUD param"+paramUUID);
+               
+                $scope.users.forEach(function (userSearch) {
+                    if( paramUUID === userSearch.user_uuid && !found) {
+                        found = true;
+                        answer = userSearch.username;
+                        console.log(userSearch); 
+                        //return userSearch.username;
+                        $scope.findUUIDUsenameAnswer = userSearch.username;
+                    }
+                   
+                    return answer;
+                });
+            };
+
+            $scope.formatDate = function (date) {
+
+
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear(),
+
+                    hours = d.getHours(),
+                    minutes = d.getMinutes(),
+                    seconds = d.getSeconds();
+
+                if (month.length < 2)
+                    month = '0' + month;
+
+                if (day.length < 2)
+                    day = '0' + day;
+
+                if (hours.length < 2)
+                    hours = '0' + hours;
+
+                if (minutes.length < 2)
+                    minutes = '0' + minues;
+
+                if (seconds.length < 2)
+                    seconds = '0' + seconds;
+
+                return ([year, month, day].join('-')) + " " + ([hours, minutes, seconds].join(":"));
+
+            }
+
+
+
+        });
+
+        app.controller('LogoutController', function ($scope, $http) {
+
+            $scope.logout = function () {
+
+                var serverIpAddress = location.hostname + ":3000";
+                let urlStr = (document.URL).split("/");
+
+                let pageUuid = urlStr[urlStr.length - 1];
+
+
+                if (pageUuid.length == 36) {
+
+                    let url1 = 'https://' + serverIpAddress + '/logout/' + pageUuid;
+                    $http.get(url1).then(function (response) {
+                        if (typeof response.url != 'undefined') {
+
+                            console.log("logout triggered");
+                            console.log(response);
+
+                            window.location.replace(response.url);
+                            location.reload();
+
+                        } else {
+                            console.log("logout triggerd, but url not found");
+                            location.reload();
+                        }
+                    });
+
+                }
+
+            }
+
+        });
+
+        app.controller('AddMessageController', function ($scope, $http) {
+
+            var serverIpAddress = location.hostname + ":3000";
+            var url1 = "https://" + serverIpAddress + "/publicusers";
+            let urlStr = (document.URL).split("/");
+            let pageUuid = urlStr[urlStr.length - 1];
+
+            $scope.MessageNgType = "personal";
+
+            $http.get(url1).then(function (response) {
+                $scope.users = response.data;
+            });
+
+            $scope.addMessage = function () {
+
+                let profiletable = document.getElementById('profile');
+                let messageSender = profiletable.rows[0].cells[1].innerHTML;
+
+                console.log("angularJS message");
+                console.log($scope.MessageNgType);
+                console.log("type of message : " + (typeof $scope.MessageNgType));
+
+                let messageReceiver = "empty";
+                let messageType = "";
+                let messageContent = $scope.MessageNgContent;
+
+                if (typeof $scope.MessageNgType === "string") {
+                    console.log("str");
+                    messageType = $scope.MessageNgType;
+                }
+                else if (typeof $scope.MessageNgType === "object") {
+                    console.log("obj");
+                    messageType = "private";
+                    messageReceiver = $scope.MessageNgType.user_uuid;
+
+                }
+                else messageReceiver = "empty";
+
+                let requestMessageBodyParam = {
+                    sender: messageSender,
+                    receiver: messageReceiver,
+                    content: messageContent,
+                    type: messageType
+                }
+
+                console.log("New messagage object : ")
+                console.log(requestMessageBodyParam);
+
+                if (pageUuid.length == 36) {
+
+                    $http.post(
+                        'https://' + serverIpAddress + '/sendmessage/' + pageUuid,
+                        JSON.stringify(requestMessageBodyParam))
+                        .then(function (response) {
+                            location.reload();
+                        })
+
+                } //uuid length 36
+
+            };
+
+        });
+
+
+        function profileInitController($scope, $http) {
+
+            var serverIpAddress = location.hostname + ":3000";
+            let urlStr = (document.URL).split("/");
+            let pageUuid = urlStr[urlStr.length - 1];
+            let publicusers = [];
+
+            console.log("page uuid : " + pageUuid);
+
+            var url1 = "https://" + serverIpAddress + "/publicusers";
+            var url2 = "https://" + serverIpAddress + "/readallmessages/" + pageUuid;
+
+            let modifiedResponse = ""
+            let dataBeginCharacterIndex = -1;
+
+            $http.get(url1).then(function (response) {
+
+                publicusers = response.data;
+
+                $http.get(url2).then(function (response2) {
+                   
+                    console.log("response 2 : " + url2);
+
+                    response2.data.msg.forEach(function (messageElement) {
+
+                        console.log(messageElement);
+
+                        let messageObject = {
+                            messageSender: messageElement.sender_uuid,
+                            messageSenderUUID: messageElement.sender_uuid,
+                            messageType: messageElement.message_receiver_type,
+                            messageTimestamp: messageElement.timestamp,
+                            messageContent: messageElement.message_content,
+                            messagePersonReceiver : messageElement.person_receiver_uuid
+                        }
+
+                        publicusers.forEach(function (publicElement) {
+                            if (messageObject.messageSender === publicElement.user_uuid) {
+                                messageObject.messageSender = publicElement.username;
+                            }
+
+                        });
+
+
+                        messagesArray.push(messageObject);
+
+
+
+                    }); // messages for-each
+
+                    $scope.users = response.data;
+                    $scope.messages = messagesArray;
+                    
+                    console.log("========== users ===============");
+                    console.log($scope.users);
+                    console.log("========== messages ============");
+                    console.log($scope.messages);
+
+                }); // messages rest-api
+
+
+            }); // users rest-api
+
+            function addMessage() {
+                console.log("javascript message");
+            }
+
+            function formatDate(date) {
+
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear(),
+
+                    hours = d.getHours(),
+                    minutes = d.getMinutes(),
+                    seconds = d.getSeconds();
+
+                if (month.length < 2)
+                    month = '0' + month;
+
+                if (day.length < 2)
+                    day = '0' + day;
+
+                if (hours.length < 2)
+                    hours = '0' + hours;
+
+                if (minutes.length < 2)
+                    minutes = '0' + minues;
+
+                if (seconds.length < 2)
+                    seconds = '0' + seconds;
+
+                return ([year, month, day].join('-')) + " " + ([hours, minutes, seconds].join(":"));
+            }
+
+        }
+
+
+        function clientInactivityScheduler($http) {
+
+            let timerDelay = 20000; //each 20 seconds
+            var serverIpAddress = location.hostname + ":3000";
+            let urlStr = (document.URL).split("/");
+            let pageUuid = urlStr[urlStr.length - 1];
+            var url1 = "https://" + serverIpAddress + "/confirmOnlineStatus/" + pageUuid;
+
+            if (pageUuid.length == 36) {
+
+                setInterval(function () {
+
+                    $http.get(url1).then(function (response) {
+
+                        console.log(" user online , timestamp : " + (new Date).toString());
+                        console.log(JSON.stringify(response));
+                    });
+
+                }, timerDelay);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

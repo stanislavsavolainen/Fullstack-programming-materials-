@@ -1,0 +1,571 @@
+(node:22939) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'substr' of undefined
+    at Object.parseTimestampToDate (/home/stanislavsavolainen/programming2022/backend1/proj4/utils.js:44:63)
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:829:57
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+
+
+bstr' of undefined
+    at Object.parseTimestampToDate (/home/stanislavsavolainen/programming2022/backend1/proj4/utils.js:44:63)
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:829:57
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+
+
+
+
+connectionUUID
+
+
+
+utils -> Output : 2023-01-12 00:12:18
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+(node:23176) UnhandledPromiseRejectionWarning: ReferenceError: currentTime is not defined
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:837:86
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+    at listOnTimeout (internal/timers.js:557:17)
+    at processTimers (internal/timers.js:500:7)
+(node:23176) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 3)
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+(node:23176) UnhandledPromiseRejectionWarning: ReferenceError: currentTime is not defined
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:837:86
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+    at listOnTimeout (internal/timers.js:557:17)
+    at processTimers (internal/timers.js:500:7)
+(node:23176) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 4)
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+(node:23176) UnhandledPromiseRejectionWarning: ReferenceError: currentTime is not defined
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:837:86
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+    at listOnTimeout (internal/timers.js:557:17)
+    at processTimers (internal/timers.js:500:7)
+(node:23176) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 5)
+utils -> Input : 2023-01-12 00:12:18
+utils -> Output : 2023-01-12 00:12:18
+(node:23176) UnhandledPromiseRejectionWarning: ReferenceError: currentTime is not defined
+    at /home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:837:86
+    at Array.forEach (<anonymous>)
+    at Timeout._onTimeout (/home/stanislavsavolainen/programming2022/backend1/proj4/server5.js:825:29)
+    at listOnTimeout (internal/timers.js:557:17)
+    at processTimers (internal/timers.js:500:7)
+(node:23176) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 6)
+
+
+
+
+
+
+
+
+
+Server https started at port 3000
+/home/stanislavsavolainen/programming2022/backend1/proj4
+Starting DropUsersInactivityScheduler  max drop timer  -> 10000
+Server http started at port3001
+
+
+
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'UBO00R6ReDoWs1tDpJ91e',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 1,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T00:01:27.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-05T01:01:40.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 1,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:10:14.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T00:01:27.000Z
+utils -> Output : 2023-01-12 00:01:27
+checkDatabaseDeadConnection()  -> username= stanislav, lastonline=Thu Jan 12 2023, status=1, timedifference=4762
+utils -> Input : 2023-01-05T01:01:40.000Z
+utils -> Output : 2023-01-05 01:01:40
+checkDatabaseDeadConnection()  -> username= monsteruser, lastonline=Thu Jan 05 2023, status=0, timedifference=605949
+utils -> Input : 2023-01-12T01:10:14.000Z
+utils -> Output : 2023-01-12 01:10:14
+checkDatabaseDeadConnection()  -> username= gorillauser, lastonline=Thu Jan 12 2023, status=1, timedifference=635
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:20:49', '720b1410-8c7e-11ed-984d-1528c4aecbd9' ],
+  __knexQueryUid: 'XPPIOKiRGjwMzyPXMzmwr',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:20:49', 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d' ],
+  __knexQueryUid: 'moJ6pETeeXuzRDCoRdqfA',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:20:49', '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62' ],
+  __knexQueryUid: 'W520W8J6KEKYhjK7B0I6p',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '3eN7rPC7hDXDoGdH--Rzy',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'jY6rDqwQYBfrgLYeNvPee',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'wh010p15LaLHVa9iVymgw',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:20:49.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+
+
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+checkDatabaseDeadConnection()  -> username= stanislav, lastonline=Thu Jan 12 2023, status=0, timedifference=69
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+checkDatabaseDeadConnection()  -> username= monsteruser, lastonline=Thu Jan 12 2023, status=0, timedifference=69
+utils -> Input : 2023-01-12T01:20:49.000Z
+utils -> Output : 2023-01-12 01:20:49
+checkDatabaseDeadConnection()  -> username= gorillauser, lastonline=Thu Jan 12 2023, status=0, timedifference=69
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:21:58', '720b1410-8c7e-11ed-984d-1528c4aecbd9' ],
+  __knexQueryUid: 'UQynnwykD8V0st6jOdghu',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:21:58', 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d' ],
+  __knexQueryUid: '0WdZsfwcWHno_eYVL0K5l',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 0, '2023-01-12 01:21:58', '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62' ],
+  __knexQueryUid: '0qTwQu02lS81zb8c-m1jS',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+
+
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gHJPgPsuFiYZ8-_9UEgJU',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:21:58.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:21:58.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:21:58.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:21:58.000Z
+utils -> Output : 2023-01-12 01:21:58
+utils -> Input : 2023-01-12T01:21:58.000Z
+utils -> Output : 2023-01-12 01:21:58
+utils -> Input : 2023-01-12T01:21:58.000Z
+utils -> Output : 2023-01-12 01:21:58
+
+
+
+
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:44:13.000Z
+utils -> Output : 2023-01-12 01:44:13
+checkDatabaseDeadConnection()  -> username= stanislav, lastonline=Thu Jan 12 2023, status=1, timedifference=65
+utils -> Input : 2023-01-12T01:25:28.000Z
+utils -> Output : 2023-01-12 01:25:28
+utils -> Input : 2023-01-12T01:32:22.000Z
+utils -> Output : 2023-01-12 01:32:22
+{
+  method: 'update',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    0,
+    2023-01-12T01:44:13.000Z,
+    '720b1410-8c7e-11ed-984d-1528c4aecbd9'
+  ],
+  __knexQueryUid: 'XrRB9TWGW_aFk3dYkX_nc',
+  sql: 'update `user_table1` set `user_is_online` = ?, `last_online_date` = ? where `user_uuid` = ?'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'FuP5K0ZGYhRvHj2Uj1bGe',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:44:13.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:25:28.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:32:22.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:44:13.000Z
+utils -> Output : 2023-01-12 01:44:13
+utils -> Input : 2023-01-12T01:25:28.000Z
+utils -> Output : 2023-01-12 01:25:28
+utils -> Input : 2023-01-12T01:32:22.000Z
+utils -> Output : 2023-01-12 01:32:22
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'mMSkSx8_LLtokNO32wFtm',
+  sql: 'select * from `user_table1`'
+}
++++++++++++++++++++++++++++++
+[
+  RowDataPacket {
+    row_id: 1,
+    user_uuid: '720b1410-8c7e-11ed-984d-1528c4aecbd9',
+    password_hash_sha256: 'da548fcfd2c0d59e9137d950038a1ebf049276ee0eb1ebc65e5cd3efe31f6c4f',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T00:23:42.000Z,
+    last_online_date: 2023-01-12T01:44:13.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'stanislav'
+  },
+  RowDataPacket {
+    row_id: 2,
+    user_uuid: 'bff9d8a0-8c83-11ed-b080-c7bf91ae690d',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:01:40.000Z,
+    last_online_date: 2023-01-12T01:25:28.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'monsteruser'
+  },
+  RowDataPacket {
+    row_id: 3,
+    user_uuid: '2fb47570-8c88-11ed-ab2a-7d1fd7b8db62',
+    password_hash_sha256: '4f9f10b304cfe9b2b11fcb1387f694e18f08ea358c7e9f567434d3ad6cbd7fc4',
+    user_is_blocked: 0,
+    user_permission_level: 0,
+    user_is_online: 0,
+    registered_date: 2023-01-05T01:33:26.000Z,
+    last_online_date: 2023-01-12T01:32:22.000Z,
+    user_maintenance_info: 'default user, nothing to say',
+    username: 'gorillauser'
+  }
+]
++++++++++++++++++++++++++++++
+utils -> Input : 2023-01-12T01:44:13.000Z
+utils -> Output : 2023-01-12 01:44:13
+utils -> Input : 2023-01-12T01:25:28.000Z
+utils -> Output : 2023-01-12 01:25:28
+utils -> Input : 2023-01-12T01:32:22.000Z
+utils -> Output : 2023-01-12 01:32:22
+
+
+
+
+
+
+
+
+
+
+
+
+
