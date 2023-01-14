@@ -183,7 +183,7 @@
                         {{message.messageSender}}
                     </a>
                     messageType={{message.messageType}} ,
-                    messageTo={{ findNameByUUD(message.messagePersonReceiver)}} 
+                    messageTo={{ findNameByUUID(message.messagePersonReceiver)}} 
                     {{findUUIDUsenameAnswer}}
                 </div>
                 <div class="col-lg-4"></div>
@@ -204,7 +204,10 @@
 
     <script>
 
-        let messagesArray = [];
+        var messagesArray = [];
+        var serverIpAddress = location.hostname + ":3000";
+        var urlStr = (document.URL).split("/");
+        var pageUuid = urlStr[urlStr.length - 1];
 
         var app = angular.module('angularJSProfileApp', []);
        
@@ -216,10 +219,11 @@
 
             $scope.findUUIDUsenameAnswer = "";
 
-            $scope.findNameByUUD = function (paramUUID) {
+            $scope.findNameByUUID = function (paramUUID) {
 
                 let answer = "x";
                 let found = false;
+                $scope.findUUIDUsenameAnswer = "empty";
 
                 console.log("function found findNameByUUD param"+paramUUID);
                
@@ -275,12 +279,6 @@
 
             $scope.logout = function () {
 
-                var serverIpAddress = location.hostname + ":3000";
-                let urlStr = (document.URL).split("/");
-
-                let pageUuid = urlStr[urlStr.length - 1];
-
-
                 if (pageUuid.length == 36) {
 
                     let url1 = 'https://' + serverIpAddress + '/logout/' + pageUuid;
@@ -307,10 +305,7 @@
 
         app.controller('AddMessageController', function ($scope, $http) {
 
-            var serverIpAddress = location.hostname + ":3000";
             var url1 = "https://" + serverIpAddress + "/publicusers";
-            let urlStr = (document.URL).split("/");
-            let pageUuid = urlStr[urlStr.length - 1];
 
             $scope.MessageNgType = "personal";
 
@@ -371,15 +366,12 @@
 
         function profileInitController($scope, $http) {
 
-            var serverIpAddress = location.hostname + ":3000";
-            let urlStr = (document.URL).split("/");
-            let pageUuid = urlStr[urlStr.length - 1];
             let publicusers = [];
 
             console.log("page uuid : " + pageUuid);
 
-            var url1 = "https://" + serverIpAddress + "/publicusers";
-            var url2 = "https://" + serverIpAddress + "/readallmessages/" + pageUuid;
+            let url1 = "https://" + serverIpAddress + "/publicusers";
+            let url2 = "https://" + serverIpAddress + "/readallmessages/" + pageUuid;
 
             let modifiedResponse = ""
             let dataBeginCharacterIndex = -1;
@@ -471,10 +463,7 @@
         function clientInactivityScheduler($http) {
 
             let timerDelay = 20000; //each 20 seconds
-            var serverIpAddress = location.hostname + ":3000";
-            let urlStr = (document.URL).split("/");
-            let pageUuid = urlStr[urlStr.length - 1];
-            var url1 = "https://" + serverIpAddress + "/confirmOnlineStatus/" + pageUuid;
+            let url1 = "https://" + serverIpAddress + "/confirmOnlineStatus/" + pageUuid;
 
             if (pageUuid.length == 36) {
 

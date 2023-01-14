@@ -112,7 +112,6 @@ app.get("/profile/:connectionUUID", async function (req, res) {
         res.send(pageContentStr);   
     }
 
-
 });
 
 
@@ -140,6 +139,7 @@ app.get("/users", async function (req, res) {
     res.send(DataArrayTemplate);
 
 });
+
 
 app.post("/authenticate", serverUtilityFunctions.authenticateValidate , async function (req, res) {
 
@@ -243,7 +243,6 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
                 });
             }
 
-
             if( ! foundUsernameDublicate ){
 
                 /*  
@@ -265,7 +264,6 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
                 10 rows in set (0,01 sec)
                 */
 
-
                 var userObject = {
                     username: req.body.paramLogin,
                     password_hash_sha256: serverUtilityFunctions.passwordSha256ToString(req.body.paramPassword),
@@ -286,7 +284,6 @@ app.post("/registration", serverUtilityFunctions.registerValidate , async functi
                     method: "POST",
                     apiCall : "/registration", 
                 });
-
 
             } else {
 
@@ -344,7 +341,6 @@ app.get("/logout/:userUUID", serverUtilityFunctions.validateUUID , async functio
                 object.splice(index, 1);
                 let lastTimeStr = serverUtilityFunctions.timestampToString()
                 await databaseFunctions.setUserOnlineOrOfflineStatus( userUUID , 0 , lastTimeStr );
-
 
                 res.send({ 
                     msg: "user successfully logged out ", 
@@ -554,11 +550,9 @@ app.get("/readallmessages/:connectionUUID", async function (req, res) {
                         // you have to be member of this group to view message
                     }
 
-
                     console.log(">>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                     
                 }
-
 
             }); //for-each messageCollection
 
@@ -568,7 +562,6 @@ app.get("/readallmessages/:connectionUUID", async function (req, res) {
                 apiCall : "/readallmessages",
                
             });
-
 
         } else {
 
@@ -624,7 +617,6 @@ app.post("/sendmessage/:connectionUUID", async function (req, res) {
             }
 
         }); //for - each userConnectionArray
-
 
         if( userConnection ) {
 
@@ -712,7 +704,6 @@ app.post("/sendmessage/:connectionUUID", async function (req, res) {
 
         }
 
-
     } else {
         
         res.send({ 
@@ -733,9 +724,7 @@ app.get("/confirmOnlineStatus/:connectionUUID", async function (req, res) {
     let connectionFound = false;
     let connectionIndex = -1;
 
-
     if( error.isEmpty()){
-
 
         let paramUserUUID = req.params.connectionUUID;
         console.log("confirmOnlineStatus triggered with param :" + paramUserUUID);
@@ -772,7 +761,6 @@ app.get("/confirmOnlineStatus/:connectionUUID", async function (req, res) {
                
             });
 
-
         }
         
         else {
@@ -800,11 +788,11 @@ app.get("/confirmOnlineStatus/:connectionUUID", async function (req, res) {
 });
 
 
-function DropUsersInactivityScheduler(){
+function dropUsersInactivityScheduler(){
 
     let userConfirmTimer = process.env.DROP_USER_INACTIVITY_CHECK_DELAY;
 
-    console.log("Starting DropUsersInactivityScheduler  max drop timer  -> " + userConfirmTimer);
+    console.log("Starting dropUsersInactivityScheduler  max drop timer  -> " + userConfirmTimer);
 
     setInterval(function () {
     
@@ -827,13 +815,12 @@ function DropUsersInactivityScheduler(){
                 //await databaseFunctions.setUserOnlineOrOfflineStatus( userUUID , 0 , currentTime );
                 //delete user from connection session
                 object.splice(index, 1);
-                console.log("DropUsersInactivityScheduler()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus)
+                console.log("dropUsersInactivityScheduler()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus)
                 
             }
 
         });
         
-
 
     }, userConfirmTimer);     
     
@@ -841,7 +828,7 @@ function DropUsersInactivityScheduler(){
 }
 
 
-async function checkDatabaseDeadConnection(){
+async function checkDatabaseDeadConnections(){
 
     let userConfirmTimer = process.env.DROP_USER_INACTIVITY_CHECK_DELAY;
 
@@ -863,11 +850,11 @@ async function checkDatabaseDeadConnection(){
 
             let timedifference = (currentDate.getTime() - lastOnlineDate.getTime()) / 1000;
 
-            //console.log("checkDatabaseDeadConnection()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus + ", timedifference="+ timedifference); 
+            //console.log("checkDatabaseDeadConnections()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus + ", timedifference="+ timedifference); 
 
             if ( timedifference > process.env.DROP_USER_INACTIVITY_MAX_DELAY && onlineStatus == 1 ) {
 
-                console.log("checkDatabaseDeadConnection()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus + ", timedifference="+ timedifference)
+                console.log("checkDatabaseDeadConnections()  -> username= "+username +", lastonline="+lastOnlineDate.toDateString() + ", status="+onlineStatus + ", timedifference="+ timedifference)
                 //set user offline in database
                 await databaseFunctions.setUserOnlineOrOfflineStatus( userUUID , 0 , lastOnline );
             
@@ -886,16 +873,18 @@ const options = {
     cert: fs.readFileSync(process.env.SSL_CERT),
 };
 
+
 https.createServer(options, app)
     .listen(process.env.HTTPS_PORT, function (req, res) {
         console.log("Server https started at port " + process.env.HTTPS_PORT);
         console.log(__dirname);
-        DropUsersInactivityScheduler();
-        checkDatabaseDeadConnection();
+        dropUsersInactivityScheduler();
+        checkDatabaseDeadConnections();
     });
+
 
 http.createServer(options, app)
     .listen(process.env.HTTP_PORT, function (req, res) {
-      console.log("Server http started at port"+process.env.HTTP_PORT);
+      console.log("Server http started at port " + process.env.HTTP_PORT);
     });
 

@@ -38,6 +38,11 @@ https://codesandbox.io/s/i18n-i1y70
 
 - Angular ( nodeJS )
 
+
+	Follow this tutorial link : 
+	https://angular.io/tutorial/tour-of-heroes
+
+
 	NodeJS in Ubuntu  : 
 	```sh
 	 $ sudo npm install -g @angular/cli
@@ -90,6 +95,14 @@ https://codesandbox.io/s/i18n-i1y70
 
 - AngularJS ( JavaScript external library )
 
+AngularJS code:
+[a link](frontend_framework/angularJS/page1.html)
+
+AngularJS used in my project:
+[a link](backend7/public_html/profile2.html)
+
+AngularJS tutorial links:
+[a link](backend7/public_html/screenshots/links1.txt)
 
 --------------------
 
@@ -254,6 +267,14 @@ google.com -> responsive three column layout
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_three_columns
 
 https://stackoverflow.com/questions/30141292/how-to-create-a-3-column-responsive-layout
+
+https://www.w3schools.com/bootstrap/
+
+google -> html grid layout
+https://css-tricks.com/snippets/css/complete-guide-grid/
+https://www.w3schools.com/css/css_grid.asp
+
+
 ```
    
     

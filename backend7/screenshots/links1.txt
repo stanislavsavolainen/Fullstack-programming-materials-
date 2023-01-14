@@ -28,6 +28,11 @@ https://www.w3schools.blog/multiple-scope-angularjs
 
 https://stackoverflow.com/questions/18194255/how-to-have-a-default-option-in-angular-js-select-box
 
+https://stackoverflow.com/questions/36365828/angularjs-call-function-from-html-return-value
+
+
+
+
 
 
 https://www.w3schools.com/bootstrap/
