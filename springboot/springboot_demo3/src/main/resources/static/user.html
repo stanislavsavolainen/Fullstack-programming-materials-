@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<script type="text/javascript">
+
+
+function getUserById(){
+
+		let userId = document.getElementById("txuserid").value;
+		console.log("textField user id : " + userId);
+		
+		fetch( '/user/'+userId, { method: 'GET' })
+		.then((resp) => {
+			return resp.text();
+		})
+		.then((users) => {
+
+			displayResult(users);	 
+
+		}) .catch(function (error_msg) {
+			console.log("Fetch error : " + error_msg);
+		})
+	
+}
+
+
+function addUserById(){
+
+		let userId = document.getElementById("txuserid").value;
+ 		console.log("textField user id : " + userId);
+	
+		let requestBodyParam = {
+			paramLogin : "root",
+			paramPassword : "123456"
+		}
+
+		//post body
+		let requestBody = {
+			method: 'POST',
+				headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+				body: JSON.stringify(requestBodyParam),
+		};
+
+	
+		fetch( '/user/'+userId, requestBody)
+		.then((resp) => {
+			return resp.text();
+		})
+		.then((users) => {
+
+			 displayResult(users);	
+
+		}) .catch(function (error_msg) {
+			console.log("Fetch error : " + error_msg);
+		})
+	
+}	
+	
+
+function updateUserById(){
+	
+		let userId = document.getElementById("txuserid").value;
+ 		console.log("textField user id : " + userId);
+	
+		fetch( '/user/'+userId, { method: 'PUT' })
+		.then((resp) => {
+			return resp.text();
+		})
+		.then((users) => {
+
+			displayResult(users);	
+
+		}) .catch(function (error_msg) {
+			console.log("Fetch error : " + error_msg);
+		})
+	
+}
+
+
+function deleteUserById(){
+	
+		let userId = document.getElementById("txuserid").value;
+ 		console.log("textField user id : " + userId);
+	
+		fetch( '/user/'+userId, { method: 'DELETE' })
+		.then((resp) => {
+			return resp.text();
+		})
+		.then((users) => {
+
+			displayResult(users);	
+
+		}) .catch(function (error_msg) {
+			console.log("Fetch error : " + error_msg);
+		})
+	
+
+}
+
+function displayResult(users){
+	document.getElementById("userResponse").innerHTML = ""+users;
+}
+
+
+</script>
+
+<html>
+<title>test page 1</title>
+<body>
+<div align="center"><h1> springboot shared html file</h1></div>
+<br>
+Input user id <input type="text" id="txuserid">	
+<br>
+<button onclick="getUserById()"> get user by id </button>
+<button onclick="addUserById()"> add user with id </button>	
+<button onclick="updateUserById()"> update user by id </button>
+<button onclick="deleteUserById()"> delete user by id </button>
+<div>
+	<font color="green">
+		<div id="userResponse"></div>
+	</font>
+</div>
+</body>
+<html>

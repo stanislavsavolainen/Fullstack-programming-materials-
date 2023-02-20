@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import java.util.UUID;
 
 import java.util.Iterator;
 import java.util.List;
@@ -53,6 +60,20 @@ public class MyController {
 //https://www.javaguides.net/2021/12/spring-data-findbyid-method.html
 	
 //https://javatute.com/jpa/spring-data-jpa-is-and-equals-example/
+	
+//https://mkyong.com/java/json-simple-example-read-and-write-json/	
+	
+//https://mkyong.com/spring-mvc/spring-mvc-how-to-include-js-or-css-files-in-a-jsp-page/
+	
+//https://www.baeldung.com/spring-resttemplate-post-json
+	
+//https://mvnrepository.com/artifact/org.json/json/20140107
+	
+//https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha-256-in-java
+	
+//https://stackoverflow.com/questions/52974330/spring-post-method-required-request-body-is-missing
+	
+//https://www.baeldung.com/spring-data-crud-repository-save	
 	
 	
 	@GetMapping(path="/users")
@@ -90,12 +111,42 @@ public class MyController {
 	
 	//@RequestMapping(value = "/employees", method = RequestMethod.POST) 
 	 @PostMapping("/user/{userUUID}")
-	public String addUser( @PathVariable String userUUID ) {
+	//public String addUser( @PathVariable String userUUID, @RequestBody UserModel tempUserModel ) {
+	public String addUser( @PathVariable String userUUID, @RequestBody String tempUserModel ) {	
 		//code
 		
 		 System.out.println("/user POST triggered with param "+ userUUID);
 		
-		return "/user POST triggered with param : " +userUUID;
+		//System.out.println( "POST body content : " + tempUserModel.getModelAsJSON() );
+		System.out.println( "POST body content : " + tempUserModel );
+		
+		JSONObject jsonUser = new JSONObject(tempUserModel);
+		
+		String passwordHash = sha256(jsonUser.getString("paramPassword") );
+		
+		UUID userUuid = UUID.randomUUID();
+		
+		System.out.println("user login : " + jsonUser.getString("paramLogin") );
+		System.out.println("user password : " + passwordHash);
+		System.out.println("user uuid : " + userUuid.toString());
+		
+		//userRepository.save(tempUserModel);
+		
+		UserModel userRegisterTemplate = new UserModel();	
+		userRegisterTemplate.setUuid(userUuid.toString());
+		userRegisterTemplate.setUsername(jsonUser.getString("paramLogin"));
+		userRegisterTemplate.setPassword(passwordHash);
+		userRegisterTemplate.setBlocked('0');
+		userRegisterTemplate.setPermission('0');	
+		userRegisterTemplate.setIsonline('0');	
+		userRegisterTemplate.setRegistereddate( new java.util.Date()); 
+		userRegisterTemplate.setLastonlinedate(new java.util.Date());
+		userRegisterTemplate.setMaintenance("registered via SpringBoot backend");
+
+		userRepository.save(userRegisterTemplate);
+		
+	
+		return "/user POST triggered with param : " +userUUID + "generated content : " + userRegisterTemplate.getModelAsJSON();
 	}
 	
 	
@@ -117,5 +168,26 @@ public class MyController {
 		
 		return "/user DELETE triggered with param : " +userUUID;
 	}
+	
+	
+	public static String sha256(final String base) {
+		
+		try{
+			final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			final byte[] hash = digest.digest(base.getBytes("UTF-8"));
+			final StringBuilder hexString = new StringBuilder();
+			for (int i = 0; i < hash.length; i++) {
+				final String hex = Integer.toHexString(0xff & hash[i]);
+				if(hex.length() == 1) 
+				hexString.append('0');
+				hexString.append(hex);
+				}
+			return hexString.toString();
+		} catch(Exception ex){
+		throw new RuntimeException(ex);
+		}
+	}
+	
+	
 			
 }
