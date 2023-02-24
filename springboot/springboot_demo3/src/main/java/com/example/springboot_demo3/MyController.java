@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.json.JSONObject;
@@ -63,17 +65,9 @@ public class MyController {
 	
 //https://mkyong.com/java/json-simple-example-read-and-write-json/	
 	
-//https://mkyong.com/spring-mvc/spring-mvc-how-to-include-js-or-css-files-in-a-jsp-page/
+//https://stackoverflow.com/questions/6780960/spring-request-mapping
 	
-//https://www.baeldung.com/spring-resttemplate-post-json
-	
-//https://mvnrepository.com/artifact/org.json/json/20140107
-	
-//https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha-256-in-java
-	
-//https://stackoverflow.com/questions/52974330/spring-post-method-required-request-body-is-missing
-	
-//https://www.baeldung.com/spring-data-crud-repository-save	
+//https://stackoverflow.com/questions/45867026/understanding-spring-cloud-stream-content-types
 	
 	
 	@GetMapping(path="/users")
@@ -86,7 +80,9 @@ public class MyController {
 	
 	
 		
-	@GetMapping("/user/{userUUID}")
+	//@GetMapping("/user/{userUUID}")
+	//@RequestMapping(value = "/user/{userUUID}", method = RequestMethod.GET, consumes="application/json")
+	@RequestMapping(value = "/user/{userUUID}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String getUser( @PathVariable String userUUID ) {
 		//code
 		

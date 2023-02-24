@@ -176,16 +176,16 @@ public class UserModel {
 	public String getModelAsJSON(){
 	
 		String result = "";
-		result += "{id:"+id+",";
-		result += "uuid:"+"\""+ uuid + "\""+",";
-		result += "username:"+"\""+ username + "\""+",";
-		result += "password:"+"\""+ password + "\""+",";
-		result += "blocked:"+"\""+ blocked + "\""+",";
-		result += "permission:"+"\""+ permission + "\""+",";
-		result += "isonline:"+"\""+ isonline + "\""+",";
-		result += "registereddate:"+"\""+ registereddate + "\""+",";
-		result += "lastonlinedate:"+"\""+ lastonlinedate + "\""+",";
-		result += "maintenance:"+"\""+ maintenance + "\""+"}";
+		result += "{\"id\":"+id+",";
+		result += "\"uuid\":"+"\""+ uuid + "\""+",";
+		result += "\"username\":"+"\""+ username + "\""+",";
+		result += "\"password\":"+"\""+ password + "\""+",";
+		result += "\"blocked\":"+"\""+ blocked + "\""+",";
+		result += "\"permission\":"+"\""+ permission + "\""+",";
+		result += "\"isonline\":"+"\""+ isonline + "\""+",";
+		result += "\"registereddate\":"+"\""+ registereddate + "\""+",";
+		result += "\"lastonlinedate\":"+"\""+ lastonlinedate + "\""+",";
+		result += "\"maintenance\":"+"\""+ maintenance + "\""+"}";
 		
 		return result;
 	}
