@@ -12,7 +12,7 @@ Use specification : Project=Maven, Language=Java , SpringBoot=2.7.8, Project Met
 
 2. Extract zip-file to your workspace folder, then open pom.xml file in text editor and add web-library for maven:
 
-
+```
 <dependency>
 	<groupId>org.apache.tomcat.embed</groupId>
 	<artifactId>tomcat-embed-jasper</artifactId>
@@ -28,7 +28,7 @@ Use specification : Project=Maven, Language=Java , SpringBoot=2.7.8, Project Met
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
-
+```
 
 
 3. In folder "/springboot_proj1/project3/demo2/src/main/resources" create folder "static" and add user.html file
@@ -65,9 +65,42 @@ add function:
 
 10. delete "target" folder from project ("mvn install" create it) and now you can commit project to github.
 
+11. to user database JPA, Persistence, Hibernate with SpringBoot add following :
 
+- 11.1 modify ```application.properties"``` file in project /src/main/resources" project folder add following information 
 
+```
+spring.datasource.url=jdbc:mysql://127.0.0.1/fullstack2022db1
+spring.datasource.username=root
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
+```
 
+ - 11.2 Modify ```pom.xml``` add following libraries
+ 
+ ```
+ 	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>8.0.11</version> 
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.persistence</groupId>
+		<artifactId>javax.persistence-api</artifactId>
+		<version>2.2</version>
+	</dependency>
+ ```
 
+- 11.3 in your project create model-class ```User.java``` with getters and setter to correspond mysql-table field like in standart Java Hibernate project with annotations
+
+- 11.4 create repository-class file and add your model-class ```User.java``` as parameter wich be used as interface in CRUD operation ```UserRepository.java```
 
 
