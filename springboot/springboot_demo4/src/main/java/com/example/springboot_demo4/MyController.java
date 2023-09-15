@@ -57,6 +57,10 @@ import java.util.regex.Pattern;
 
 //https://www.baeldung.com/regular-expressions-java
 
+//https://stackoverflow.com/questions/37719818/the-server-time-zone-value-aest-is-unrecognized-or-represents-more-than-one-ti/39703002#39703002
+
+//https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
