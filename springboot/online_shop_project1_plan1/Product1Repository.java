@@ -12,3 +12,4 @@ import org.springframework.stereotype.Repository;
 public interface Product1Repository extends CrudRepository<ProductModel1, Integer> {
 
 }
+

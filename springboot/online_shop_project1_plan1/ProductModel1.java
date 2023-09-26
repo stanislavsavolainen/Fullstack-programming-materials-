@@ -50,22 +50,22 @@ import javax.persistence.Table;
 @Table(name="shopProduct1")
 public class ProductModel1 {
 
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="rowId")
 	int id;
 
-    @Column(name="productName")
+	@Column(name="productName")
 	String productName;
 
-    @Column(name="productType")
+	@Column(name="productType")
 	int productType;
 
-    //.... toDO : all parameters correspond database table shopProduct1
+	//.... toDO : all parameters correspond database table shopProduct1
 
 
 
-    public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -81,7 +81,7 @@ public class ProductModel1 {
 		productName = paramProductName;
 	}
 
-    public Integer getProductType() {
+	public Integer getProductType() {
 		return productType;
 	}
 
@@ -89,15 +89,15 @@ public class ProductModel1 {
 		productType = paramProductType;
 	}
 
-     //..... toDO : Write more getters and setters for each parameter described above
+	//..... toDO : Write more getters and setters for each parameter described above
 
 
 
-    public String getModelAsJSON(){
-        String result = "";
-        String localValue = "Model is not wotking, implementation not done"
-        result += "\"info\":"+"\""+ localValue + "\""+"}";
-    }
+	public String getModelAsJSON(){
+		String result = "";
+		String localValue = "Model is not wotking, implementation not done"
+		result += "\"info\":"+"\""+ localValue + "\""+"}";
+	}
 
 }
 
