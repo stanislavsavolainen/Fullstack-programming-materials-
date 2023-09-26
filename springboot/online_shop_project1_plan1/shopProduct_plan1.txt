@@ -1,0 +1,186 @@
+
+
+
+CREATE TABLE shopProduct1(
+
+	rowId int(11) NOT NULL AUTO_INCREMENT,
+
+	productName VARCHAR(500),
+        productType int(11) DEFAULT NULL,
+	productImageURL VARCHAR(500),
+	productDescription VARCHAR(10000),
+
+	productPricePerUnit DOUBLE,	
+	productQuantity SMALLINT,
+        productQuantityOption VARCHAR(500),
+
+	shippingInfo VARCHAR(500),
+	shippingPriceSameCountry DOUBLE,
+	shippingPriceEurope DOUBLE,
+	shippingPriceWorld DOUBLE,
+
+        sellerUUID VARCHAR(36),
+        sellerQualityScore DOUBLE,
+	productQualityScore DOUBLE,
+	productFeedback VARCHAR(10000),
+
+	buyerUUID VARCHAR(36),
+        buyerQualityScore DOUBLE,
+        buyerQualityInfoVSProduct VARCHAR(500), 
+
+	productCreated DATETIME DEFAULT NULL,
+	productClosed DATETIME DEFAULT NULL,
+	productWarrantyAndRefund VARCHAR(500), 
+	
+	productPublicVisible TINYINT DEFAULT NULL, 
+	adminInfo VARCHAR(500), 
+
+	PRIMARY KEY (rowId)
+
+);
+
+
+INSERT INTO shopProduct1(productName, productType, productDescription,productQuantity,productPricePerUnit, shippingPriceSameCountry, shippingPriceEurope, shippingInfo, buyerUUID ) VALUES ( "Computer", 100, "10 years old, but working", 1, 35.8, 20.4 , 20.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9");   
+
+===============================================================================================================
+
+stanislav@stanislav-lenovo:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.42 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| fullstack2022db1   |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0,23 sec)
+
+mysql> use fullstack2022db1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| user_table1                |
++----------------------------+
+1 row in set (0,00 sec)
+
+
+
+
+mysql> CREATE TABLE shopProduct1(
+    -> 
+    -> rowId int(11) NOT NULL AUTO_INCREMENT,
+    -> 
+    -> productName VARCHAR(500),
+    ->         productType int(11) DEFAULT NULL,
+    -> productImageURL VARCHAR(500),
+    -> productDescription VARCHAR(10000),
+    -> 
+    -> productPricePerUnit DOUBLE,
+    -> productQuantity SMALLINT,
+    ->         productQuantityOption VARCHAR(500),
+    -> 
+    -> shippingInfo VARCHAR(500),
+    -> shippingPriceSameCountry DOUBLE,
+    -> shippingPriceEurope DOUBLE,
+    -> shippingPriceWorld DOUBLE,
+    -> 
+    ->         sellerUUID VARCHAR(36),
+    ->         sellerQualityScore DOUBLE,
+    -> productQualityScore DOUBLE,
+    -> productFeedback VARCHAR(10000),
+    -> 
+    -> buyerUUID VARCHAR(36),
+    ->         buyerQualityScore DOUBLE,
+    ->         buyerQualityInfoVSProduct VARCHAR(500), 
+    -> 
+    -> productCreated DATETIME DEFAULT NULL,
+    -> productClosed DATETIME DEFAULT NULL,
+    -> productWarrantyAndRefund VARCHAR(500), 
+    -> 
+    -> productPublicVisible TINYINT DEFAULT NULL, 
+    -> adminInfo VARCHAR(500), 
+    -> 
+    -> PRIMARY KEY (rowId)
+    -> 
+    -> );
+Query OK, 0 rows affected (0,36 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| shopProduct1               |
+| user_table1                |
++----------------------------+
+2 rows in set (0,00 sec)
+
+mysql> desc shopProduct1;
++---------------------------+----------------+------+-----+---------+----------------+
+| Field                     | Type           | Null | Key | Default | Extra          |
++---------------------------+----------------+------+-----+---------+----------------+
+| rowId                     | int(11)        | NO   | PRI | NULL    | auto_increment |
+| productName               | varchar(500)   | YES  |     | NULL    |                |
+| productType               | int(11)        | YES  |     | NULL    |                |
+| productImageURL           | varchar(500)   | YES  |     | NULL    |                |
+| productDescription        | varchar(10000) | YES  |     | NULL    |                |
+| productPricePerUnit       | double         | YES  |     | NULL    |                |
+| productQuantity           | smallint(6)    | YES  |     | NULL    |                |
+| productQuantityOption     | varchar(500)   | YES  |     | NULL    |                |
+| shippingInfo              | varchar(500)   | YES  |     | NULL    |                |
+| shippingPriceSameCountry  | double         | YES  |     | NULL    |                |
+| shippingPriceEurope       | double         | YES  |     | NULL    |                |
+| shippingPriceWorld        | double         | YES  |     | NULL    |                |
+| sellerUUID                | varchar(36)    | YES  |     | NULL    |                |
+| sellerQualityScore        | double         | YES  |     | NULL    |                |
+| productQualityScore       | double         | YES  |     | NULL    |                |
+| productFeedback           | varchar(10000) | YES  |     | NULL    |                |
+| buyerUUID                 | varchar(36)    | YES  |     | NULL    |                |
+| buyerQualityScore         | double         | YES  |     | NULL    |                |
+| buyerQualityInfoVSProduct | varchar(500)   | YES  |     | NULL    |                |
+| productCreated            | datetime       | YES  |     | NULL    |                |
+| productClosed             | datetime       | YES  |     | NULL    |                |
+| productWarrantyAndRefund  | varchar(500)   | YES  |     | NULL    |                |
+| productPublicVisible      | tinyint(4)     | YES  |     | NULL    |                |
+| adminInfo                 | varchar(500)   | YES  |     | NULL    |                |
++---------------------------+----------------+------+-----+---------+----------------+
+24 rows in set (0,00 sec)
+
+mysql> 
+
+
+mysql> 
+mysql> INSERT INTO shopProduct1(productName, productType, productDescription,productQuantity,productPricePerUnit, shippingPriceSameCountry, shippingPriceEurope, shippingInfo, buyerUUID ) VALUES ( "Computer", 100, "10 years old, but working", 1, 35.8, 20.4 , 20.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9"); 
+Query OK, 1 row affected (0,11 sec)
+
+mysql> select * from shopProduct1;
++-------+-------------+-------------+-----------------+---------------------------+---------------------+-----------------+-----------------------+-------------------------------------------------------+--------------------------+---------------------+--------------------+------------+--------------------+---------------------+-----------------+--------------------------------------+-------------------+---------------------------+----------------+---------------+--------------------------+----------------------+-----------+
+| rowId | productName | productType | productImageURL | productDescription        | productPricePerUnit | productQuantity | productQuantityOption | shippingInfo                                          | shippingPriceSameCountry | shippingPriceEurope | shippingPriceWorld | sellerUUID | sellerQualityScore | productQualityScore | productFeedback | buyerUUID                            | buyerQualityScore | buyerQualityInfoVSProduct | productCreated | productClosed | productWarrantyAndRefund | productPublicVisible | adminInfo |
++-------+-------------+-------------+-----------------+---------------------------+---------------------+-----------------+-----------------------+-------------------------------------------------------+--------------------------+---------------------+--------------------+------------+--------------------+---------------------+-----------------+--------------------------------------+-------------------+---------------------------+----------------+---------------+--------------------------+----------------------+-----------+
+|     1 | Computer    |         100 | NULL            | 10 years old, but working |                35.8 |               1 | NULL                  | I trade EU or schengen contries only, please check... |                     20.4 |                20.4 |               NULL | NULL       |               NULL |                NULL | NULL            | 720b1410-8c7e-11ed-984d-1528c4aecbd9 |              NULL | NULL                      | NULL           | NULL          | NULL                     |                 NULL | NULL      |
++-------+-------------+-------------+-----------------+---------------------------+---------------------+-----------------+-----------------------+-------------------------------------------------------+--------------------------+---------------------+--------------------+------------+--------------------+---------------------+-----------------+--------------------------------------+-------------------+---------------------------+----------------+---------------+--------------------------+----------------------+-----------+
+1 row in set (0,04 sec)
+
+mysql> 
+
+
+
