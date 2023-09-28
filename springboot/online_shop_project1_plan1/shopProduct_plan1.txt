@@ -256,4 +256,92 @@ mysql> desc shopProduct1;
 
 
 
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| shopProduct1               |
+| shop_product1              |
+| user_table1                |
++----------------------------+
+3 rows in set (0,00 sec)
+
+mysql> desc shop_product1;
++-----------------------------+--------------+------+-----+---------+----------------+
+| Field                       | Type         | Null | Key | Default | Extra          |
++-----------------------------+--------------+------+-----+---------+----------------+
+| row_id                      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| admin_info                  | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_infovsproduct | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_score         | double       | YES  |     | NULL    |                |
+| buyeruuid                   | varchar(255) | YES  |     | NULL    |                |
+| product_closed              | datetime     | YES  |     | NULL    |                |
+| product_created             | datetime     | YES  |     | NULL    |                |
+| product_description         | varchar(255) | YES  |     | NULL    |                |
+| product_feedback            | varchar(255) | YES  |     | NULL    |                |
+| product_imageurl            | varchar(255) | YES  |     | NULL    |                |
+| product_name                | varchar(255) | YES  |     | NULL    |                |
+| product_price_per_unit      | double       | YES  |     | NULL    |                |
+| product_public_visible      | int(11)      | YES  |     | NULL    |                |
+| product_quality_score       | double       | YES  |     | NULL    |                |
+| product_quantity            | int(11)      | YES  |     | NULL    |                |
+| product_quantity_option     | varchar(255) | YES  |     | NULL    |                |
+| product_type                | int(11)      | YES  |     | NULL    |                |
+| productuuid                 | varchar(255) | YES  |     | NULL    |                |
+| product_warranty_and_refund | varchar(255) | YES  |     | NULL    |                |
+| seller_quality_score        | double       | YES  |     | NULL    |                |
+| selleruuid                  | varchar(255) | YES  |     | NULL    |                |
+| shipping_info               | varchar(255) | YES  |     | NULL    |                |
+| shipping_price_europe       | double       | YES  |     | NULL    |                |
+| shipping_price_same_country | double       | YES  |     | NULL    |                |
+| shipping_price_world        | double       | YES  |     | NULL    |                |
++-----------------------------+--------------+------+-----+---------+----------------+
+25 rows in set (0,00 sec)
+
+mysql> INSERT INTO shop_product1(productName, productType, productDescription,productQuantity,productPricePerUnit, shippingPriceSameCountry, shippingPriceEurope, shippingInfo, sellerUUID ) VALUES ( "Soffa", 300, "for comfort sitting", 5, 300.5, 120.4 , 120.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9");  
+ERROR 1054 (42S22): Unknown column 'productName' in 'field list'
+mysql> 
+mysql> 
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid ) VALUES ( "Soffa", 300, "for comfort sitting", 5, 300.5, 120.4 , 120.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9");  
+Query OK, 1 row affected (0,17 sec)
+
+mysql> SELECT product_quality_score from shop_product1;
++-----------------------+
+| product_quality_score |
++-----------------------+
+|                  NULL |
++-----------------------+
+1 row in set (0,00 sec)
+
+mysql> SELECT row_id , product_quality_score from shop_product1;
++--------+-----------------------+
+| row_id | product_quality_score |
++--------+-----------------------+
+|      1 |                  NULL |
++--------+-----------------------+
+1 row in set (0,00 sec)
+
+mysql> UPDATE shop_product1 SET product_quality_score = 1.0 WHERE row_id = 1;
+Query OK, 1 row affected (0,20 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET seller_quality_score = 1.0 WHERE row_id = 1;
+Query OK, 1 row affected (0,10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET buyer_quality_score = 1.0 WHERE row_id = 1;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET shipping_price_world = -1.0 WHERE row_id = 1;
+Query OK, 1 row affected (0,07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET product_public_visible = 1 WHERE row_id = 1;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> 
+
+
 

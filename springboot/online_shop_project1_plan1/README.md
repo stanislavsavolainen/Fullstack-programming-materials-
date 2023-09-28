@@ -1,7 +1,7 @@
 
 Replace mysql-connector-java driver version for matchin your mysql-server
 
-- my solution was change from 8.0.11 to 5.1.49, because I continue develop project in computer where mysql-server version is different see screenshot of this error.
+- my solution was change from 8.0.11 to 5.1.49, because I continue develop project in computer where mysql-server version is different. See screenshot of this error.
 
 https://mvnrepository.com/artifact/mysql/mysql-connector-java
 
