@@ -1,37 +1,35 @@
 /*
-
-mysql> desc shopProduct1;
-+---------------------------+----------------+------+-----+---------+----------------+
-| Field                     | Type           | Null | Key | Default | Extra          |
-+---------------------------+----------------+------+-----+---------+----------------+
-| rowId                     | int(11)        | NO   | PRI | NULL    | auto_increment |
-| productName               | varchar(500)   | YES  |     | NULL    |                |
-| productType               | int(11)        | YES  |     | NULL    |                |
-| productImageURL           | varchar(500)   | YES  |     | NULL    |                |
-| productDescription        | varchar(10000) | YES  |     | NULL    |                |
-| productPricePerUnit       | double         | YES  |     | NULL    |                |
-| productQuantity           | smallint(6)    | YES  |     | NULL    |                |
-| productQuantityOption     | varchar(500)   | YES  |     | NULL    |                |
-| shippingInfo              | varchar(500)   | YES  |     | NULL    |                |
-| shippingPriceSameCountry  | double         | YES  |     | NULL    |                |
-| shippingPriceEurope       | double         | YES  |     | NULL    |                |
-| shippingPriceWorld        | double         | YES  |     | NULL    |                |
-| sellerUUID                | varchar(36)    | YES  |     | NULL    |                |
-| sellerQualityScore        | double         | YES  |     | NULL    |                |
-| productQualityScore       | double         | YES  |     | NULL    |                |
-| productFeedback           | varchar(10000) | YES  |     | NULL    |                |
-| buyerUUID                 | varchar(36)    | YES  |     | NULL    |                |
-| buyerQualityScore         | double         | YES  |     | NULL    |                |
-| buyerQualityInfoVSProduct | varchar(500)   | YES  |     | NULL    |                |
-| productCreated            | datetime       | YES  |     | NULL    |                |
-| productClosed             | datetime       | YES  |     | NULL    |                |
-| productWarrantyAndRefund  | varchar(500)   | YES  |     | NULL    |                |
-| productPublicVisible      | tinyint(4)     | YES  |     | NULL    |                |
-| adminInfo                 | varchar(500)   | YES  |     | NULL    |                |
-| productUUID               | varchar(36)    | YES  |     | NULL    |                |
-+---------------------------+----------------+------+-----+---------+----------------+
-25 rows in set (0,01 sec)
-
+mysql> desc shop_product1;
++-----------------------------+--------------+------+-----+---------+----------------+
+| Field                       | Type         | Null | Key | Default | Extra          |
++-----------------------------+--------------+------+-----+---------+----------------+
+| row_id                      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| admin_info                  | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_infovsproduct | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_score         | double       | YES  |     | NULL    |                |
+| buyeruuid                   | varchar(255) | YES  |     | NULL    |                |
+| product_closed              | datetime     | YES  |     | NULL    |                |
+| product_created             | datetime     | YES  |     | NULL    |                |
+| product_description         | varchar(255) | YES  |     | NULL    |                |
+| product_feedback            | varchar(255) | YES  |     | NULL    |                |
+| product_imageurl            | varchar(255) | YES  |     | NULL    |                |
+| product_name                | varchar(255) | YES  |     | NULL    |                |
+| product_price_per_unit      | double       | YES  |     | NULL    |                |
+| product_public_visible      | int(11)      | YES  |     | NULL    |                |
+| product_quality_score       | double       | YES  |     | NULL    |                |
+| product_quantity            | int(11)      | YES  |     | NULL    |                |
+| product_quantity_option     | varchar(255) | YES  |     | NULL    |                |
+| product_type                | int(11)      | YES  |     | NULL    |                |
+| productuuid                 | varchar(255) | YES  |     | NULL    |                |
+| product_warranty_and_refund | varchar(255) | YES  |     | NULL    |                |
+| seller_quality_score        | double       | YES  |     | NULL    |                |
+| selleruuid                  | varchar(255) | YES  |     | NULL    |                |
+| shipping_info               | varchar(255) | YES  |     | NULL    |                |
+| shipping_price_europe       | double       | YES  |     | NULL    |                |
+| shipping_price_same_country | double       | YES  |     | NULL    |                |
+| shipping_price_world        | double       | YES  |     | NULL    |                |
++-----------------------------+--------------+------+-----+---------+----------------+
+25 rows in set (0,00 sec)
 */
 
 
@@ -56,20 +54,20 @@ public class ProductModel1 {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="rowId")
-	int rowId;
+	@Column(name="row_id")
+	int id;
 
 	public Integer getId() {
-		return this.rowId;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
-		this.rowId = id;
+		this.id = id;
 	}
 
 	//=====================================================
 
-	@Column(name="productName")
+	@Column(name="product_name")
 	String productName;
 
 	public String getProductName() {
@@ -82,7 +80,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productType")
+	@Column(name="product_type")
 	int productType;
 
 	public Integer getProductType() {
@@ -95,7 +93,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productImageURL")
+	@Column(name="product_imageurl")
 	String productImageURL; 
 
 	public String getProductImageURL() {
@@ -108,7 +106,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productDescription")	
+	@Column(name="product_description")	
 	String productDescription; 
 
 	public String getProductDescription() {
@@ -121,20 +119,20 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productPricePerUnit")
+	@Column(name="product_price_per_unit")
 	double productPricePerUnit;
 
 	public double getProductPricePerUnit() {
 		return this.productPricePerUnit;
 	}
 
-	public void setProductPricePerUnit(String paramProductPricePerUnit) {
+	public void setProductPricePerUnit(double paramProductPricePerUnit) {
 		this.productPricePerUnit = paramProductPricePerUnit;
 	}
 
 	//=====================================================
 
-	@Column(name="productQuantity")
+	@Column(name="product_quantity")
 	int productQuantity;
 
 	public double getProductQuantity() {
@@ -148,7 +146,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productQuantityOption")
+	@Column(name="product_quantity_option")
 	String productQuantityOption;
 
 	public String getProductQuantityOption() {
@@ -161,7 +159,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="shippingInfo")
+	@Column(name="shipping_info")
 	String shippingInfo;
 
 	public String getShippingInfo() {
@@ -174,7 +172,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="shippingPriceSameCountry")
+	@Column(name="shipping_price_same_country")
 	double shippingPriceSameCountry;
 
 	public double getShippingPriceSameCountry() {
@@ -187,7 +185,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="shippingPriceEurope")
+	@Column(name="shipping_price_europe")
 	double shippingPriceEurope;
 
 	public double getShippingPriceEurope() {
@@ -200,7 +198,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="shippingPriceWorld")
+	@Column(name="shipping_price_world")
 	double shippingPriceWorld;
 
 	public double getShippingPriceWorld() {
@@ -214,7 +212,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="sellerUUID")
+	@Column(name="selleruuid")
  	String sellerUUID;
 
 	public String getSellerUUID() {
@@ -227,33 +225,33 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="sellerQualityScore")
+	@Column(name="seller_quality_score")
 	double sellerQualityScore;
 
-	public double getShippingPriceWorld() {
+	public double getSellerQualityScore() {
 		return this.sellerQualityScore;
 	}
 
-	public void setShippingPriceWorld(double paramSellerQualityScore) {
+	public void setSellerQualityScore(double paramSellerQualityScore) {
 		this.sellerQualityScore = paramSellerQualityScore;
 	}
 
 	//=====================================================
 
-	@Column(name="productQualityScore")
+	@Column(name="product_quality_score")
 	double productQualityScore;
 
-	public double getShippingPriceWorld() {
+	public double getProductQualityScore() {
 		return this.productQualityScore;
 	}
 
-	public void setShippingPriceWorld(double paramProductQualityScore) {
+	public void setProductQualityScore(double paramProductQualityScore) {
 		this.productQualityScore = paramProductQualityScore;
 	}
 
 	//=====================================================
 
-	@Column(name="productFeedback")
+	@Column(name="product_feedback")
 	String productFeedback; 
 
 	public String getProductFeedback() {
@@ -266,7 +264,7 @@ public class ProductModel1 {
 
 	//=====================================================              
 
-	@Column(name="buyerUUID")
+	@Column(name="buyeruuid")
 	String buyerUUID; 
 
 	public String getBuyerUUID() {
@@ -279,20 +277,20 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="buyerQualityScore")
+	@Column(name="buyer_quality_score")
 	double buyerQualityScore;
 
-	public double getBuyerQualityInfoVSProduct() {
+	public double getBuyerQualityScore() {
 		return this.buyerQualityScore;
 	}
 
-	public void setBuyerQualityInfoVSProduct(double paramBuyerQualityScore) {
+	public void setBuyerQualityScore(double paramBuyerQualityScore) {
 		this.buyerQualityScore = paramBuyerQualityScore;
 	}
 
 	//=====================================================
 
-	@Column(name="buyerQualityInfoVSProduct")
+	@Column(name="buyer_quality_infovsproduct")
  	String buyerQualityInfoVSProduct;
 
 	public String getBuyerQualityInfoVSProduct() {
@@ -305,7 +303,7 @@ public class ProductModel1 {
 
 	//===================================================== 
 
-	@Column(name="productCreated")
+	@Column(name="product_created")
 	Date productCreated;
 
 	public Date getProductCreated() {
@@ -318,7 +316,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productClosed")
+	@Column(name="product_closed")
 	Date productClosed;
 
 	public Date getProductClosed() {
@@ -331,7 +329,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productWarrantyAndRefund")
+	@Column(name="product_warranty_and_refund")
 	String productWarrantyAndRefund;
 
 	public String getProductWarrantyAndRefund() {
@@ -344,7 +342,7 @@ public class ProductModel1 {
 
 	//=====================================================
 	
-	@Column(name="productPublicVisible")
+	@Column(name="product_public_visible")
 	int productPublicVisible;
 
 	public Integer getProductPublicVisible() {
@@ -357,7 +355,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="adminInfo")
+	@Column(name="admin_info")
 	String adminInfo;
 
 	public String getAdminInfo() {
@@ -370,7 +368,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-	@Column(name="productUUID")
+	@Column(name="productuuid")
 	String productUUID;
 
 	public String getProductUUID() {
@@ -386,7 +384,7 @@ public class ProductModel1 {
 	public String getModelAsJSON(){
 		
 		String result = "";
-		result += "{\"rowId\":"+this.rowId+",";
+		result += "{\"rowId\":"+this.id+",";
 		result += "\"productName\":"+"\""+ this.productName + "\""+",";
 		result += "\"productImageURL\":"+"\""+ this.productImageURL + "\""+",";
 		result += "\"productDescription\":"+"\""+ this.productDescription + "\""+",";
@@ -410,13 +408,13 @@ public class ProductModel1 {
 		result += "\"productPublicVisible\":"+"\""+ this.productPublicVisible + "\""+",";
 		result += "\"adminInfo\":"+"\""+ this.adminInfo + "\""+",";
 		result += "\"productUUID\":"+"\""+ this.productUUID + "\""+",";
-		String lastparam = "not defined!"
+		String lastparam = "not defined!";
 		result += "\"lastparam\":"+"\""+ lastparam + "\""+"}";
 
 		return result;
 
 	}
-
+	
 }
 
 
