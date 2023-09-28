@@ -28,8 +28,9 @@ mysql> desc shopProduct1;
 | productWarrantyAndRefund  | varchar(500)   | YES  |     | NULL    |                |
 | productPublicVisible      | tinyint(4)     | YES  |     | NULL    |                |
 | adminInfo                 | varchar(500)   | YES  |     | NULL    |                |
+| productUUID               | varchar(36)    | YES  |     | NULL    |                |
 +---------------------------+----------------+------+-----+---------+----------------+
-24 rows in set (0,00 sec)
+25 rows in set (0,01 sec)
 
 */
 
@@ -56,19 +57,19 @@ public class ProductModel1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="rowId")
-	int id;
+	int rowId;
 
 	public Integer getId() {
-		return this.id;
+		return this.rowId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.rowId = id;
 	}
 
 	//=====================================================
 
-    @Column(name="productName")
+	@Column(name="productName")
 	String productName;
 
 	public String getProductName() {
@@ -81,7 +82,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-    @Column(name="productType")
+	@Column(name="productType")
 	int productType;
 
 	public Integer getProductType() {
@@ -369,10 +370,51 @@ public class ProductModel1 {
 
 	//=====================================================
 
+	@Column(name="productUUID")
+	String productUUID;
+
+	public String getProductUUID() {
+		return this.productUUID;
+	}
+
+	public void setProductUUID(String paramProductUUID) {
+		this.productUUID = paramProductUUID;
+	}
+
+	//=====================================================
+
 	public String getModelAsJSON(){
+		
 		String result = "";
-		String localValue = "Model is not wotking, implementation not done";
-		result += "\"info\":"+"\""+ localValue + "\""+"}";
+		result += "{\"rowId\":"+this.rowId+",";
+		result += "\"productName\":"+"\""+ this.productName + "\""+",";
+		result += "\"productImageURL\":"+"\""+ this.productImageURL + "\""+",";
+		result += "\"productDescription\":"+"\""+ this.productDescription + "\""+",";
+		result += "\"productPricePerUnit\":"+"\""+ this.productPricePerUnit + "\""+",";
+		result += "\"productQuantity\":"+"\""+ this.productQuantity + "\""+",";
+		result += "\"productQuantityOption\":"+"\""+ this.productQuantityOption + "\""+",";
+		result += "\"shippingInfo \":"+"\""+ this.shippingInfo  + "\""+",";
+		result += "\"shippingPriceSameCountry\":"+"\""+ this.shippingPriceSameCountry + "\""+",";
+		result += "\"shippingPriceEurope\":"+"\""+ this.shippingPriceEurope + "\""+",";
+		result += "\"shippingPriceWorld\":"+"\""+ this.shippingPriceWorld + "\""+",";
+		result += "\"sellerUUID\":"+"\""+ this.sellerUUID + "\""+",";
+		result += "\"sellerQualityScore\":"+"\""+ this.sellerQualityScore+ "\""+",";
+		result += "\"productQualityScore\":"+"\""+ this.productQualityScore + "\""+",";
+		result += "\"productFeedback\":"+"\""+ this.productFeedback + "\""+",";
+		result += "\"buyerUUID \":"+"\""+ this.buyerUUID  + "\""+",";
+		result += "\"buyerQualityScore\":"+"\""+ this.buyerQualityScore + "\""+",";
+		result += "\"buyerQualityInfoVSProduct\":"+"\""+ this.buyerQualityInfoVSProduct + "\""+",";
+		result += "\"productCreated\":"+"\""+ this.productCreated + "\""+",";
+		result += "\"productClosed\":"+"\""+ this.productClosed + "\""+",";
+		result += "\"productWarrantyAndRefund\":"+"\""+ this.productWarrantyAndRefund + "\""+",";
+		result += "\"productPublicVisible\":"+"\""+ this.productPublicVisible + "\""+",";
+		result += "\"adminInfo\":"+"\""+ this.adminInfo + "\""+",";
+		result += "\"productUUID\":"+"\""+ this.productUUID + "\""+",";
+		String lastparam = "not defined!"
+		result += "\"lastparam\":"+"\""+ lastparam + "\""+"}";
+
+		return result;
+
 	}
 
 }

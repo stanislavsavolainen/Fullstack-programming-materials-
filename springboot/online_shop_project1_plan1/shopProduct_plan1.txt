@@ -40,7 +40,10 @@ CREATE TABLE shopProduct1(
 );
 
 
-INSERT INTO shopProduct1(productName, productType, productDescription,productQuantity,productPricePerUnit, shippingPriceSameCountry, shippingPriceEurope, shippingInfo, buyerUUID ) VALUES ( "Computer", 100, "10 years old, but working", 1, 35.8, 20.4 , 20.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9");   
+INSERT INTO shopProduct1(productName, productType, productDescription,productQuantity,productPricePerUnit, shippingPriceSameCountry, shippingPriceEurope, shippingInfo, buyerUUID ) VALUES ( "Computer", 100, "10 years old, but working", 1, 35.8, 20.4 , 20.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9");  
+
+
+ALTER TABLE shopProduct1 ADD productUUID VARCHAR(36); 
 
 ===============================================================================================================
 
@@ -181,6 +184,76 @@ mysql> select * from shopProduct1;
 1 row in set (0,04 sec)
 
 mysql> 
+
+
+mysql> desc shopProduct1;
++---------------------------+----------------+------+-----+---------+----------------+
+| Field                     | Type           | Null | Key | Default | Extra          |
++---------------------------+----------------+------+-----+---------+----------------+
+| rowId                     | int(11)        | NO   | PRI | NULL    | auto_increment |
+| productName               | varchar(500)   | YES  |     | NULL    |                |
+| productType               | int(11)        | YES  |     | NULL    |                |
+| productImageURL           | varchar(500)   | YES  |     | NULL    |                |
+| productDescription        | varchar(10000) | YES  |     | NULL    |                |
+| productPricePerUnit       | double         | YES  |     | NULL    |                |
+| productQuantity           | smallint(6)    | YES  |     | NULL    |                |
+| productQuantityOption     | varchar(500)   | YES  |     | NULL    |                |
+| shippingInfo              | varchar(500)   | YES  |     | NULL    |                |
+| shippingPriceSameCountry  | double         | YES  |     | NULL    |                |
+| shippingPriceEurope       | double         | YES  |     | NULL    |                |
+| shippingPriceWorld        | double         | YES  |     | NULL    |                |
+| sellerUUID                | varchar(36)    | YES  |     | NULL    |                |
+| sellerQualityScore        | double         | YES  |     | NULL    |                |
+| productQualityScore       | double         | YES  |     | NULL    |                |
+| productFeedback           | varchar(10000) | YES  |     | NULL    |                |
+| buyerUUID                 | varchar(36)    | YES  |     | NULL    |                |
+| buyerQualityScore         | double         | YES  |     | NULL    |                |
+| buyerQualityInfoVSProduct | varchar(500)   | YES  |     | NULL    |                |
+| productCreated            | datetime       | YES  |     | NULL    |                |
+| productClosed             | datetime       | YES  |     | NULL    |                |
+| productWarrantyAndRefund  | varchar(500)   | YES  |     | NULL    |                |
+| productPublicVisible      | tinyint(4)     | YES  |     | NULL    |                |
+| adminInfo                 | varchar(500)   | YES  |     | NULL    |                |
++---------------------------+----------------+------+-----+---------+----------------+
+24 rows in set (0,11 sec)
+
+mysql> ALTER TABLE shopProduct1 ADD productUUID VARCHAR(36);
+Query OK, 0 rows affected (1,55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc shopProduct1;
++---------------------------+----------------+------+-----+---------+----------------+
+| Field                     | Type           | Null | Key | Default | Extra          |
++---------------------------+----------------+------+-----+---------+----------------+
+| rowId                     | int(11)        | NO   | PRI | NULL    | auto_increment |
+| productName               | varchar(500)   | YES  |     | NULL    |                |
+| productType               | int(11)        | YES  |     | NULL    |                |
+| productImageURL           | varchar(500)   | YES  |     | NULL    |                |
+| productDescription        | varchar(10000) | YES  |     | NULL    |                |
+| productPricePerUnit       | double         | YES  |     | NULL    |                |
+| productQuantity           | smallint(6)    | YES  |     | NULL    |                |
+| productQuantityOption     | varchar(500)   | YES  |     | NULL    |                |
+| shippingInfo              | varchar(500)   | YES  |     | NULL    |                |
+| shippingPriceSameCountry  | double         | YES  |     | NULL    |                |
+| shippingPriceEurope       | double         | YES  |     | NULL    |                |
+| shippingPriceWorld        | double         | YES  |     | NULL    |                |
+| sellerUUID                | varchar(36)    | YES  |     | NULL    |                |
+| sellerQualityScore        | double         | YES  |     | NULL    |                |
+| productQualityScore       | double         | YES  |     | NULL    |                |
+| productFeedback           | varchar(10000) | YES  |     | NULL    |                |
+| buyerUUID                 | varchar(36)    | YES  |     | NULL    |                |
+| buyerQualityScore         | double         | YES  |     | NULL    |                |
+| buyerQualityInfoVSProduct | varchar(500)   | YES  |     | NULL    |                |
+| productCreated            | datetime       | YES  |     | NULL    |                |
+| productClosed             | datetime       | YES  |     | NULL    |                |
+| productWarrantyAndRefund  | varchar(500)   | YES  |     | NULL    |                |
+| productPublicVisible      | tinyint(4)     | YES  |     | NULL    |                |
+| adminInfo                 | varchar(500)   | YES  |     | NULL    |                |
+| productUUID               | varchar(36)    | YES  |     | NULL    |                |
++---------------------------+----------------+------+-----+---------+----------------+
+25 rows in set (0,01 sec)
+
+
 
 
 
