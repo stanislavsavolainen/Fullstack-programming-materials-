@@ -1,0 +1,289 @@
+
+
+CREATE TABLE product_category(
+
+	row_id int(11) NOT NULL AUTO_INCREMENT,
+	product_type int(11) DEFAULT NULL,
+	product_category_name VARCHAR(500),
+	product_parrent_type int(11) DEFAULT NULL,
+	product_parrent_category_name VARCHAR(500),
+
+	PRIMARY KEY ( row_id )
+	
+);
+
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(300, "Soffa",  300 , "Furniture" ); 
+
+SELECT * FROM shop_product1, product_category WHERE shop_product1.product_type = product_category.product_type;
+
+SELECT shop_product1.row_id, shop_product1.product_name, shop_product1.product_type, product_category.product_parrent_type, product_category.product_parrent_category_name FROM shop_product1, product_category WHERE shop_product1.product_type = product_category.product_type;
+
+
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(101, "Desktops",  100 , "Computers" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(102, "Laptops",  100 , "Computers" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(103, "Tablet PC",  100 , "Computers" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(104, "MacBooks",  100 , "Computers" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(105, "iPads",  100 , "Computers" );
+
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(302, "Chair",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(303, "Table",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(304, "Shelf",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(305, "Wardrobe",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(306, "Clothers warddrobe",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(307, "Bed",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(308, "Kids bed",  300 , "Furniture" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(401, "Aloe vera",  300 , "Plants" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(402, "Cactus",  300 , "Plants" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(403, "Polyscians",  400 , "Plants" );
+
+INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(403, "Carnivorous plant",  400 , "Plants" );
+
+
+UPDATE product_category SET product_parrent_type = 400 WHERE product_parrent_category_name = "Plants";
+
+
+=================================================================================================
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| shopProduct1               |
+| shop_product1              |
+| user_table1                |
++----------------------------+
+3 rows in set (0,00 sec)
+
+mysql> 
+mysql> CREATE TABLE product_category(
+    -> 
+    -> row_id int(11) NOT NULL AUTO_INCREMENT,
+    -> product_type int(11) DEFAULT NULL,
+    -> product_category_name VARCHAR(500),
+    -> product_parrent_type int(11) DEFAULT NULL,
+    -> product_parrent_category_name VARCHAR(500),
+    -> 
+    -> PRIMARY KEY ( row_id )
+    -> 
+    -> );
+Query OK, 0 rows affected (0,31 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| product_category           |
+| shopProduct1               |
+| shop_product1              |
+| user_table1                |
++----------------------------+
+4 rows in set (0,01 sec)
+
+mysql> desc product_category;
++-------------------------------+--------------+------+-----+---------+----------------+
+| Field                         | Type         | Null | Key | Default | Extra          |
++-------------------------------+--------------+------+-----+---------+----------------+
+| row_id                        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| product_type                  | int(11)      | YES  |     | NULL    |                |
+| product_category_name         | varchar(500) | YES  |     | NULL    |                |
+| product_parrent_type          | int(11)      | YES  |     | NULL    |                |
+| product_parrent_category_name | varchar(500) | YES  |     | NULL    |                |
++-------------------------------+--------------+------+-----+---------+----------------+
+5 rows in set (0,00 sec)
+
+mysql> 
+
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(300, "Soffa",  300 , "Furniture" ); 
+Query OK, 1 row affected (0,07 sec)
+
+mysql> SELECT *  FROM product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+1 row in set (0,00 sec)
+
+
+
+mysql> SELECT shop_product1.row_id, shop_product1.product_name, shop_product1.product_type, product_category.product_parrent_type, product_category.product_parrent_category_name FROM shop_product1, product_category WHERE shop_product1.product_type = product_category.product_type;
++--------+--------------+--------------+----------------------+-------------------------------+
+| row_id | product_name | product_type | product_parrent_type | product_parrent_category_name |
++--------+--------------+--------------+----------------------+-------------------------------+
+|      1 | Soffa        |          300 |                  300 | Furniture                     |
++--------+--------------+--------------+----------------------+-------------------------------+
+1 row in set (0,00 sec)
+
+mysql> 
+
+mysql> 
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(101, "Desktops",  100 , "Computers" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(102, "Laptops",  100 , "Computers" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(103, "Tablet PC",  100 , "Computers" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(104, "MacBooks",  100 , "Computers" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(105, "iPads",  100 , "Computers" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(105, "iPads",  100 , "Computers" );
+Query OK, 1 row affected (0,04 sec)
+
+
+mysql> 
+mysql> SELECT row_id, product_name, product_type FROM shop_product1;
++--------+--------------+--------------+
+| row_id | product_name | product_type |
++--------+--------------+--------------+
+|      1 | Soffa        |          300 |
++--------+--------------+--------------+
+1 row in set (0,00 sec)
+
+mysql> SELECT *  FROM product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
+|      2 |          101 | Desktops              |                  100 | Computers                     |
+|      3 |          102 | Laptops               |                  100 | Computers                     |
+|      4 |          103 | Tablet PC             |                  100 | Computers                     |
+|      5 |          104 | MacBooks              |                  100 | Computers                     |
+|      6 |          105 | iPads                 |                  100 | Computers                     |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+6 rows in set (0,00 sec)
+
+mysql> 
+
+mysql> 
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(302, "Chair",  300 , "Furniture" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(303, "Table",  300 , "Furniture" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(304, "Shelf",  300 , "Furniture" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(305, "Wardrobe",  300 , "Furniture" );
+Query OK, 1 row affected (0,05 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(306, "Clothers warddrobe",  300 , "Furniture" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(307, "Bed",  300 , "Furniture" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(308, "Kids bed",  300 , "Furniture" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> SELECT *  FROM product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
+|      2 |          101 | Desktops              |                  100 | Computers                     |
+|      3 |          102 | Laptops               |                  100 | Computers                     |
+|      4 |          103 | Tablet PC             |                  100 | Computers                     |
+|      5 |          104 | MacBooks              |                  100 | Computers                     |
+|      6 |          105 | iPads                 |                  100 | Computers                     |
+|      7 |          302 | Chair                 |                  300 | Furniture                     |
+|      8 |          303 | Table                 |                  300 | Furniture                     |
+|      9 |          304 | Shelf                 |                  300 | Furniture                     |
+|     10 |          305 | Wardrobe              |                  300 | Furniture                     |
+|     11 |          306 | Clothers warddrobe    |                  300 | Furniture                     |
+|     12 |          307 | Bed                   |                  300 | Furniture                     |
+|     13 |          308 | Kids bed              |                  300 | Furniture                     |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+13 rows in set (0,00 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(401, "Aloe vera",  300 , "Plants" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(402, "Cactus",  300 , "Plants" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(403, "Polyscians",  300 , "Plants" );
+Query OK, 1 row affected (0,04 sec)
+
+mysql> INSERT INTO product_category(product_type, product_category_name, product_parrent_type, product_parrent_category_name) VALUES(403, "Carnivorous plant",  300 , "Plants" );
+Query OK, 1 row affected (0,03 sec)
+
+mysql> 
+mysql> SELECT *  FROM product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
+|      2 |          101 | Desktops              |                  100 | Computers                     |
+|      3 |          102 | Laptops               |                  100 | Computers                     |
+|      4 |          103 | Tablet PC             |                  100 | Computers                     |
+|      5 |          104 | MacBooks              |                  100 | Computers                     |
+|      6 |          105 | iPads                 |                  100 | Computers                     |
+|      7 |          302 | Chair                 |                  300 | Furniture                     |
+|      8 |          303 | Table                 |                  300 | Furniture                     |
+|      9 |          304 | Shelf                 |                  300 | Furniture                     |
+|     10 |          305 | Wardrobe              |                  300 | Furniture                     |
+|     11 |          306 | Clothers warddrobe    |                  300 | Furniture                     |
+|     12 |          307 | Bed                   |                  300 | Furniture                     |
+|     13 |          308 | Kids bed              |                  300 | Furniture                     |
+|     14 |          401 | Aloe vera             |                  300 | Plants                        |
+|     15 |          402 | Cactus                |                  300 | Plants                        |
+|     16 |          403 | Polyscians            |                  300 | Plants                        |
+|     17 |          403 | Carnivorous plant     |                  300 | Plants                        |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+17 rows in set (0,00 sec)
+
+mysql> UPDATE product_category SET product_parrent_type = 400 WHERE product_parrent_category_name = "Plants";
+Query OK, 4 rows affected (0,06 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> SELECT *  FROM product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
+|      2 |          101 | Desktops              |                  100 | Computers                     |
+|      3 |          102 | Laptops               |                  100 | Computers                     |
+|      4 |          103 | Tablet PC             |                  100 | Computers                     |
+|      5 |          104 | MacBooks              |                  100 | Computers                     |
+|      6 |          105 | iPads                 |                  100 | Computers                     |
+|      7 |          302 | Chair                 |                  300 | Furniture                     |
+|      8 |          303 | Table                 |                  300 | Furniture                     |
+|      9 |          304 | Shelf                 |                  300 | Furniture                     |
+|     10 |          305 | Wardrobe              |                  300 | Furniture                     |
+|     11 |          306 | Clothers warddrobe    |                  300 | Furniture                     |
+|     12 |          307 | Bed                   |                  300 | Furniture                     |
+|     13 |          308 | Kids bed              |                  300 | Furniture                     |
+|     14 |          401 | Aloe vera             |                  400 | Plants                        |
+|     15 |          402 | Cactus                |                  400 | Plants                        |
+|     16 |          403 | Polyscians            |                  400 | Plants                        |
+|     17 |          403 | Carnivorous plant     |                  400 | Plants                        |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+17 rows in set (0,00 sec)
+
+mysql> 
+
+
