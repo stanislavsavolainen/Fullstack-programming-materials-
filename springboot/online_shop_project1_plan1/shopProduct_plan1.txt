@@ -344,4 +344,121 @@ Rows matched: 1  Changed: 1  Warnings: 0
 mysql> 
 
 
+mysql> select * from product_category;
++--------+--------------+-----------------------+----------------------+-------------------------------+
+| row_id | product_type | product_category_name | product_parrent_type | product_parrent_category_name |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+|      1 |          300 | Soffa                 |                  300 | Furniture                     |
+|      2 |          101 | Desktops              |                  100 | Computers                     |
+|      3 |          102 | Laptops               |                  100 | Computers                     |
+|      4 |          103 | Tablet PC             |                  100 | Computers                     |
+|      5 |          104 | MacBooks              |                  100 | Computers                     |
+|      6 |          105 | iPads                 |                  100 | Computers                     |
+|      7 |          302 | Chair                 |                  300 | Furniture                     |
+|      8 |          303 | Table                 |                  300 | Furniture                     |
+|      9 |          304 | Shelf                 |                  300 | Furniture                     |
+|     10 |          305 | Wardrobe              |                  300 | Furniture                     |
+|     11 |          306 | Clothers warddrobe    |                  300 | Furniture                     |
+|     12 |          307 | Bed                   |                  300 | Furniture                     |
+|     13 |          308 | Kids bed              |                  300 | Furniture                     |
+|     14 |          401 | Aloe vera             |                  400 | Plants                        |
+|     15 |          402 | Cactus                |                  400 | Plants                        |
+|     16 |          403 | Polyscians            |                  400 | Plants                        |
+|     17 |          403 | Carnivorous plant     |                  400 | Plants                        |
++--------+--------------+-----------------------+----------------------+-------------------------------+
+17 rows in set (0,23 sec)
+
+mysql> 
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "Aloe vera", 401, "it is just plant", 20, 72.80, 56.8 , 56.8, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/aloe_vera1.jpg" );
+Query OK, 1 row affected (0,89 sec)
+
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "hp compaq nc6220", 401, "old laptop computer, very cheap now", 2, 35.0, 80.75 , 80.75, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/laptop1.png" );
+Query OK, 1 row affected (0,07 sec)
+
+mysql> select row_id, productuuid, product_imageurl from shop_product1;
++--------+-------------+------------------------------+
+| row_id | productuuid | product_imageurl             |
++--------+-------------+------------------------------+
+|      1 | NULL        | NULL                         |
+|      2 | NULL        | productimages/aloe_vera1.jpg |
+|      3 | NULL        | productimages/laptop1.png    |
++--------+-------------+------------------------------+
+3 rows in set (0,04 sec)
+
+mysql> UPDATE shop_product1 SET product_imageurl = "productimages/soffa1.jpeg" WHERE row_id = 1;
+Query OK, 1 row affected (0,23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select row_id, productuuid, product_imageurl from shop_product1;
++--------+-------------+------------------------------+
+| row_id | productuuid | product_imageurl             |
++--------+-------------+------------------------------+
+|      1 | NULL        | productimages/soffa1.jpeg    |
+|      2 | NULL        | productimages/aloe_vera1.jpg |
+|      3 | NULL        | productimages/laptop1.png    |
++--------+-------------+------------------------------+
+3 rows in set (0,00 sec)
+
+mysql> 
+
+mysql> UPDATE shop_product1 SET product_type = 102 WHERE row_id = 3;
+Query OK, 1 row affected (0,36 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select row_id, productuuid, product_type , product_imageurl from shop_product1;
++--------+-------------+--------------+------------------------------+
+| row_id | productuuid | product_type | product_imageurl             |
++--------+-------------+--------------+------------------------------+
+|      1 | NULL        |          300 | productimages/soffa1.jpeg    |
+|      2 | NULL        |          401 | productimages/aloe_vera1.jpg |
+|      3 | NULL        |          102 | productimages/laptop1.png    |
++--------+-------------+--------------+------------------------------+
+3 rows in set (0,00 sec)
+
+mysql> 
+
+
+
+mysql> UPDATE shop_product1 SET product_imageurl = "productimages/soffa1.jpeg" WHERE row_id = 1;
+Query OK, 1 row affected (0,20 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "Aloe vera", 401, "it is just plant", 20, 72.80, 56.8 , 56.8, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/aloe_vera1.jpg" );
+Query OK, 1 row affected (0,23 sec)
+
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "Aloe vera", 401, "it is just plant", 20, 72.80, 56.8 , 56.8, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/aloe_vera1.jpg" );
+Query OK, 1 row affected (0,06 sec)
+
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "hp compaq nc6220", 401, "old laptop computer, very cheap now", 2, 35.0, 80.75 , 80.75, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/laptop1.png" );
+Query OK, 1 row affected (0,07 sec)
+
+mysql> select row_id, productuuid, product_type , product_imageurl from shop_product1;
++--------+-------------+--------------+------------------------------+
+| row_id | productuuid | product_type | product_imageurl             |
++--------+-------------+--------------+------------------------------+
+|      1 | NULL        |          300 | productimages/soffa1.jpeg    |
+|      2 | NULL        |          401 | productimages/aloe_vera1.jpg |
+|      3 | NULL        |          102 | productimages/laptop1.png    |
+|      4 | NULL        |          401 | productimages/aloe_vera1.jpg |
+|      5 | NULL        |          401 | productimages/aloe_vera1.jpg |
+|      6 | NULL        |          401 | productimages/laptop1.png    |
++--------+-------------+--------------+------------------------------+
+6 rows in set (0,02 sec)
+
+mysql> UPDATE shop_product1 SET product_type = 102 WHERE row_id = 6;
+Query OK, 1 row affected (0,14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "Aloe vera", 401, "it is just plant", 20, 72.80, 56.8 , 56.8, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/aloe_vera1.jpg" );
+Query OK, 1 row affected (0,06 sec)
+
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid ) VALUES ( "Soffa", 300, "for comfort sitting", 5, 300.5, 120.4 , 120.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/soffa1.jpeg");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> 
+mysql> 
+mysql> INSERT INTO shop_product1(product_name, product_type, product_description,product_quantity,product_price_per_unit, shipping_price_same_country, shipping_price_europe, shipping_info, selleruuid, product_quality_score, seller_quality_score,  buyer_quality_score, shipping_price_world, product_public_visible, product_imageurl ) VALUES ( "Soffa", 300, "for comfort sitting", 5, 300.5, 120.4 , 120.4, "I trade EU or schengen contries only, please check...", "720b1410-8c7e-11ed-984d-1528c4aecbd9", 1.0, 1.0, 1.0, -1.0, 1, "productimages/soffa1.jpeg");
+Query OK, 1 row affected (0,04 sec)
+
+mysql> 
+
 

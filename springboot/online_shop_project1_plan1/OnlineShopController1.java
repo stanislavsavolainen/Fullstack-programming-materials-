@@ -38,11 +38,11 @@ import java.util.regex.Pattern;
 @CrossOrigin(origins = "http://localhost:8080")
 public class OnlineShopController1 {
 
-    @Autowired
-	 private Product1Repository productObjects;
+	@Autowired
+	private Product1Repository productObjects;
 
 
-    @GetMapping(path="/products")
+	@GetMapping(path="/products")
 	public @ResponseBody Iterable<ProductModel1> getAllProducts() {
 		return productObjects.findAll();
 	}
@@ -61,31 +61,5 @@ public class OnlineShopController1 {
 
 			return "product registered";
 	}
-
-
-
-    /*
-    @GetMapping(path="/products",  method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public String getAllProducts() {
-		//return productObjects.findAll();
-
-        List<ProductModel1> productList= (List<ProductModel1>) productObjects.findAll();
-
-        String result = "{ key : 'value' }";
-
-        
-        for( UserModel userElement : userList) {
-		
-            if( userElement.getUuid().equals(userUUID) ){
-				responseModel = userElement;
-			}
-		
-		}
-				
-		return result;
-
-
-	}
-    */
 
 }
