@@ -42,10 +42,26 @@ public class OnlineShopController1 {
 	 private Product1Repository productObjects;
 
 
-    	@GetMapping(path="/products")
+    @GetMapping(path="/products")
 	public @ResponseBody Iterable<ProductModel1> getAllProducts() {
 		return productObjects.findAll();
 	}
+
+	@PostMapping("/product")
+	public String addProduct( @RequestBody String requestBodyParam ) {
+
+			JSONObject parseredRequest = new JSONObject(requestBodyParam);
+
+			ProductModel1 userRegisterTemplate = new ProductModel1();
+
+			userRegisterTemplate.setProductName( parseredRequest.getString("paramProductName") );
+
+
+			productObjects.save(userRegisterTemplate);
+
+			return "product registered";
+	}
+
 
 
     /*
