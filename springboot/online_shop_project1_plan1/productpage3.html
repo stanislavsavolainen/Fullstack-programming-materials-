@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Product test page 1 </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+    <style>
+        .imageblock1 {
+            width: 160px;
+            height: 120px;
+        }
+
+        .labelblock1 {
+            font-size: 16px;
+        }
+
+        .productblock1 {
+            display: inline;
+        }
+
+        .productblock2 {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
+
+    
+
+
+</head>
+
+<body ng-app="angular-displayPublicProduct">
+
+   
+    <h1 style="width: 100%; text-align: center;"> Online shop available products list</h1>
+    
+    <!-- 640/4 = 160  480/4 = 120  -->
+
+    <div ng-controller="angular-filterProductByType">  
+        filter products by category :
+        <select ng-model="sProductType" ng-change="changeProductType()">
+            <option ng-repeat="typeElement in agproductType" ng-value="typeElement" >{{typeElement}}</option>
+        </select>
+
+    </div>
+
+    <div class="row productblock2" ng-controller="angular-productList" >
+
+        <div>
+        <div ng-repeat="productElement in productsArray track by $index" >
+                <div ng-if="productElement.visible == visval" class="col-xs6 col-sm-4">
+                <!--<div class="col-xs6 col-sm-4">-->
+                <div>
+                    <img ng-src="{{productElement.image}}" class="imageblock1">
+                </div>
+                <div class="labelblock1"><a href="#">{{productElement.name}}</a></div>
+                <div> {{productElement.info}} </div>
+    
+        </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <script>
+
+        //var globalProductType = [];
+
+        var angularJSApplication = angular.module("angular-displayPublicProduct", [] );
+
+        // google -> angularjs share data between controllers (geesforgeeks page)
+
+        angularJSApplication.run( function ($rootScope) {
+            $rootScope.globalProductType = ["All types"]; 
+            $rootScope.productsArray = [];
+        });
+
+        angularJSApplication.controller("angular-productList", function($scope, $http, $rootScope){
+
+            console.log("angular controoler -> productList")
+            let responseArray = [];
+            
+
+            $http.get("/products").then( function(response) {
+
+                response.data.forEach(  function(ajaxProductElement) {
+
+                    productViewObject = {
+
+                        id :    ajaxProductElement.id,
+                        name :  ajaxProductElement.productName,
+                        type :  ajaxProductElement.productType,
+                        image : ajaxProductElement.productImageURL,
+                        info :  ajaxProductElement.productDescription,
+                        visible : 1
+
+                    };
+
+                    responseArray.push(  productViewObject ) ;  
+                    console.log(ajaxProductElement); 
+                    $rootScope.globalProductType.push( ""+productViewObject.type);               
+
+                });
+            
+                $rootScope.productsArray = responseArray;
+                console.log($rootScope.globalProductType);
+                $scope.visval = 1;
+
+            });
+
+        });
+
+        angularJSApplication.controller("angular-filterProductByType", function($scope, $http, $rootScope){
+
+            console.log("filter product by type function triggered")
+
+            //removeDuplicates($rootScope.globalProductType)
+
+            //console.log($rootScope.globalProductType);
+           setTimeout( function() { 
+                $scope.agproductType = removeDuplicates($rootScope.globalProductType);
+                $scope.$apply(); //update angulaJs scope after ajax call for html rendering
+           }, 3000);
+
+           $scope.sProductType = "All types";
+
+           $scope.changeProductType = function() {
+
+            //$scope.sProductType
+            let localProductTypesArray = [];
+
+
+               if($scope.sProductType === "All types"){
+
+                console.log("all visible types");
+
+                $rootScope.productsArray.forEach(  function( element  ) {
+
+                    if(element.visible != 1) element.visible = 1;
+
+                    localProductTypesArray.push(element);
+                });
+
+               }  else {
+
+                $rootScope.productsArray.forEach(  function( element  ) {
+
+                    let tempType = ""+ element.type;
+
+                    console.log("only one visible type");
+
+                    if($scope.sProductType === tempType ) {
+                        element.visible = 1;
+                    } else {
+                        element.visible = 0;
+                    }
+
+                  
+
+                    localProductTypesArray.push(element);
+
+                });
+
+               }
+
+               console.log($scope.sProductType);
+                    console.log("is not number :");
+                    console.log(isNaN($scope.sProductType));
+
+
+               $rootScope.productsArray = localProductTypesArray;
+
+               console.log("display product array status:")
+               console.log($rootScope.productsArray)  
+               //$scope.$apply(); 
+               //$rootScope.$apply();   
+
+           }
+
+
+        });
+
+        function removeDuplicates( data ){
+
+            console.log("remove duplicate function triggered")
+
+            let uniqueArray = [];
+
+            data.forEach(  function( element  ) {
+
+                if( ! uniqueArray.includes(element) ) uniqueArray.push(element);
+
+            }); 
+
+            console.log(uniqueArray);                       
+
+            return uniqueArray;
+        };
+
+
+    </script>
+
+</body>
+
+</html>
