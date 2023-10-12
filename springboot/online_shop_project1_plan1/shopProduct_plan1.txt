@@ -45,6 +45,9 @@ INSERT INTO shopProduct1(productName, productType, productDescription,productQua
 
 ALTER TABLE shopProduct1 ADD productUUID VARCHAR(36); 
 
+
+UPDATE shop_product1 SET productuuid = "uuid-1" WHERE row_id = 1;
+
 ===============================================================================================================
 
 stanislav@stanislav-lenovo:~$ mysql -u root -p
@@ -460,5 +463,89 @@ mysql> INSERT INTO shop_product1(product_name, product_type, product_description
 Query OK, 1 row affected (0,04 sec)
 
 mysql> 
+
+
+
+
+
+mysql> SELECT row_id, productuuid, product_name, product_type FROM shop_product1;
++--------+-------------+------------------+--------------+
+| row_id | productuuid | product_name     | product_type |
++--------+-------------+------------------+--------------+
+|      1 | NULL        | Soffa            |          300 |
+|      2 | NULL        | Aloe vera        |          401 |
+|      3 | NULL        | hp compaq nc6220 |          102 |
+|      4 | NULL        | Aloe vera        |          401 |
+|      5 | NULL        | Aloe vera        |          401 |
+|      6 | NULL        | hp compaq nc6220 |          102 |
+|      7 | NULL        | Aloe vera        |          401 |
+|      8 | NULL        | Soffa            |          300 |
++--------+-------------+------------------+--------------+
+8 rows in set (0,03 sec)
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-1" WHERE row_id = 1;
+Query OK, 1 row affected (0,20 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-2" WHERE row_id = 2;
+Query OK, 1 row affected (0,04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT row_id, productuuid, product_name, product_type FROM shop_product1;
++--------+-------------+------------------+--------------+
+| row_id | productuuid | product_name     | product_type |
++--------+-------------+------------------+--------------+
+|      1 | uuid-1      | Soffa            |          300 |
+|      2 | uuid-2      | Aloe vera        |          401 |
+|      3 | NULL        | hp compaq nc6220 |          102 |
+|      4 | NULL        | Aloe vera        |          401 |
+|      5 | NULL        | Aloe vera        |          401 |
+|      6 | NULL        | hp compaq nc6220 |          102 |
+|      7 | NULL        | Aloe vera        |          401 |
+|      8 | NULL        | Soffa            |          300 |
++--------+-------------+------------------+--------------+
+8 rows in set (0,00 sec)
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-3" WHERE row_id = 3;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-4" WHERE row_id = 4;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-5" WHERE row_id = 5;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-6" WHERE row_id = 6;
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-7" WHERE row_id = 7;
+Query OK, 1 row affected (0,03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE shop_product1 SET productuuid = "uuid-8" WHERE row_id = 8;
+Query OK, 1 row affected (0,07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT row_id, productuuid, product_name, product_type FROM shop_product1;
++--------+-------------+------------------+--------------+
+| row_id | productuuid | product_name     | product_type |
++--------+-------------+------------------+--------------+
+|      1 | uuid-1      | Soffa            |          300 |
+|      2 | uuid-2      | Aloe vera        |          401 |
+|      3 | uuid-3      | hp compaq nc6220 |          102 |
+|      4 | uuid-4      | Aloe vera        |          401 |
+|      5 | uuid-5      | Aloe vera        |          401 |
+|      6 | uuid-6      | hp compaq nc6220 |          102 |
+|      7 | uuid-7      | Aloe vera        |          401 |
+|      8 | uuid-8      | Soffa            |          300 |
++--------+-------------+------------------+--------------+
+8 rows in set (0,00 sec)
+
+mysql> 
+
 
 

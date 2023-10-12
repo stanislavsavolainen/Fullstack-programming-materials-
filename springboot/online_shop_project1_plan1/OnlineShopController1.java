@@ -41,10 +41,27 @@ public class OnlineShopController1 {
 	@Autowired
 	private Product1Repository productObjects;
 
-
 	@GetMapping(path="/products")
 	public @ResponseBody Iterable<ProductModel1> getAllProducts() {
 		return productObjects.findAll();
+	}
+
+	@RequestMapping(value="/product/{productUUID}")
+	public String getProductByUUID(@PathVariable String productUUID){
+
+		List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
+		ProductModel1 responseModel = null;
+		
+		for( ProductModel1 productElement : productList) {
+		
+			if( productElement.getProductUUID().equals(productUUID) ){
+				responseModel = productElement;
+			}
+		
+		}
+				
+		return responseModel.getModelAsJSON();
+	
 	}
 
 	@PostMapping("/product")
@@ -53,10 +70,7 @@ public class OnlineShopController1 {
 			JSONObject parseredRequest = new JSONObject(requestBodyParam);
 
 			ProductModel1 userRegisterTemplate = new ProductModel1();
-
 			userRegisterTemplate.setProductName( parseredRequest.getString("paramProductName") );
-
-
 			productObjects.save(userRegisterTemplate);
 
 			return "product registered";

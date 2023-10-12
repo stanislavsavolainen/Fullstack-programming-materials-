@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Product test page 1 </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+</head>
+
+<body ng-app="angular-displaySelectedProduct">
+
+    <div ng-controller="angular-getSelectedProduct">{{ajaxResponse}}</div>
+
+<script>
+
+    var angularJSApplication = angular.module("angular-displaySelectedProduct", [] );
+
+    angularJSApplication.controller("angular-getSelectedProduct", function($scope, $http){
+
+        const currentUrl = window.location.href;
+        let urlToProduct = currentUrl.split("#");
+
+        $http.get("/product/"+urlToProduct[1]).then( function(response) {
+            $scope.ajaxResponse = JSON.stringify(response.data)
+        });
+
+    });
+
+
+
+</script>
+
+</body>
+
+</html>

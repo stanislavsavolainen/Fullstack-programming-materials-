@@ -58,7 +58,7 @@
                 <div>
                     <img ng-src="{{productElement.image}}" class="imageblock1">
                 </div>
-                <div class="labelblock1"><a href="#">{{productElement.name}}</a></div>
+                <div class="labelblock1"><a ng-href="/selectedproductpage1.html#{{productElement.uuid}}">{{productElement.name}}</a></div>
                 <div> {{productElement.info}} </div>
     
         </div>
@@ -98,6 +98,7 @@
                         type :  ajaxProductElement.productType,
                         image : ajaxProductElement.productImageURL,
                         info :  ajaxProductElement.productDescription,
+                        uuid :  ajaxProductElement.productUUID,
                         visible : 1
 
                     };
@@ -170,9 +171,8 @@
                }
 
                console.log($scope.sProductType);
-                    console.log("is not number :");
-                    console.log(isNaN($scope.sProductType));
-
+               console.log("is not number :");
+               console.log(isNaN($scope.sProductType));
 
                $rootScope.productsArray = localProductTypesArray;
 
