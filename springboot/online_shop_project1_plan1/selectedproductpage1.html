@@ -8,12 +8,63 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
+    <style>
+
+        .frameblock{
+            padding-top: 30px;
+            padding-left: 30px;
+        }
+
+        .imageblock1 {
+            width: 320px; 
+            height: 240px; 
+        }
+
+        .buttonblock1 {
+            border-radius: 12px;
+            width: 250px; 
+            height: 30px;
+            background-color: blue;
+            color: white;
+
+        }
+
+        .buttonblock1:hover {
+            background-color: darkblue;
+            color: red;
+
+        }
+
+    </style>
 
 </head>
 
 <body ng-app="angular-displaySelectedProduct">
 
-    <div ng-controller="angular-getSelectedProduct">{{ajaxResponse}}</div>
+    <div ng-controller="angular-getSelectedProduct" class="frameblock">
+
+        <!--
+            https://getbootstrap.com/docs/3.4/css/
+        -->
+
+        <a href="/productpage3.html">Back to products list</a>
+
+        <div class="row">
+            <div class="col-md-4">
+                <img ng-src="{{ajaxResponse.productImageURL}}" class="imageblock1">
+            </div>
+            <div class="col-md-8">
+                <div><h1>{{ajaxResponse.productName}}</h1></div>
+                <div><span>Price : {{ajaxResponse.productPricePerUnit}} &#x20AC; </span>
+                     <span style="margin-left: 50px;"> 
+                        <button class="buttonblock1">Buy now</button> 
+                     </span>
+                </div>
+                <div>{{ajaxResponse.productDescription}}</div>              
+            </div>
+        </div>
+
+    </div>
 
 <script>
 
@@ -25,15 +76,14 @@
         let urlToProduct = currentUrl.split("#");
 
         $http.get("/product/"+urlToProduct[1]).then( function(response) {
-            $scope.ajaxResponse = JSON.stringify(response.data)
+            $scope.ajaxResponse = response.data;
         });
 
     });
-
-
 
 </script>
 
 </body>
 
 </html>
+
