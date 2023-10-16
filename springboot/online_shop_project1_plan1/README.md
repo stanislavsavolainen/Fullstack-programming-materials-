@@ -30,10 +30,17 @@ Changes 9th october 2023:
 
 - add filter by product type (angularJS code) . This filter hide other products type and display less products on screen. You can use filter without ajax call and not need another request to server. Filter done by drop down menu and happen only on front-end side.
 
-
 Changes 12th october 2023:
 
 - add selected product page and display more info about selected product. Make better design in future. Adding link to products list where you can navigate to each product and see more accurate info about one selected product.
+
+Changes 16th october 2023:
+
+- modify "selected product" - pages add some html design to display page user friendly
+
+- add navigation bar on "products list"- and "selected product"-pages, follow same CSS styles
+
+
 
 
 
