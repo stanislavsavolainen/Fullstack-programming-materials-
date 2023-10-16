@@ -10,14 +10,23 @@
 
     <style>
 
+       .navibarblock1{
+            background-color: silver;
+        }
+
         .frameblock{
             padding-top: 30px;
             padding-left: 30px;
         }
 
-        .imageblock1 {
+         .imageblock1 {
             width: 320px; 
             height: 240px; 
+        }
+
+        .imageblock2 {
+            width: 160px;
+            height: 120px;
         }
 
         .buttonblock1 {
@@ -35,19 +44,51 @@
 
         }
 
+        .buttonblock2{
+            width : 150px;
+        }
+
+        .inputblock1 {
+            width: 50%;
+            height: 30px;
+        }
+
     </style>
 
 </head>
 
 <body ng-app="angular-displaySelectedProduct">
 
+    <div class="navibarblock1">
+        <h1 style="width: 100%; text-align: center;">
+            Stanislav Online Shop (fullstack sample project)
+        </h1>
+        <br> 
+        <span style="margin-left: 5px;"/> 
+        <img src="placeholder1.png" class="imageblock2">
+        <input type="text" class="inputblock1">
+        <button class="buttonblock1 buttonblock2">Search</button>
+        <span style="margin-left: 20px;"/> 
+        <button class="buttonblock1 buttonblock2">Login</button>
+        <span style="margin-left: 20px;"/> 
+        <button class="buttonblock1 buttonblock2">Register</button>
+    
+        <div class="row">  
+            <div class="col-xs6 col-sm-4"></div>
+            <div class="col-xs6 col-sm-4">
+                <a href="/productpage3.html">Back to products list</a>
+            </div>  
+            <div class="col-xs6 col-sm-4"></div>    
+        </div>
+   
+    </div>
+    
+    <br><br>
     <div ng-controller="angular-getSelectedProduct" class="frameblock">
 
         <!--
             https://getbootstrap.com/docs/3.4/css/
         -->
-
-        <a href="/productpage3.html">Back to products list</a>
 
         <div class="row">
             <div class="col-md-4">

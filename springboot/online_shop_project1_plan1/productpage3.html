@@ -10,6 +10,16 @@
 
 
     <style>
+
+        .navibarblock1{
+            background-color: silver;
+        }
+
+        .frameblock{
+            padding-top: 30px;
+            padding-left: 30px;
+        }
+
         .imageblock1 {
             width: 160px;
             height: 120px;
@@ -27,6 +37,36 @@
             margin-top: 20px;
             margin-left: 20px;
         }
+
+        .imageblock2 {
+            width: 160px;
+            height: 120px;
+        }
+
+        .buttonblock1 {
+            border-radius: 12px;
+            width: 250px; 
+            height: 30px;
+            background-color: blue;
+            color: white;
+
+        }
+
+        .buttonblock1:hover {
+            background-color: darkblue;
+            color: red;
+
+        }
+
+        .buttonblock2{
+            width : 150px;
+        }
+
+        .inputblock1 {
+            width: 50%;
+            height: 30px;
+        }
+
     </style>
 
     
@@ -36,18 +76,38 @@
 
 <body ng-app="angular-displayPublicProduct">
 
-   
-    <h1 style="width: 100%; text-align: center;"> Online shop available products list</h1>
-    
-    <!-- 640/4 = 160  480/4 = 120  -->
+        <div class="navibarblock1">
+            <h1 style="width: 100%; text-align: center;">
+                Stanislav Online Shop (fullstack sample project)
+            </h1>
+            <br> 
+            <span style="margin-left: 5px;"></span> 
+            <img src="placeholder1.png" class="imageblock2">
+            <input type="text" class="inputblock1">
+            <button class="buttonblock1 buttonblock2">Search</button>
+            <span style="margin-left: 20px;"/> 
+            <button class="buttonblock1 buttonblock2">Login</button>
+            <span style="margin-left: 20px;"/> 
+            <button class="buttonblock1 buttonblock2">Register</button>
+        
+            <div class="row">  
+                <div class="col-xs6 col-sm-4"></div>
+                <div class="col-xs6 col-sm-4">
 
-    <div ng-controller="angular-filterProductByType">  
-        filter products by category :
-        <select ng-model="sProductType" ng-change="changeProductType()">
-            <option ng-repeat="typeElement in agproductType" ng-value="typeElement" >{{typeElement}}</option>
-        </select>
-
-    </div>
+                    <span style="margin-left: 20px; font-size: 16px;" ng-controller="angular-filterProductByType" >  
+                        filter products by category : 
+                        <select ng-model="sProductType" ng-change="changeProductType()">
+                            <option ng-repeat="typeElement in agproductType" ng-value="typeElement" >{{typeElement}}</option>
+                        </select>
+        
+                    </span> 
+                </div>  
+                <div class="col-xs6 col-sm-4"></div>    
+            </div>    
+       
+        </div>
+        
+        <br><br>
 
     <div class="row productblock2" ng-controller="angular-productList" >
 
