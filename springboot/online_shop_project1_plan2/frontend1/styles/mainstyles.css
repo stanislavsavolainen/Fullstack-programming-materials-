@@ -1,0 +1,59 @@
+.navibarblock1{
+    background-color: silver;
+}
+
+.frameblock{
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.imageblock1 {
+    width: 160px;
+    height: 120px;
+}
+
+.labelblock1 {
+    font-size: 16px;
+}
+
+.productblock1 {
+    display: inline;
+}
+
+.productblock2 {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.imageblock2 {
+    width: 160px;
+    height: 120px;
+}
+
+.buttonblock1 {
+    border-radius: 12px;
+    width: 250px; 
+    height: 30px;
+    background-color: blue;
+    color: white;
+
+}
+
+.buttonblock1:hover {
+    background-color: darkblue;
+    color: red;
+
+}
+
+.buttonblock2{
+    width : 150px;
+}
+
+.inputblock1 {
+    width: 50%;
+    height: 30px;
+}
+
+body {
+    background-color: white;
+}

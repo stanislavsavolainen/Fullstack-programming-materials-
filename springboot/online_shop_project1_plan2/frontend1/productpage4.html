@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Products list (v4) </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mainstyles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/angularjslogic.js"></script>
+
+
+</head>
+
+<body ng-app="angular-displayPublicProduct">
+
+        <!-- https://stackoverflow.com/questions/13943471/what-is-the-correct-syntax-of-ng-include -->
+        <div ng-include src="'htmlcomponents/navigationbar.html'"></div>
+        
+        <br><br>
+
+        <div class="row productblock2" ng-controller="angular-productList" >
+
+        <div>
+        <div ng-repeat="productElement in productsArray track by $index" >
+                <div ng-if="productElement.visible == visval" class="col-xs6 col-sm-4">
+            <!--<div class="col-xs6 col-sm-4">-->
+                <div>
+                    <img ng-src="{{productElement.image}}" class="imageblock1">
+                </div>
+                <div class="labelblock1">
+                    <a ng-href="/selectedproductpage2.html?{{productElement.uuid}}">{{productElement.name}}</a></div>
+                <div> {{productElement.info}} </div>
+    
+            </div>
+
+
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+	
