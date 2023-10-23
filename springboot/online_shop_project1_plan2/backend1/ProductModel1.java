@@ -67,7 +67,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-    @Column(name="product_name")
+	@Column(name="product_name")
 	String productName;
 
 	public String getProductName() {
@@ -80,7 +80,7 @@ public class ProductModel1 {
 
 	//=====================================================
 
-    @Column(name="product_type")
+	@Column(name="product_type")
 	int productType;
 
 	public Integer getProductType() {

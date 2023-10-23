@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @Table(name="product_category")
 public class ProductCategoryModel {
 
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="row_id")
 	int id;
@@ -40,9 +40,9 @@ public class ProductCategoryModel {
 		this.id = id;
 	}
 
-    //=====================================================
+	//=====================================================
 
-     @Column(name="product_type")
+	@Column(name="product_type")
 	int productType;
 
 	public Integer getProductType() {
@@ -53,9 +53,9 @@ public class ProductCategoryModel {
 		this.productType = paramProductType;
 	}
 
-    //=====================================================
+	//=====================================================
 
-    @Column(name="product_category_name")
+	@Column(name="product_category_name")
 	String productCategoryName;
 
 	public String getProductCategoryName() {
@@ -68,7 +68,7 @@ public class ProductCategoryModel {
 
 	//=====================================================
 
-    @Column(name="product_parrent_type")
+	@Column(name="product_parrent_type")
 	int productParrentType;
 
 	public Integer getProductParrentType() {
@@ -79,9 +79,9 @@ public class ProductCategoryModel {
 		this.productParrentType = paramProductParrentType;
 	}
 
-    //=====================================================
+	//=====================================================
 
-    @Column(name="product_parrent_category_name")
+	@Column(name="product_parrent_category_name")
 	String productParrentCategoryName;
 
 	public String getProductParrentCategoryName() {
@@ -92,6 +92,5 @@ public class ProductCategoryModel {
 		this.productParrentCategoryName = paramProductParrentCategoryName;
 	}
 
-
-
 }
+
