@@ -1,18 +1,17 @@
-//var globalProductType = [];
-
 var angularJSApplication = angular.module("angular-displayPublicProduct", []);
 
-// google -> angularjs share data between controllers (geesforgeeks page)
+// google -> angularjs share data between controllers (geeksforgeeks page)
 
 angularJSApplication.run(function ($rootScope) {
-    $rootScope.globalProductType = ["All types"];
+    $rootScope.globalProductType = [{ type: 0, name: "All types" }];
     $rootScope.productsArray = [];
 });
 
 angularJSApplication.controller("angular-productList", function ($scope, $http, $rootScope) {
 
-    console.log("angular controoler -> productList")
+    console.log("angular controller -> productList")
     let responseArray = [];
+    let responseArray2 = [];
 
 
     $http.get("/products").then(function (response) {
@@ -33,28 +32,49 @@ angularJSApplication.controller("angular-productList", function ($scope, $http, 
 
             responseArray.push(productViewObject);
             console.log(ajaxProductElement);
-            $rootScope.globalProductType.push("" + productViewObject.type);
+            //$rootScope.globalProductType.push("" + productViewObject.type);
 
         });
 
         $rootScope.productsArray = responseArray;
-        console.log($rootScope.globalProductType);
+        //console.log($rootScope.globalProductType);
         $scope.visval = 1;
 
     });
+	
+	
+    $http.get("/categories").then(function (response) {
 
+        response.data.forEach(function (ajaxProductCategoryElement) {
+
+            let categoryObject = {
+                id: ajaxProductCategoryElement.id,
+                type: ajaxProductCategoryElement.productType,
+                name: ajaxProductCategoryElement.productCategoryName,
+                ptype: ajaxProductCategoryElement.productParrentType,
+                pname: ajaxProductCategoryElement.productParrentCategoryName,
+
+            }
+
+            responseArray2.push(categoryObject);
+
+        });
+
+
+        $rootScope.globalProductType = $rootScope.globalProductType.concat(responseArray2);
+
+    });
+	
 });
 
 angularJSApplication.controller("angular-filterProductByType", function ($scope, $http, $rootScope) {
 
     console.log("filter product by type function triggered")
 
-    //removeDuplicates($rootScope.globalProductType)
-
-    //console.log($rootScope.globalProductType);
     setTimeout(function () {
-        $scope.agproductType = removeDuplicates($rootScope.globalProductType);
+        $scope.agproductType = $rootScope.globalProductType;
         $scope.$apply(); //update angulaJs scope after ajax call for html rendering
+        $('#prodcategory').val(0);
     }, 1000);
 
     $scope.sProductType = "All types";
@@ -65,7 +85,7 @@ angularJSApplication.controller("angular-filterProductByType", function ($scope,
         let localProductTypesArray = [];
 
 
-        if ($scope.sProductType === "All types") {
+        if ($scope.sProductType == 0) {
 
             console.log("all visible types");
 
@@ -98,15 +118,10 @@ angularJSApplication.controller("angular-filterProductByType", function ($scope,
 
         }
 
-        console.log($scope.sProductType);
-        console.log("is not number :");
-        console.log(isNaN($scope.sProductType));
-
-
         $rootScope.productsArray = localProductTypesArray;
 
-        console.log("display product array status:")
-        console.log($rootScope.productsArray)
+        //console.log("display product array status:")
+        //console.log($rootScope.productsArray)
         //$scope.$apply(); 
         //$rootScope.$apply();   
 

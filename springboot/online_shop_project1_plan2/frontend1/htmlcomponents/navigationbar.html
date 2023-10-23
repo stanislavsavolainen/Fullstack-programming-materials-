@@ -18,8 +18,8 @@
 
             <span style="margin-left: 20px; font-size: 16px;" ng-controller="angular-filterProductByType" >  
                 filter products by category : 
-                <select ng-model="sProductType" ng-change="changeProductType()">
-                    <option ng-repeat="typeElement in agproductType" ng-value="typeElement" >{{typeElement}}</option>
+                <select id="prodcategory" ng-model="sProductType" ng-change="changeProductType()">
+                    <option ng-repeat="typeElement in agproductType" value="{{typeElement.type}}">{{typeElement.name}}</option>
                 </select>
 
             </span> 
