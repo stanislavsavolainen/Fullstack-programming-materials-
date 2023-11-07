@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Create product page 1 </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mainstyles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="scripts/angularjslogic.js"></script> -->
+    <script src="scripts/angularjslogic3.js"></script>
+
+</head>
+
+<body ng-app="angular-createProductModule">
+
+    <div ng-controller="angular-createProductController">
+        <br><br><br>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="labelblock1">
+                    <a ng-href="/productpage4.html">Back to products list</a>
+                </div>        
+                <br><input type="text" placeholder="Product name" class="inputblock1" ng-model="txProductName">       
+                <br>
+                
+                <span ng-controller="angular-selectProductByType">
+                    Product type 
+                    <select id="prodcategory2" ng-model="sProductType2" ng-change="changeProductType()">
+                        <option ng-repeat="typeElement in agproductType" value="{{typeElement.type}}">{{typeElement.name}}</option>
+                    </select>
+                </span>
+                
+                <br><input type="text" placeholder="Product description" class="inputblock1" ng-model="txProductDescription" >
+                <br><input type="text" placeholder="Product price" class="inputblock1" ng-model="txProductPrice">
+                <br><button style="margin-top: 10px;" class="buttonblock1 buttonblock2" ng-click="createProductButtonCallback()">Create product</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>    
+   
+    </div>
+
+
+</body>
+
+</html>

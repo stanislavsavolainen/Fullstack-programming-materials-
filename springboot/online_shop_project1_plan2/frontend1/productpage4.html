@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="styles/mainstyles.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="scripts/angularjslogic.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts/angularjslogic.js"></script>
 
 </head>
 
@@ -18,8 +18,18 @@
 
         <!-- https://stackoverflow.com/questions/13943471/what-is-the-correct-syntax-of-ng-include -->
         <div ng-include src="'htmlcomponents/navigationbar.html'"></div>
-        
-        <br><br>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="margin-left: 20px;">
+                <div class="labelblock1">
+                    <a ng-href="/createproduct1.html">Create product</a>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <br>
 
         <div class="row productblock2" ng-controller="angular-productList" >
 
