@@ -26,6 +26,7 @@ angularJSApplication.controller("angular-productList", function ($scope, $http, 
                 image: ajaxProductElement.productImageURL,
                 info: ajaxProductElement.productDescription,
                 uuid: ajaxProductElement.productUUID,
+                price: ajaxProductElement.productPricePerUnit,
                 visible: 1
 
             };

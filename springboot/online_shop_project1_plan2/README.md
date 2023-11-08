@@ -16,4 +16,4 @@ Changes 24th october 2023:
 
 Changes 7th november 2023:
 
-- add create-product page to online shop project (check createproduct1.html and angularjslogic3.js files), also updated SpringBoot POST /product method to create new product at database (check OnlineShopController1.java). This implementation not complitely done: required backend input validation and add more details/functionality at creation page ( very important details is still missing) 
+- add create-product page to online shop project (check createproduct1.html and angularjslogic3.js files), also updated SpringBoot POST /product method to create new product at database (check OnlineShopController1.java). This implementation not complitely done: required backend input validation and add more details/functionality at creation page ( very important details are still missing) 
