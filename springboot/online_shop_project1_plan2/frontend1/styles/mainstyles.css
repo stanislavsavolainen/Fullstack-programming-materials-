@@ -36,13 +36,11 @@
     height: 30px;
     background-color: blue;
     color: white;
-
 }
 
 .buttonblock1:hover {
     background-color: darkblue;
     color: red;
-
 }
 
 .buttonblock2{
@@ -52,6 +50,33 @@
 .inputblock1 {
     width: 50%;
     height: 30px;
+}
+
+.priceblock1 {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: red !important;
+}
+
+.priceblock2 {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: grey !important;
+    text-decoration: line-through !important;
+}
+
+.productcardblock1{
+    background-color: #f1f1f1;
+    box-shadow: 5px 10px gray;
+    border: 1px solid;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 30%;
+}
+
+.titletext1{
+    font-size: 16px !important;
+    font-weight: bold !important;
 }
 
 body {

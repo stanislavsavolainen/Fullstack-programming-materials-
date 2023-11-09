@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scripts/angularjslogic.js"></script>
+    <script src="scripts/forceupdate1.js"></script>
 
 </head>
 
@@ -29,8 +30,6 @@
             <div class="col-md-4"></div>
         </div>
 
-        <br/>
-
         <div class="row productblock2" ng-controller="angular-productList" >
 
         <div>
@@ -41,9 +40,28 @@
                     <img ng-src="{{productElement.image}}" class="imageblock1"/>
                 </div>
                 <div class="labelblock1">
-                    <a ng-href="/selectedproductpage2.html?{{productElement.uuid}}">{{productElement.name}}</a></div>
+
+                        <a ng-href="/selectedproductpage2.html?{{productElement.uuid}}">{{productElement.name}}</a>
+
+                        <!--only authenticated users can edit or delete their products ( product sellerUUID match with authenticated user UUID), 
+                        currently option available for demo purpose-->
+                        &emsp;
+                        <a ng-href="/editproduct1.html?{{productElement.uuid}}?edit" title="edit">
+                            <span class="glyphicon glyphicon-cog titletext1"></span>
+                        </a>
+
+                        &nbsp;
+                        <a ng-href="/editproduct1.html?{{productElement.uuid}}?delete" title="delete">
+                            <span class="glyphicon glyphicon-trash titletext1"></span>
+                        </a>
+
+                 </div>
                 <div> {{productElement.info}} </div>
-                <div> {{productElement.price}} &#x20AC; </div>
+                <div>
+                    <!-- price offer option is not supported currently ( I have an idea about it) -->
+                    <span class="priceblock2" title="original price"> {{productElement.price}} &#x20AC; </span> 
+                    <span class="priceblock1" title="(price offer -0% now)"> {{productElement.price}} &#x20AC; </span> 					
+                 </div>
     
             </div>
 

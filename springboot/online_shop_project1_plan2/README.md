@@ -17,3 +17,13 @@ Changes 24th october 2023:
 Changes 7th november 2023:
 
 - add create-product page to online shop project (check createproduct1.html and angularjslogic3.js files), also updated SpringBoot POST /product method to create new product at database (check OnlineShopController1.java). This implementation not complitely done: required backend input validation and add more details/functionality at creation page ( very important details are still missing) 
+
+Changes 10th november 2023:
+
+- add html cards view for each product in product list page ( more attractive design and followed by many online shops)
+
+- add edit and delete links/buttons for each product ( in future will be limited only for product authors)
+
+- create editproduct1.html file where product will be modified or deleted
+
+- create forceupdate1.js file wich will override bootstrap styles problem ( google -> bootstrap custom styles problem )
