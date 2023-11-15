@@ -34,5 +34,5 @@ Changes 15th november 2023:
 
 - in front-end rename editproduct1.html file to modifyproduct1.html and add update(/PUT)- and delete(/DELETE)-ajax calls to angularjslogic4.js wich is used in modifyproduct1.html linking them to back-end.
 
--add 2 html componets editproduct1.html and deleteproduct1.html and link them to modifyproduct1.html file depends on user options in products list at glyph-icons click.
+- add 2 html componets editproduct1.html and deleteproduct1.html and link them to modifyproduct1.html file depends on user options in products list at glyph-icons click.
 
