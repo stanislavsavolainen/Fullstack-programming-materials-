@@ -27,3 +27,12 @@ Changes 10th november 2023:
 - create editproduct1.html file where product will be modified or deleted
 
 - create forceupdate1.js file wich will override bootstrap styles problem ( google -> bootstrap custom styles problem )
+
+Changes 15th november 2023:
+
+- add /PUT for updating product and /DELETE for deleting product at back-end side (check OnlineShopController1.java), also add real database update and delete (JPA) "org.springframework.data.repository.CrudRepository" check for "save()-for update" and "deleteById()-for delete" where is id correspond database autoincrement index and linked with model-class.
+
+- in front-end rename editproduct1.html file to modifyproduct1.html and add update(/PUT)- and delete(/DELETE)-ajax calls to angularjslogic4.js wich is used in modifyproduct1.html linking them to back-end.
+
+-add 2 html componets editproduct1.html and deleteproduct1.html and link them to modifyproduct1.html file depends on user options in products list at glyph-icons click.
+
