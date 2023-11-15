@@ -121,6 +121,110 @@ public class OnlineShopController1 {
 		
 	}
 
+	@PutMapping("/product")
+	public String editProduct( @RequestBody String requestBodyParam ) {
+
+			JSONObject parseredRequest = new JSONObject(requestBodyParam);
+			String editProductUUID = parseredRequest.getString("productUUID");
+			ProductModel1 productEditTemplate = new ProductModel1();
+
+		//----------- read all products to find exsisting one for modification ----------
+
+		List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
+		ProductModel1 responseModel = null;
+		
+		for( ProductModel1 productElement : productList) {
+		
+			if( productElement.getProductUUID().equals(editProductUUID) ){
+				responseModel = productElement;
+			}
+		
+		}
+
+		//-----------------------------------------------------------------------------
+		
+		if(responseModel.getProductUUID() != null || !responseModel.getProductUUID().isEmpty() ){
+
+			productEditTemplate = responseModel;
+			//-------------------------------
+			String editProductName = parseredRequest.getString("productName");
+			String editProductPrice = parseredRequest.getString("productPricePerUnit");
+			String editProductDescription = parseredRequest.getString("productDescription");
+			String editProductImageUrl = parseredRequest.getString("productImageURL");
+
+			try{
+				productEditTemplate.setProductPricePerUnit( Double.parseDouble(editProductPrice) );	
+			} catch(Exception e){
+				//price error present negative price, product displayed but is not for sale
+				productEditTemplate.setProductPricePerUnit( -1.0 );
+			}
+			
+			if( editProductDescription == null || editProductDescription.isEmpty() ){
+				editProductDescription = "";
+			}
+
+			if( editProductImageUrl == null || editProductImageUrl.isEmpty() ){
+				editProductImageUrl = "/productimages/placeholder1.png";
+			}
+
+			productEditTemplate.setProductDescription(editProductDescription);
+			productEditTemplate.setProductImageURL(editProductImageUrl);
+			productEditTemplate.setProductName(editProductName);
+			//-------------------------------
+			
+			System.out.println("PRODUCT /PUT rest-api triggered to edit product with productUuid="+editProductUUID);
+			System.out.println("http-request body content : " + parseredRequest.toString() );
+
+			//update exsisting data
+			productObjects.save(productEditTemplate);
+
+			String result = "";
+			result += "{\"message\": \"product updated\" }";
+			return result;
+
+		} else {
+
+			String result = "";
+			result += "{\"message\": \"product update failed, Product not found\" }";
+			return result;
+
+		}
+		
+	}
+
+	@DeleteMapping("/product/{productUUID}")
+	public String deleteProduct( @PathVariable String productUUID ) {
+
+		System.out.println("PRODUCT /DELETE rest-api triggered to delete product with productUuid="+productUUID);
+
+		List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
+		ProductModel1 responseModel = null;
+		boolean productIsDeleted = false;
+		
+		for( ProductModel1 productElement : productList) {
+		
+			if( productElement.getProductUUID().equals(productUUID) ){
+				responseModel = productElement;
+
+				//delete exsisting data
+				productObjects.deleteById(productElement.getId());
+				productIsDeleted = true;				
+			}
+		
+		}
+
+		String result = "";
+
+		if(productIsDeleted){
+			result += "{\"message\": \"product deleted\" }";
+		} else {
+			result += "{\"message\": \"product cannot be deleted, problem finding uuid ! \" }";
+		}
+				
+		return result;
+
+	}	
+	
 	@GetMapping(path="/categories")
 	public @ResponseBody Iterable<ProductCategoryModel> getAllCategories() {
 		return productCategoriesObjects.findAll();

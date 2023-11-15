@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Edit or delete product page (v1)</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mainstyles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/angularjslogic4.js"></script>
+
+</head>
+
+<body ng-app="angular-ModifyProductModule">
+ 
+    <div class="row">
+        <div class="col-xs6 col-sm-4"></div>
+        <div class="col-xs6 col-sm-4" ng-controller="angular-ModifyProductController">
+            <br/><h1>{{pageTitle}}</h1>
+            <br/><br/>
+            <div id="uicontent">
+                    <div ng-include src="'htmlcomponents/editproduct1.html'" ng-if="pageView == 'edit'"></div>
+                    <div ng-include src="'htmlcomponents/deleteproduct1.html'" ng-if="pageView == 'delete'"></div>
+                </div>
+            <br/><a href="/productpage4.html">Back to products list</a>
+        </div>
+        <div class="col-xs6 col-sm-4"></div>
+    </div>
+
+</body>
+
+</html>
