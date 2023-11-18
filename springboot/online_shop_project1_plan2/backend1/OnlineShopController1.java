@@ -35,7 +35,8 @@ import java.util.regex.Pattern;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OnlineShopController1 {
 
 	@Autowired

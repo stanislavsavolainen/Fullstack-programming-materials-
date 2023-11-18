@@ -36,3 +36,9 @@ Changes 15th november 2023:
 
 - add 2 html componets editproduct1.html and deleteproduct1.html and link them to modifyproduct1.html file depends on user options in products list at glyph-icons click.
 
+Changes 18th november 2023:
+
+- begin React front-end version of Online Shop, rewrite AngularJS logic to React
+
+- add SpringBoot cross-origin access, front-end location ip-address is different than back-end 
+
