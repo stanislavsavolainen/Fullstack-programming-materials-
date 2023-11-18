@@ -36,12 +36,18 @@ Changes 15th november 2023:
 
 - add 2 html componets editproduct1.html and deleteproduct1.html and link them to modifyproduct1.html file depends on user options in products list at glyph-icons click.
 
-Changes 18th november 2023:
+Changes 18th november 2023 (Commits 1):
 
 - begin React front-end version of Online Shop, rewrite AngularJS logic to React
 
 - add SpringBoot cross-origin access, front-end location ip-address is different than back-end,  additionaly in linux side where SpringBoot located open firewall access to port 8080 ( sudo ufw allow 8080/tcp)
 
 ToDO : discover this Github submodule stuff, I have no experience/information about it
+
+Changes 18th november 2023 (Commits 2):
+
+- modify React code, remove AngularJS reference on drop-down menu and write alternative way ( instead on ng-repeat on AngularJS write JavaScript map()-function for React wich iterate Product Categories) + use with JavaScript filter()-function to remove results wich not meet conditions.
+
+
  
 

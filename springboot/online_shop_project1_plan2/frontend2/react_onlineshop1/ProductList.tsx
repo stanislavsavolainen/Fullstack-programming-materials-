@@ -6,7 +6,6 @@ import NavBar from './ProductListNavigationBar';
 
 const serverUrl = "http://192.168.100.12:8080/products"
 
-
 function ProductsAjaxCall() {
 
     const [data, setData] = useState({ hits: [] });
@@ -26,12 +25,14 @@ function ProductsAjaxCall() {
     return JSON.stringify(data);
 }
 
+function DisplayProductsListUI(productJSONArrayParam: any, selectionParam : Number ) {
 
-function DisplayProductsListUI(productJSONArrayParam: any) {
+    let filteredProducts = productJSONArrayParam.filter( (productElement : any) => productElement.productType == selectionParam )
+    if(selectionParam == 0) filteredProducts = productJSONArrayParam;
 
-    let ParseredProductData = productJSONArrayParam.map((val: any, index: any) => {
+    //let ParseredProductData = productJSONArrayParam.map((val: any, index: any) => {
+    let ParseredProductData = filteredProducts.map((val: any, index: any) => {  
         return (
-
 
             <div className="col-xs6 col-sm-4 productcardblock1">
 
@@ -67,27 +68,27 @@ function DisplayProductsListUI(productJSONArrayParam: any) {
 
     });
 
-
     return ParseredProductData;
 }
-
-
 
 function DisplayAllPublicProducts() {
 
     let ProductJSONObject = JSON.parse("" + ProductsAjaxCall());
-
     let ProductJSONArray = Array.from(ProductJSONObject);
+    const [selectedType, setSelectedType] = useState('');
 
+    const handleTypeChange = (type : any) => {
+        setSelectedType(type);
+        parentSelectedOption = parseInt( selectedType);
+    };
 
     return (
         <div>
-            <NavBar></NavBar>
-            {DisplayProductsListUI(ProductJSONArray)}
+            <NavBar onTypeChange={handleTypeChange} ></NavBar>
+            {DisplayProductsListUI(ProductJSONArray , parentSelectedOption)}
         </div>);
 
 }
 
-
-
 export default DisplayAllPublicProducts;
+
