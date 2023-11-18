@@ -1,0 +1,10 @@
+
+
+npx create-react-app myreact1 --template typescript
+
+cd myreact1
+
+npm install axios
+
+
+

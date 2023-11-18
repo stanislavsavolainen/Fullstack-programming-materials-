@@ -40,5 +40,8 @@ Changes 18th november 2023:
 
 - begin React front-end version of Online Shop, rewrite AngularJS logic to React
 
-- add SpringBoot cross-origin access, front-end location ip-address is different than back-end 
+- add SpringBoot cross-origin access, front-end location ip-address is different than back-end,  additionaly in linux side where SpringBoot located open firewall access to port 8080 ( sudo ufw allow 8080/tcp)
+
+ToDO : discover this Github submodule stuff, I have no experience/information about it
+ 
 
