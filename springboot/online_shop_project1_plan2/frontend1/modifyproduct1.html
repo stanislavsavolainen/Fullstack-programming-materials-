@@ -21,6 +21,7 @@
             <br/><h1>{{pageTitle}}</h1>
             <br/><br/>
             <div id="uicontent">
+                    <div ng-include src="'htmlcomponents/uploadimage1.html'" ng-if="pageView == 'image'"></div>
                     <div ng-include src="'htmlcomponents/editproduct1.html'" ng-if="pageView == 'edit'"></div>
                     <div ng-include src="'htmlcomponents/deleteproduct1.html'" ng-if="pageView == 'delete'"></div>
                 </div>

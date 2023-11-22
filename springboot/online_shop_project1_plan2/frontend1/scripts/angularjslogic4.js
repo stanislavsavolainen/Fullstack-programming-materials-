@@ -35,6 +35,7 @@ angularJSApplication.controller("angular-ModifyProductController", function ($sc
         console.log("uploadImageForProduct function triggered !")
         let sellerUUID = $rootScope.respData.sellerUUID;
         let productUUID = $rootScope.respData.productUUID;
+        let imageBindingToProductFail = true;
 
         let formData = new FormData();
         formData.append('file' , fileupload.files[0]);
@@ -49,38 +50,46 @@ angularJSApplication.controller("angular-ModifyProductController", function ($sc
             let jsonResponseObj = {};
 
             try{
+
                 jsonResponseObj = JSON.parse(parseredResponse);
                 console.log("/uploadProductImage response -> JSON PARSE = success");
+
+                let SecondPostBody  = {
+                    sellerUUID : sellerUUID,
+                    productUUID : productUUID,
+                    link : jsonResponseObj.link,
+                    filename: jsonResponseObj.filename
+                }
+
+                console.log("/bindProductImageToSeller begin !");
+
+                fetch("/bindProductImageToSeller", {
+                    method: "POST",
+                    body: JSON.stringify(SecondPostBody)
+                }).then(function(response2){
+                    console.log("/bindProductImageToSeller response done !");
+                    imageBindingToProductFail = false;
+                    //alert("Image successfully linked to right seller !");
+                }).catch(function(error2){
+                    //alert("failed link image to seller");
+                    console.log("/bindProductImageToSeller response failed !");
+                    imageBindingToProductFail = true;
+                });
+
             } catch( e) {
                 console.log("/uploadProductImage response -> JSON PARSE = fail : " + e);
             }
             
-
-            let SecondPostBody  = {
-                sellerUUID : sellerUUID,
-                productUUID : productUUID,
-                link : jsonResponseObj.link,
-                filename: jsonResponseObj.filename
-            }
-
-            console.log("/bindProductImageToSeller begin !");
-
-            fetch("/bindProductImageToSeller", {
-                method: "POST",
-                body: JSON.stringify(SecondPostBody)
-            }).then(function(response2){
-                alert("Image successfully linked to right seller !");
-                console.log("/bindProductImageToSeller response done !");
-            }).catch(function(error2){
-                //alert("failed link image to seller");
-                console.log("/bindProductImageToSeller response failed !")
-            })
-
-        })
-        .catch(function(error){
+        }).catch(function(error){
             //alert("image upload failed");
-            console.log("/uploadProductImage  image upload failed")
+            console.log("/uploadProductImage  image upload failed");
+            let imageBindingToProductFail = true;
         })
+
+        setTimeout( function(e) { 
+            if(!imageBindingToProductFail) alert("Image successfully linked to right product !");
+            else alert("Failed providing image to right product !"); 
+        }, 1000);
 
     }
 
