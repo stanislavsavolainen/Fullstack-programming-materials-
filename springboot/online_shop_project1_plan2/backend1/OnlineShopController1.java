@@ -33,18 +33,28 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import org.springframework.util.StringUtils;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:8080")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OnlineShopController1 {
 
+	public String filesStoragePath = (System.getProperty("user.dir"))+"/src/main/resources/static/productimages";
+	//https://stackoverflow.com/questions/68691761/how-to-serve-static-resources-at-runtime-with-spring-boot
+	public String filesStoragePathBuildRuntime = (System.getProperty("user.dir"))+"/target/classes/static/productimages";
+	
 	@Autowired
 	 private Product1Repository productObjects;
 
 	@Autowired
 	 private ProductCategoryRepository productCategoriesObjects;
-
 
 	@GetMapping(path="/products")
 	public @ResponseBody Iterable<ProductModel1> getAllProducts() {
@@ -209,7 +219,8 @@ public class OnlineShopController1 {
 
 				//delete exsisting data
 				productObjects.deleteById(productElement.getId());
-				productIsDeleted = true;				
+				productIsDeleted = true;
+				
 			}
 		
 		}
@@ -230,5 +241,116 @@ public class OnlineShopController1 {
 	public @ResponseBody Iterable<ProductCategoryModel> getAllCategories() {
 		return productCategoriesObjects.findAll();
 	}
+	
+	//https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/file-upload-Spring-Boot-Ajax-example
+	@PostMapping("/uploadProductImage") 
+	public String handleFileUpload( @RequestParam("file") MultipartFile file ) {
 
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		System.out.println("/uploadProductImage triggered ");	
+
+		UUID productTempStorageUUID = UUID.randomUUID();
+		String productTempStorageLink = productTempStorageUUID.toString();	
+
+		try {
+
+			Path path = Paths.get(filesStoragePath+"/tempstorage/"+productTempStorageLink+"/"+ fileName);
+			Files.createDirectories(path.getParent());
+			Files.write(path , file.getBytes());
+
+			Path path2 = Paths.get(filesStoragePathBuildRuntime+"/tempstorage/"+productTempStorageLink+"/"+ fileName);
+			Files.createDirectories(path2.getParent());
+			Files.write(path2 , file.getBytes());
+
+		} catch (Exception e) {
+			return "{ \"message\" : \"Error sending file\" , \"link\": \"error\" }";
+		} 
+
+		return "{ \"message\": \"File uploaded successfully\", \"link\" : \""+productTempStorageLink+"\" , \"filename\" : \"" + fileName + "\" }";
+		
+	}
+
+	@PostMapping("/bindProductImageToSeller") 
+	public String bindProductImageToSeller( @RequestBody String requestBodyParam  ) {
+
+		System.out.println("/bindProductImageToSeller triggered !");
+
+		JSONObject parseredRequest = new JSONObject(requestBodyParam);
+		String sellerUUID = parseredRequest.getString("sellerUUID");
+		String productUUID = parseredRequest.getString("productUUID");
+		String fileStorageLink = parseredRequest.getString("link");
+		String fileStorageFileName = parseredRequest.getString("filename");
+		System.out.println( "" + parseredRequest.toString());
+
+		Path srcfrom = Paths.get(filesStoragePath+"/tempstorage/"+fileStorageLink+"/"+ fileStorageFileName);
+		Path destto = Paths.get(filesStoragePath+"/productSeller/"+sellerUUID+"/products/"+productUUID+"/"+ fileStorageFileName);
+		
+		Path srcfromruntime = Paths.get(filesStoragePathBuildRuntime+"/tempstorage/"+fileStorageLink+"/"+ fileStorageFileName);
+		Path desttoruntime = Paths.get(filesStoragePathBuildRuntime+"/productSeller/"+sellerUUID+"/products/"+productUUID+"/"+ fileStorageFileName);
+		
+		String imageUrlForDB = "/productimages/productSeller/"+sellerUUID+"/products/"+productUUID+"/"+ fileStorageFileName;
+		
+		String srcurl = filesStoragePath+"/tempstorage/"+fileStorageLink+"/"+ fileStorageFileName;
+		String desturl = filesStoragePath+"/productSeller/"+sellerUUID+"/products/"+productUUID+"/"+ fileStorageFileName;
+
+		try{
+
+			System.out.println("");
+			System.out.println("source="+srcurl);
+			System.out.println("");
+			System.out.println("destination="+desturl);
+			System.out.println("");
+
+			//save to project sources
+			byte[] filesStorageData = Files.readAllBytes(srcfrom);
+			Files.createDirectories(destto.getParent());
+			Files.write( destto , filesStorageData);
+			
+			//save to project runtime
+			byte[] filesStorageDataRuntime = Files.readAllBytes(srcfromruntime);
+			Files.createDirectories(desttoruntime.getParent());
+			Files.write( desttoruntime , filesStorageDataRuntime);
+
+			ProductModel1 productEditTemplate = new ProductModel1();
+
+			//----------- read all products to find exsisting one for modification ----------
+	
+			List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
+			ProductModel1 responseModel = null;
+			
+			for( ProductModel1 productElement : productList) {
+			
+				if( productElement.getProductUUID().equals(productUUID) ){
+					responseModel = productElement;
+				}
+			
+			}
+
+			System.out.println("project-src-static="+filesStoragePath);
+			System.out.println("project-runtime-static="+filesStoragePathBuildRuntime);
+	
+			//-----------------------------------------------------------------------------
+			
+			if(responseModel.getProductUUID() != null || !responseModel.getProductUUID().isEmpty() ){
+	
+				productEditTemplate = responseModel;
+
+				if( imageUrlForDB == null || imageUrlForDB.isEmpty() ){
+					imageUrlForDB = "/productimages/placeholder1.png";
+				}
+				
+				productEditTemplate.setProductImageURL(imageUrlForDB);
+				productObjects.save(productEditTemplate);
+
+			}		
+
+		}catch( IOException ee  ){
+			System.out.println("Problem copying image to seller folder ! reson : " +ee);
+		}
+		
+		return "{ 'message' : ' product image or file is binded with seller' }";
+
+	}
+		
 }
+

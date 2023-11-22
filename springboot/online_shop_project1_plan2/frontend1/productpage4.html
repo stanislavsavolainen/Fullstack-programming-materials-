@@ -46,6 +46,11 @@
                         <!--only authenticated users can edit or delete their products ( product sellerUUID match with authenticated user UUID), 
                         currently option available for demo purpose-->
                         &emsp;
+                         <a ng-href="/modifyproduct1.html?{{productElement.uuid}}?image" title="upload image">
+                            <span class="glyphicon glyphicon-picture titletext1"></span>
+                        </a>
+
+                        &nbsp;
                         <a ng-href="/modifyproduct1.html?{{productElement.uuid}}?edit" title="edit">
                             <span class="glyphicon glyphicon-cog titletext1"></span>
                         </a>

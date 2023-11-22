@@ -10,9 +10,13 @@ angularJSApplication.controller("angular-ModifyProductController", function ($sc
     
     $http.get("/product/" + urlToProduct[1]).then(function (response) {
 
-        if (urlToProduct[2] == "edit") $scope.pageTitle = "Editing product : " + response.data.productUUID;
-        else if (urlToProduct[2] == "delete") $scope.pageTitle = "Delete product : " + response.data.productUUID;
-        else $scope.pageTitle = "No action.";
+        $scope.pageTitle = "";
+
+        if (urlToProduct[2] == "edit") $scope.pageTitle = "Edit product ";
+        else if (urlToProduct[2] == "delete") $scope.pageTitle = "Delete product ";
+        else if (urlToProduct[2] == "image") $scope.pageTitle = "Upload image for product ";
+        else $scope.pageTitle = "Unknown action for ";
+        $scope.pageTitle += response.data.productUUID;
 
         $scope.productObject = {
             uuid: response.data.productUUID,
@@ -25,6 +29,60 @@ angularJSApplication.controller("angular-ModifyProductController", function ($sc
         $rootScope.respData = response.data;
 
     });
+
+    $scope.uploadImageForProductButtonCallback = function() {
+
+        console.log("uploadImageForProduct function triggered !")
+        let sellerUUID = $rootScope.respData.sellerUUID;
+        let productUUID = $rootScope.respData.productUUID;
+
+        let formData = new FormData();
+        formData.append('file' , fileupload.files[0]);
+
+        fetch("/uploadProductImage", {
+            method: "POST",
+            body: formData
+        }).then(function(response){
+            return response.text();         
+        }).then( function (parseredResponse){
+
+            let jsonResponseObj = {};
+
+            try{
+                jsonResponseObj = JSON.parse(parseredResponse);
+                console.log("/uploadProductImage response -> JSON PARSE = success");
+            } catch( e) {
+                console.log("/uploadProductImage response -> JSON PARSE = fail : " + e);
+            }
+            
+
+            let SecondPostBody  = {
+                sellerUUID : sellerUUID,
+                productUUID : productUUID,
+                link : jsonResponseObj.link,
+                filename: jsonResponseObj.filename
+            }
+
+            console.log("/bindProductImageToSeller begin !");
+
+            fetch("/bindProductImageToSeller", {
+                method: "POST",
+                body: JSON.stringify(SecondPostBody)
+            }).then(function(response2){
+                alert("Image successfully linked to right seller !");
+                console.log("/bindProductImageToSeller response done !");
+            }).catch(function(error2){
+                //alert("failed link image to seller");
+                console.log("/bindProductImageToSeller response failed !")
+            })
+
+        })
+        .catch(function(error){
+            //alert("image upload failed");
+            console.log("/uploadProductImage  image upload failed")
+        })
+
+    }
 
     $scope.editProductButtonCallback = function () {
 
