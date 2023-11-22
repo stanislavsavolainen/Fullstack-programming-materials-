@@ -78,6 +78,7 @@ angularJSApplication.controller("angular-ModifyProductController", function ($sc
 
             } catch( e) {
                 console.log("/uploadProductImage response -> JSON PARSE = fail : " + e);
+                imageBindingToProductFail = true;
             }
             
         }).catch(function(error){
