@@ -1,12 +1,5 @@
 [
     {
-        "id": 1,
-        "productType": 300,
-        "productCategoryName": "Soffa",
-        "productParrentType": 300,
-        "productParrentCategoryName": "Furniture"
-    },
-    {
         "id": 2,
         "productType": 101,
         "productCategoryName": "Desktops",
@@ -40,6 +33,13 @@
         "productCategoryName": "iPads",
         "productParrentType": 100,
         "productParrentCategoryName": "Computers"
+    },
+    {
+        "id": 1,
+        "productType": 301,
+        "productCategoryName": "Soffa",
+        "productParrentType": 300,
+        "productParrentCategoryName": "Furniture"
     },
     {
         "id": 7,
@@ -113,7 +113,7 @@
     },
     {
         "id": 17,
-        "productType": 403,
+        "productType": 404,
         "productCategoryName": "Carnivorous plant",
         "productParrentType": 400,
         "productParrentCategoryName": "Plants"
