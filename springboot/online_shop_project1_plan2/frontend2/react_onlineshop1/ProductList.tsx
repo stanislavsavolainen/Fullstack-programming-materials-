@@ -32,6 +32,12 @@ function DisplayProductsListUI(productJSONArrayParam: any, selectionParam : Numb
 
     //let ParseredProductData = productJSONArrayParam.map((val: any, index: any) => {
     let ParseredProductData = filteredProducts.map((val: any, index: any) => {  
+
+        let selectedProductLink = "/selectedproductpage2.html?" + val.productUUID;
+        let imageLink = "/modifyproduct1.html?" +val.productUUID + "?image";
+        let editLink = "/modifyproduct1.html?" +val.productUUID +" "?edit";
+        let deleteLink = "/modifyproduct1.html?" +val.productUUID + "?delete";
+
         return (
 
             <div className="col-xs6 col-sm-4 productcardblock1">
@@ -42,15 +48,20 @@ function DisplayProductsListUI(productJSONArrayParam: any, selectionParam : Numb
 
                 <div className="labelblock1">
 
-                    <a href="/selectedproductpage2.html?{{productElement.uuid}}">{val.productName}</a>
+                    <a href={selectedProductLink}>{val.productName}</a>
 
                     &emsp;
-                    <a href="/modifyproduct1.html?{{productElement.uuid}}?edit" title="edit">
+                    <a href={imageLink} title="upload image">
+                        <span class="glyphicon glyphicon-picture titletext1"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href={editLink} title="edit">
                         <span className="glyphicon glyphicon-cog titletext1"></span>
                     </a>
 
                     &nbsp;
-                    <a href="/modifyproduct1.html?{{productElement.uuid}}?delete" title="delete">
+                    <a href={deleteLink} title="delete">
                         <span className="glyphicon glyphicon-trash titletext1"></span>
                     </a>
 
