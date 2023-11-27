@@ -7,7 +7,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import ProductList from './onlineshop1/ProductList2';
+import ProductList from './onlineshop1/ProductList';
 import ParrentCompoent from './example1/ParrentComponent';
 
 const root = ReactDOM.createRoot(
