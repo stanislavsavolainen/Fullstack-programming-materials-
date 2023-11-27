@@ -35,7 +35,7 @@ function DisplayProductsListUI(productJSONArrayParam: any, selectionParam : Numb
 
         let selectedProductLink = "/selectedproductpage2.html?" + val.productUUID;
         let imageLink = "/modifyproduct1.html?" +val.productUUID + "?image";
-        let editLink = "/modifyproduct1.html?" +val.productUUID +" "?edit";
+        let editLink = "/modifyproduct1.html?" +val.productUUID + "?edit";
         let deleteLink = "/modifyproduct1.html?" +val.productUUID + "?delete";
 
         return (
