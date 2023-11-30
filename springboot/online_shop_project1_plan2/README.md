@@ -48,11 +48,23 @@ Changes 18th november 2023 (Commits 2):
 
 - modify React code, remove AngularJS reference on drop-down menu and write alternative way ( instead on ng-repeat on AngularJS write JavaScript map()-function for React wich iterate Product Categories) + use with JavaScript filter()-function to remove results wich not meet conditions.
 
-Changes 22nd november 2023
+Changes 22nd november 2023:
 
 - add image functionality on front-end(AngularJS) and Back-end(SpringBoot). Each product in product list have additional image button before edit and delete as you can see on new screenshot. Pressing "image" icon one of product you will go image upload page, where find "html file input dialog" to upload your image for selected product. This operation save image on server hard disk and link it with current product and display your image on this product in product list ( if not, then there is bug on server or client).
 
+Changes 27th november 2023:
 
+- add React example code with dropdown in ChildComponent wich effect to Parrent component vai props ( I need it for my problem simulation)
 
- 
+- add Nodejs backend for this React code dropdowm menu problem
+
+- rewrite React navigation link in ProductList to provide right values ( replace AngularJS syntax)  
+
+Changes 30th november 2023:
+
+- add React-Router in project, now we can navigate in project using links
+
+- add React-Router Links replacing old one for: view, edit, delete and upload image functionality for Products
+
+- create blank pages for product CRUD - actions 
 
