@@ -68,3 +68,8 @@ Changes 30th november 2023:
 
 - create blank pages for product CRUD - actions 
 
+Changes 5th december 2023:
+
+- add old style React version ( React 16 with classes) of Online shop, conclusion: no drop-down-menu bug there.
+
+
