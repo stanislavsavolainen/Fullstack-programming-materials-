@@ -1,0 +1,159 @@
+shippingDataWareHouse
+
+
+----------- using as place holder for default value ------------------
+
+{ \"finalShippingPrice\": 0.0 , \"logisticCompanyIds\": [123, 234, 543 ] }
+
+
+----------- not implemented model ------------------------------------
+{ 
+\"finalShippingPrice\": 0.0 , \"finalPriorityOrder\": 0 , 
+\"logisticCompanyIds\": [123, 234, 543 ] 
+\"priorityOrderForEachLogisticCompany\": [123, 234, 543 ],
+\"logisticDelayTimeBasedOnPriorityOrderInSeconds\": [123, 234, 543 ],
+ }
+
+
+-----------------------------------------------------------------------
+
+UPDATE shop_product1
+SET shipping_data_warehouse = '{ \"finalShippingPrice\": 0.0 , \"logisticCompanyIds\": [123, 234, 543 ] }'
+WHERE row_id = 1;
+
+
+
+CREATE_TABLE logistic_company ( 
+	row_id int(11),
+	name VARCHAR(255),
+	company_id varchar(255),
+	transition_price double,
+	standalone_price double,
+	info VARCHAR(255),
+	general_logistic_delay_time_in_seconds int(11),
+	company_is_blacklisted int(11),
+	
+);
+
+-> transition price means that logistic company provide product to another logistic company
+
+-> standalone price means that logistic company provide product from seller to buyer without other logistic company support.
+
+-> blacklisted company means that logistic company is not trustable and should be avoided for product transfering
+
+--------------------------------------------------------------------------------------
+
+mysql> 
+mysql> 
+mysql> desc shop_product1;
++-----------------------------+--------------+------+-----+---------+----------------+
+| Field                       | Type         | Null | Key | Default | Extra          |
++-----------------------------+--------------+------+-----+---------+----------------+
+| row_id                      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| admin_info                  | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_infovsproduct | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_score         | double       | YES  |     | NULL    |                |
+| buyeruuid                   | varchar(255) | YES  |     | NULL    |                |
+| product_closed              | datetime     | YES  |     | NULL    |                |
+| product_created             | datetime     | YES  |     | NULL    |                |
+| product_description         | varchar(255) | YES  |     | NULL    |                |
+| product_feedback            | varchar(255) | YES  |     | NULL    |                |
+| product_imageurl            | varchar(255) | YES  |     | NULL    |                |
+| product_name                | varchar(255) | YES  |     | NULL    |                |
+| product_price_per_unit      | double       | YES  |     | NULL    |                |
+| product_public_visible      | int(11)      | YES  |     | NULL    |                |
+| product_quality_score       | double       | YES  |     | NULL    |                |
+| product_quantity            | int(11)      | YES  |     | NULL    |                |
+| product_quantity_option     | varchar(255) | YES  |     | NULL    |                |
+| product_type                | int(11)      | YES  |     | NULL    |                |
+| productuuid                 | varchar(255) | YES  |     | NULL    |                |
+| product_warranty_and_refund | varchar(255) | YES  |     | NULL    |                |
+| seller_quality_score        | double       | YES  |     | NULL    |                |
+| selleruuid                  | varchar(255) | YES  |     | NULL    |                |
+| shipping_info               | varchar(255) | YES  |     | NULL    |                |
+| shipping_price_europe       | double       | YES  |     | NULL    |                |
+| shipping_price_same_country | double       | YES  |     | NULL    |                |
+| shipping_price_world        | double       | YES  |     | NULL    |                |
++-----------------------------+--------------+------+-----+---------+----------------+
+25 rows in set (0,00 sec)
+
+mysql> 
+mysql> ALTER TABLE shop_product1 ADD shipping_data_warehouse VARCHAR(255);
+Query OK, 0 rows affected (5,26 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc shop_product1;
++-----------------------------+--------------+------+-----+---------+----------------+
+| Field                       | Type         | Null | Key | Default | Extra          |
++-----------------------------+--------------+------+-----+---------+----------------+
+| row_id                      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| admin_info                  | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_infovsproduct | varchar(255) | YES  |     | NULL    |                |
+| buyer_quality_score         | double       | YES  |     | NULL    |                |
+| buyeruuid                   | varchar(255) | YES  |     | NULL    |                |
+| product_closed              | datetime     | YES  |     | NULL    |                |
+| product_created             | datetime     | YES  |     | NULL    |                |
+| product_description         | varchar(255) | YES  |     | NULL    |                |
+| product_feedback            | varchar(255) | YES  |     | NULL    |                |
+| product_imageurl            | varchar(255) | YES  |     | NULL    |                |
+| product_name                | varchar(255) | YES  |     | NULL    |                |
+| product_price_per_unit      | double       | YES  |     | NULL    |                |
+| product_public_visible      | int(11)      | YES  |     | NULL    |                |
+| product_quality_score       | double       | YES  |     | NULL    |                |
+| product_quantity            | int(11)      | YES  |     | NULL    |                |
+| product_quantity_option     | varchar(255) | YES  |     | NULL    |                |
+| product_type                | int(11)      | YES  |     | NULL    |                |
+| productuuid                 | varchar(255) | YES  |     | NULL    |                |
+| product_warranty_and_refund | varchar(255) | YES  |     | NULL    |                |
+| seller_quality_score        | double       | YES  |     | NULL    |                |
+| selleruuid                  | varchar(255) | YES  |     | NULL    |                |
+| shipping_info               | varchar(255) | YES  |     | NULL    |                |
+| shipping_price_europe       | double       | YES  |     | NULL    |                |
+| shipping_price_same_country | double       | YES  |     | NULL    |                |
+| shipping_price_world        | double       | YES  |     | NULL    |                |
+| shipping_data_warehouse     | varchar(255) | YES  |     | NULL    |                |
++-----------------------------+--------------+------+-----+---------+----------------+
+26 rows in set (0,05 sec)
+
+mysql> SELECT row_id , product_name, shipping_data_warehouse FROM shop_product1;
++--------+---------------------------+-------------------------+
+| row_id | product_name              | shipping_data_warehouse |
++--------+---------------------------+-------------------------+
+|      1 | Soffa                     | NULL                    |
+|      2 | Aloe vera                 | NULL                    |
+|      3 | hp compaq nc6220          | NULL                    |
+|      4 | Aloe vera                 | NULL                    |
+|      5 | Aloe vera 2               | NULL                    |
+|      6 | hp compaq nc6220          | NULL                    |
+|      7 | Aloe vera                 | NULL                    |
+|      8 | Soffa                     | NULL                    |
+|      9 | 11111                     | NULL                    |
+|     10 | Classic soffa             | NULL                    |
+|     11 | HP ProBook 6550b          | NULL                    |
+|     12 | HP ProBook 6550b          | NULL                    |
+|     13 | 79878978                  | NULL                    |
+|     15 | HP ProBook 6550b          | NULL                    |
+|     16 | HP ProBook 6550b          | NULL                    |
+|     17 | HP ProBook 6550b          | NULL                    |
+|     18 | Flower888                 | NULL                    |
+|     19 | Kitchen standart table cv | NULL                    |
+|     20 | Stanislav's shelf1        | NULL                    |
++--------+---------------------------+-------------------------+
+19 rows in set (0,02 sec)
+
+mysql> 
+
+mysql> UPDATE shop_product1
+    -> SET shipping_data_warehouse = '{ \"finalShippingPrice\": 0.0 , \"logisticCompanyIds\": [123, 234, 543 ] }'
+    -> WHERE row_id = 1;
+Query OK, 1 row affected (1,61 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
+
+
+
+
+
+
