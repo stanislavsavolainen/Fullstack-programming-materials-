@@ -4,18 +4,20 @@ mysql> desc user_table1;
 +-----------------------+--------------+------+-----+---------+----------------+
 | Field                 | Type         | Null | Key | Default | Extra          |
 +-----------------------+--------------+------+-----+---------+----------------+
-| row_id                | int          | NO   | PRI | NULL    | auto_increment |
+| row_id                | int(11)      | NO   | PRI | NULL    | auto_increment |
 | user_uuid             | varchar(36)  | YES  |     | NULL    |                |
 | password_hash_sha256  | varchar(64)  | YES  |     | NULL    |                |
-| user_is_blocked       | tinyint      | YES  |     | NULL    |                |
-| user_permission_level | tinyint      | YES  |     | NULL    |                |
-| user_is_online        | tinyint      | YES  |     | NULL    |                |
+| user_is_blocked       | tinyint(4)   | YES  |     | NULL    |                |
+| user_permission_level | tinyint(4)   | YES  |     | NULL    |                |
+| user_is_online        | tinyint(4)   | YES  |     | NULL    |                |
 | registered_date       | datetime     | YES  |     | NULL    |                |
 | last_online_date      | datetime     | YES  |     | NULL    |                |
 | user_maintenance_info | varchar(500) | YES  |     | NULL    |                |
 | username              | varchar(40)  | YES  |     | NULL    |                |
+| delivery_address      | varchar(255) | YES  |     | NULL    |                |
 +-----------------------+--------------+------+-----+---------+----------------+
-10 rows in set (0,25 sec)
+11 rows in set (0,00 sec)
+
 
 
 */
@@ -71,6 +73,10 @@ public class UserModel {
 	
 	@Column(name="user_maintenance_info")
 	String maintenance;
+
+	@Column(name="delivery_address")
+	String address;
+
 	
 	public Integer getId() {
 		return id;
@@ -151,8 +157,15 @@ public class UserModel {
 	public void setMaintenance(String maintenance) {
 		this.maintenance = maintenance;
 	}
-	
-	
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddress() {
+		return maintenance;
+	}
+
 	public String getModelAsJSON(){
 	
 		String result = "";
@@ -165,6 +178,7 @@ public class UserModel {
 		result += "\"isonline\":"+"\""+ isonline + "\""+",";
 		result += "\"registereddate\":"+"\""+ registereddate + "\""+",";
 		result += "\"lastonlinedate\":"+"\""+ lastonlinedate + "\""+",";
+		result += "\"address\":"+"\""+ address + "\""+",";
 		result += "\"maintenance\":"+"\""+ maintenance + "\""+"}";
 		
 		return result;
