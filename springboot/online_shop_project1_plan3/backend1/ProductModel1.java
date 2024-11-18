@@ -381,6 +381,19 @@ public class ProductModel1 {
 
 	//=====================================================
 
+	@Column(name="shipping_data_warehouse")
+	String shippingDataWareHouse;
+
+	public String getShippingDataWareHouse() {
+		return this.shippingDataWareHouse;
+	}
+
+	public void setShippingDataWareHouse(String paramShippingDataWareHouse) {
+		this.shippingDataWareHouse = paramShippingDataWareHouse;
+	}
+
+	//=====================================================
+	
 	public String getModelAsJSON(){
 		
 		String result = "";
@@ -395,6 +408,7 @@ public class ProductModel1 {
 		result += "\"shippingPriceSameCountry\":"+"\""+ this.shippingPriceSameCountry + "\""+",";
 		result += "\"shippingPriceEurope\":"+"\""+ this.shippingPriceEurope + "\""+",";
 		result += "\"shippingPriceWorld\":"+"\""+ this.shippingPriceWorld + "\""+",";
+		result += "\"shippingDataWareHouse\":" + this.shippingDataWareHouse + ",";
 		result += "\"sellerUUID\":"+"\""+ this.sellerUUID + "\""+",";
 		result += "\"sellerQualityScore\":"+"\""+ this.sellerQualityScore+ "\""+",";
 		result += "\"productQualityScore\":"+"\""+ this.productQualityScore + "\""+",";

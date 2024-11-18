@@ -13,6 +13,13 @@ angularJSApplication.controller("angular-getSelectedProduct", function ($scope, 
         $scope.ajaxResponse = response.data;
     });
 
+    $scope.calculateShippingFinalPriceAndDeliveryTime = function () {
+
+        //handle shippment and get information from logistic companies
+
+        return "product cannot be shipped";
+    }  
+
 });
 
 
