@@ -1,3 +1,12 @@
+
+
+
+
+Copy old files from this onlineshop project for modification. This files will be affected by product shippment extension wich I already planned in 12nd november 2024th.
+
+
+
+
 shippingDataWareHouse
 
 

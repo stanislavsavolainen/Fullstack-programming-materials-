@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Selected product page (v2)</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mainstyles.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/angularjslogic2.js"></script>
+
+</head>
+
+<body ng-app="angular-displaySelectedProduct">
+
+    <div ng-include src="'htmlcomponents/navigationbar2.html'"></div>
+    
+    <br><br>
+
+    <div ng-controller="angular-getSelectedProduct" class="frameblock">
+
+        <!--
+            https://getbootstrap.com/docs/3.4/css/
+        -->
+
+        <div class="row">
+            <div class="col-md-4">
+                <img ng-src="{{ajaxResponse.productImageURL}}" class="imageblock1">
+            </div>
+            <div class="col-md-8">
+                <div><h1>{{ajaxResponse.productName}}</h1></div>
+                <div><span>Price : {{ajaxResponse.productPricePerUnit}} &#x20AC; </span>
+                     <span style="margin-left: 50px;"> 
+                        <button class="buttonblock1">Buy now</button> 
+                     </span>
+                </div>
+                <div>{{ajaxResponse.productDescription}}</div>              
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
