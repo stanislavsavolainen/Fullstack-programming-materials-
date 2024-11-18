@@ -17,6 +17,13 @@ angularJSApplication.controller("angular-getSelectedProduct", function ($scope, 
 
         //handle shippment and get information from logistic companies
 
+        // use buyerUUID from product wich track user location/home address for delivery
+        // because each user have personal shipping route price and delivery delay
+
+        //support also estimated delivery option for not registered anonymous user, for check
+
+        // if product size and weight affect somehow on shipping price and delivery time ? think how to implement ...
+
         return "product cannot be shipped";
     }  
 
