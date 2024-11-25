@@ -28,8 +28,10 @@ mysql> desc shop_product1;
 | shipping_price_europe       | double       | YES  |     | NULL    |                |
 | shipping_price_same_country | double       | YES  |     | NULL    |                |
 | shipping_price_world        | double       | YES  |     | NULL    |                |
+| shipping_data_warehouse     | varchar(255) | YES  |     | NULL    |                |
 +-----------------------------+--------------+------+-----+---------+----------------+
-25 rows in set (0,00 sec)
+26 rows in set (0,09 sec)
+
 */
 
 
@@ -408,7 +410,7 @@ public class ProductModel1 {
 		result += "\"shippingPriceSameCountry\":"+"\""+ this.shippingPriceSameCountry + "\""+",";
 		result += "\"shippingPriceEurope\":"+"\""+ this.shippingPriceEurope + "\""+",";
 		result += "\"shippingPriceWorld\":"+"\""+ this.shippingPriceWorld + "\""+",";
-		result += "\"shippingDataWareHouse\":" + this.shippingDataWareHouse + ",";
+		result += "\"shippingDataWareHouse\":" + "\"" + this.shippingDataWareHouse  + "\"" + ",";
 		result += "\"sellerUUID\":"+"\""+ this.sellerUUID + "\""+",";
 		result += "\"sellerQualityScore\":"+"\""+ this.sellerQualityScore+ "\""+",";
 		result += "\"productQualityScore\":"+"\""+ this.productQualityScore + "\""+",";
