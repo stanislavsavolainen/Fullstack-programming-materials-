@@ -24,11 +24,36 @@ angularJSApplication.controller("angular-getSelectedProduct", function ($scope, 
 
         // if product size and weight affect somehow on shipping price and delivery time ? think how to implement ...
 
-        return "product cannot be shipped";
-    }  
+        //convert base64 back to json after http-response in front-end side
+        let rawHttpShippingData1 = atob($scope.ajaxResponse.shippingDataWareHouse);
+        rawHttpShippingData1 = rawHttpShippingData1.replace(/\\/g, '');
+        let rawHttpShippingData2 = JSON.parse(rawHttpShippingData1);
+
+        setTimeout(function () {
+       
+            $scope.shippingData = rawHttpShippingData2;
+            $scope.$apply(); //update angulaJs scope 
+        
+        }, 1000);
+        
+         //this fuction not returnig any value anymore. Now purpose is initialize shipping/delivey datamodel for visualisation 
+        //return "product cannot be shipped";
+    } 
+
+    $scope.getShippmentFee = function () {
+            let formatedPrice =  parseFloat($scope.shippingData.totalShippingPrice).toFixed(2);
+            return formatedPrice;
+    }
+
+    $scope.getDeliveryTime = function () {
+        return $scope.shippingData.totalLogisticDelayTimeInSeconds;
+    }
+
+    $scope.getShippingInfo = function () {
+        return $scope.shippingData.totalShippingInfo;
+    }
+
 
 });
-
-
 
 

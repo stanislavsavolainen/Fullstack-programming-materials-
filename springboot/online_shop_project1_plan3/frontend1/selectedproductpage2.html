@@ -37,7 +37,10 @@
                      </span>
                 </div>
                 <div>{{ajaxResponse.productDescription}}</div>
-                <div><b>Shipping : </b> {{calculateShippingFinalPriceAndDeliveryTime()}} </div>
+                <div><br /> {{calculateShippingFinalPriceAndDeliveryTime()}} </div>
+                <div><b>Shipping fee : </b> {{ getShippmentFee() }}  &#x20AC; </div>
+                <div><b>Delivery : </b> {{ getDeliveryTime() }} </div>
+                <div><b>Details : </b> {{ getShippingInfo() }} </div>
             </div>
         </div>
 

@@ -40,6 +40,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.util.Base64;
+
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:8080")
@@ -66,10 +68,17 @@ public class OnlineShopController1 {
 
 		List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
 		ProductModel1 responseModel = null;
+		LogisticUtility shippmentForProduct = new LogisticUtility();
 		
 		for( ProductModel1 productElement : productList) {
 		
 			if( productElement.getProductUUID().equals(productUUID) ){
+				
+				//convert shippment data warehouse json issue to base64 for http-response transfering
+				byte [] b64encode = Base64.getEncoder().encode( (shippmentForProduct.generateDefaultLogisticShippmentForProduct()).getBytes() );
+				String b64str = new String(b64encode);
+				productElement.setShippingDataWareHouse(b64str);
+				
 				responseModel = productElement;
 			}
 		
