@@ -19,4 +19,12 @@ Changes 25th november 2024:
 
 - fix ProductModel shippingDataWareHouse json issue
 
+- add Shippment feature in front-end and back-end side, use default value for all products
+
+Changes 10th december 2024:
+
+- fix LogisticUtility.java tabs in file
+
+- add plan text in LogisticUtility.java, how to handle logistic nodes. Implementation still required.
+
 
