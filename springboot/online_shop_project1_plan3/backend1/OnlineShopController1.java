@@ -57,6 +57,9 @@ public class OnlineShopController1 {
 
 	@Autowired
 	 private ProductCategoryRepository productCategoriesObjects;
+	
+	@Autowired
+	private LogisticCompany1Repository logisticObjects;
 
 	@GetMapping(path="/products")
 	public @ResponseBody Iterable<ProductModel1> getAllProducts() {
@@ -359,6 +362,11 @@ public class OnlineShopController1 {
 		
 		return "{ 'message' : ' product image or file is binded with seller' }";
 
+	}
+	
+	@GetMapping(path="/logistic")
+	public @ResponseBody Iterable<LogisticCompanyModel1> getAllLogistics() {
+		return logisticObjects.findAll();
 	}
 		
 }

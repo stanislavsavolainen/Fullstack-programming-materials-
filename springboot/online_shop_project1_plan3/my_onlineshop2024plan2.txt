@@ -1,0 +1,281 @@
+
+
+-> transition price means that logistic company provide product to another logistic company
+
+-> standalone price means that logistic company provide product from seller to buyer without other logistic company support.
+
+-> blacklisted company means that logistic company is not trustable and should be avoided for product transfering
+
+-> logistic_reputation ( alternative company, if fraggile product )
+
+-> logistic trust rate ( alternative company, if fraggile product )
+
+-> totalShippingPrice and totalLogisticDelayTimeInSeconds is summ of each totalLogisticNodeArray element
+as mentioned earlier each customer have personal totalLogisticsNodeArray depends on his location
+also please note, that "logistic reputation" and "logistic trust rate" planed for fragile product, wich
+means in practical way that product logistic route can be different with same location on seller and byer
+if logistic company cannot handle fragile product properly, then navigate alternative way
+
+
+-> package size and weight not counted ?
+
+
+CREATE TABLE logistic_company1 ( 
+	row_id int(11) NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100),
+	company_id VARCHAR(36),
+	transition_price DOUBLE,
+	standalone_price DOUBLE,
+	info VARCHAR(255),
+	general_logistic_delay_time_in_seconds int(11) DEFAULT NULL,
+	company_is_blacklisted TINYINT DEFAULT NULL,
+	company_reputation VARCHAR(255),
+	company_trust_rate int(11) DEFAULT NULL,
+	PRIMARY KEY (row_id)	
+);
+
+
+ALTER TABLE logistic_company1 ADD parcel_center_address VARCHAR(255);
+
+
+//60*60*24*7 = 604800 //1week delay
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #1", "uuid-1",  22.75 , 20.8 , 604800, "Finland , Helsinki 00100, Tie 1A");
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #2", "uuid-2",  22.75 , 20.8 , 604800, "Finland , Vantaa 00200, Tie 5C");
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #2", "uuid-3",  22.75 , 20.8 , 604800, "Finland , Espoo 00300, Tie 8G");
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Green rectangle #1", "uuid-4",  22.75 , 20.8 , 604800, "Finland , Turku 00400, Tie 1A");
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Green rectangle #2", "uuid-5",  22.75 , 20.8 , 604800, "Finland , Tampere 00500, Tie 7B");
+
+INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Blue triangle #1", "uuid-6",  22.75 , 20.8 , 604800, "Finland , Oulu 00600, Tie 23G");
+
+UPDATE logistic_company1 SET company_trust_rate = 0;
+
+UPDATE logistic_company1 SET company_is_blacklisted = 0;
+
+
+
+src/main/java/com/example/springboot_demo4/LogisticCompanyModel1.java
+
+----------------------------------------------------------------------------------------------------------
+
+mysql> CREATE TABLE logistic_company1 ( 
+    -> row_id int(11) NOT NULL AUTO_INCREMENT,
+    -> name VARCHAR(100),
+    -> company_id VARCHAR(36),
+    -> transition_price DOUBLE,
+    -> standalone_price DOUBLE,
+    -> info VARCHAR(255),
+    -> general_logistic_delay_time_in_seconds int(11) DEFAULT NULL,
+    -> company_is_blacklisted TINYINT DEFAULT NULL,
+    -> company_reputation VARCHAR(255),
+    -> company_trust_rate int(11) DEFAULT NULL,
+    -> PRIMARY KEY (row_id)
+    -> );
+Query OK, 0 rows affected (1,50 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_fullstack2022db1 |
++----------------------------+
+| logistic_company1          |
+| message1                   |
+| product_category           |
+| shopProduct1               |
+| shop_product1              |
+| user_table1                |
++----------------------------+
+6 rows in set (0,01 sec)
+
+mysql> DESC logistic_company1;
++----------------------------------------+--------------+------+-----+---------+----------------+
+| Field                                  | Type         | Null | Key | Default | Extra          |
++----------------------------------------+--------------+------+-----+---------+----------------+
+| row_id                                 | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name                                   | varchar(100) | YES  |     | NULL    |                |
+| company_id                             | varchar(36)  | YES  |     | NULL    |                |
+| transition_price                       | double       | YES  |     | NULL    |                |
+| standalone_price                       | double       | YES  |     | NULL    |                |
+| info                                   | varchar(255) | YES  |     | NULL    |                |
+| general_logistic_delay_time_in_seconds | int(11)      | YES  |     | NULL    |                |
+| company_is_blacklisted                 | tinyint(4)   | YES  |     | NULL    |                |
+| company_reputation                     | varchar(255) | YES  |     | NULL    |                |
+| company_trust_rate                     | int(11)      | YES  |     | NULL    |                |
++----------------------------------------+--------------+------+-----+---------+----------------+
+10 rows in set (0,04 sec)
+
+mysql> 
+
+mysql> ALTER TABLE logistic_company1 ADD parcel_center_address VARCHAR(255);
+Query OK, 0 rows affected (2,60 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc logistic_company1;
++----------------------------------------+--------------+------+-----+---------+----------------+
+| Field                                  | Type         | Null | Key | Default | Extra          |
++----------------------------------------+--------------+------+-----+---------+----------------+
+| row_id                                 | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name                                   | varchar(100) | YES  |     | NULL    |                |
+| company_id                             | varchar(36)  | YES  |     | NULL    |                |
+| transition_price                       | double       | YES  |     | NULL    |                |
+| standalone_price                       | double       | YES  |     | NULL    |                |
+| info                                   | varchar(255) | YES  |     | NULL    |                |
+| general_logistic_delay_time_in_seconds | int(11)      | YES  |     | NULL    |                |
+| company_is_blacklisted                 | tinyint(4)   | YES  |     | NULL    |                |
+| company_reputation                     | varchar(255) | YES  |     | NULL    |                |
+| company_trust_rate                     | int(11)      | YES  |     | NULL    |                |
+| parcel_center_address                  | varchar(255) | YES  |     | NULL    |                |
++----------------------------------------+--------------+------+-----+---------+----------------+
+11 rows in set (0,01 sec)
+
+mysql> 
+
+mysql> 
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #1", "uuid-1",  22.75 , 20.8 , 604800, "Finland , Helsinki 00100, Tie 1A");
+Query OK, 1 row affected (0,27 sec)
+
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #2", "uuid-2",  22.75 , 20.8 , 604800, "Finland , Vantaa 00200, Tie 5C");
+Query OK, 1 row affected (0,10 sec)
+
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Red circle #2", "uuid-3",  22.75 , 20.8 , 604800, "Finland , Espoo 00300, Tie 8G");
+Query OK, 1 row affected (0,07 sec)
+
+mysql> desc logistic_company1;
++----------------------------------------+--------------+------+-----+---------+----------------+
+| Field                                  | Type         | Null | Key | Default | Extra          |
++----------------------------------------+--------------+------+-----+---------+----------------+
+| row_id                                 | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name                                   | varchar(100) | YES  |     | NULL    |                |
+| company_id                             | varchar(36)  | YES  |     | NULL    |                |
+| transition_price                       | double       | YES  |     | NULL    |                |
+| standalone_price                       | double       | YES  |     | NULL    |                |
+| info                                   | varchar(255) | YES  |     | NULL    |                |
+| general_logistic_delay_time_in_seconds | int(11)      | YES  |     | NULL    |                |
+| company_is_blacklisted                 | tinyint(4)   | YES  |     | NULL    |                |
+| company_reputation                     | varchar(255) | YES  |     | NULL    |                |
+| company_trust_rate                     | int(11)      | YES  |     | NULL    |                |
+| parcel_center_address                  | varchar(255) | YES  |     | NULL    |                |
++----------------------------------------+--------------+------+-----+---------+----------------+
+11 rows in set (0,05 sec)
+
+mysql> 
+mysql> SELECT * FROM logistic_company1;
++--------+---------------+------------+------------------+------------------+------+----------------------------------------+------------------------+--------------------+--------------------+----------------------------------+
+| row_id | name          | company_id | transition_price | standalone_price | info | general_logistic_delay_time_in_seconds | company_is_blacklisted | company_reputation | company_trust_rate | parcel_center_address            |
++--------+---------------+------------+------------------+------------------+------+----------------------------------------+------------------------+--------------------+--------------------+----------------------------------+
+|      1 | Red circle #1 | uuid-1     |            22.75 |             20.8 | NULL |                                 604800 |                   NULL | NULL               |               NULL | Finland , Helsinki 00100, Tie 1A |
+|      2 | Red circle #2 | uuid-2     |            22.75 |             20.8 | NULL |                                 604800 |                   NULL | NULL               |               NULL | Finland , Vantaa 00200, Tie 5C   |
+|      3 | Red circle #2 | uuid-3     |            22.75 |             20.8 | NULL |                                 604800 |                   NULL | NULL               |               NULL | Finland , Espoo 00300, Tie 8G    |
++--------+---------------+------------+------------------+------------------+------+----------------------------------------+------------------------+--------------------+--------------------+----------------------------------+
+3 rows in set (0,02 sec)
+
+mysql> SELECT row_id FROM logistic_company1;
++--------+
+| row_id |
++--------+
+|      1 |
+|      2 |
+|      3 |
++--------+
+3 rows in set (0,00 sec)
+
+mysql> SELECT name FROM logistic_company1;
++---------------+
+| name          |
++---------------+
+| Red circle #1 |
+| Red circle #2 |
+| Red circle #2 |
++---------------+
+3 rows in set (0,01 sec)
+
+mysql> SELECT id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> SELECT row_id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
++--------+------------------------+--------------------+
+| row_id | company_is_blacklisted | company_trust_rate |
++--------+------------------------+--------------------+
+|      1 |                   NULL |               NULL |
+|      2 |                   NULL |               NULL |
+|      3 |                   NULL |               NULL |
++--------+------------------------+--------------------+
+3 rows in set (0,08 sec)
+
+mysql> UPDATE logistic_company1 SET company_is_blacklisted = 0;
+Query OK, 3 rows affected (0,31 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> SELECT row_id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
++--------+------------------------+--------------------+
+| row_id | company_is_blacklisted | company_trust_rate |
++--------+------------------------+--------------------+
+|      1 |                      0 |               NULL |
+|      2 |                      0 |               NULL |
+|      3 |                      0 |               NULL |
++--------+------------------------+--------------------+
+3 rows in set (0,00 sec)
+
+mysql> UPDATE logistic_company1 SET trust_rate = 0;
+ERROR 1054 (42S22): Unknown column 'trust_rate' in 'field list'
+mysql> UPDATE logistic_company1 SET company_trust_rate = 0;
+Query OK, 3 rows affected (0,06 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> SELECT row_id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
++--------+------------------------+--------------------+
+| row_id | company_is_blacklisted | company_trust_rate |
++--------+------------------------+--------------------+
+|      1 |                      0 |                  0 |
+|      2 |                      0 |                  0 |
+|      3 |                      0 |                  0 |
++--------+------------------------+--------------------+
+3 rows in set (0,02 sec)
+
+mysql> 
+mysql> 
+mysql> SELECT row_id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
++--------+------------------------+--------------------+
+| row_id | company_is_blacklisted | company_trust_rate |
++--------+------------------------+--------------------+
+|      1 |                      0 |                  0 |
+|      2 |                      0 |                  0 |
+|      3 |                      0 |                  0 |
++--------+------------------------+--------------------+
+3 rows in set (0,00 sec)
+
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Green rectangle #1", "uuid-4",  22.75 , 20.8 , 604800, "Finland , Turku 00400, Tie 1A");
+Query OK, 1 row affected (0,13 sec)
+
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Green rectangle #2", "uuid-5",  22.75 , 20.8 , 604800, "Finland , Tampere 00500, Tie 7B");
+Query OK, 1 row affected (0,07 sec)
+
+mysql> INSERT INTO logistic_company1(name, company_id, transition_price, standalone_price, general_logistic_delay_time_in_seconds, parcel_center_address ) VALUES("Blue triangle #1", "uuid-6",  22.75 , 20.8 , 604800, "Finland , Oulu 00600, Tie 23G");
+Query OK, 1 row affected (0,03 sec)
+
+mysql> SELECT row_id, company_is_blacklisted, company_trust_rate FROM logistic_company1;
++--------+------------------------+--------------------+
+| row_id | company_is_blacklisted | company_trust_rate |
++--------+------------------------+--------------------+
+|      1 |                      0 |                  0 |
+|      2 |                      0 |                  0 |
+|      3 |                      0 |                  0 |
+|      4 |                   NULL |               NULL |
+|      5 |                   NULL |               NULL |
+|      6 |                   NULL |               NULL |
++--------+------------------------+--------------------+
+6 rows in set (0,00 sec)
+
+mysql> UPDATE logistic_company1 SET company_trust_rate = 0;
+Query OK, 3 rows affected (0,06 sec)
+Rows matched: 6  Changed: 3  Warnings: 0
+
+mysql> UPDATE logistic_company1 SET company_is_blacklisted = 0;
+Query OK, 3 rows affected (0,06 sec)
+Rows matched: 6  Changed: 3  Warnings: 0
+
+mysql> 
+
+

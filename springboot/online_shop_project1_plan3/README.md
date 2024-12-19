@@ -27,4 +27,8 @@ Changes 10th december 2024:
 
 - add plan text in LogisticUtility.java, how to handle logistic nodes. Implementation still required.
 
+Changes 19th december 2024:
 
+- create LogisticCompany database table with JPA/Persistend databases classes LogisticCompanyModel1.java and LogisticCompany1Repository.java
+
+- create rest-api /logistic endpoint to view logistic companies wich provides packages from seller to user. Plan is handle thouse data in LogisticUtility.java as node elements and provide user individual logistic route with shippment price and delivery time.
