@@ -7,3 +7,4 @@ import org.springframework.stereotype.Repository;
 public interface LogisticCompany1Repository extends CrudRepository<LogisticCompanyModel1, Integer> {
 
 }
+

@@ -32,3 +32,12 @@ Changes 19th december 2024:
 - create LogisticCompany database table with JPA/Persistend databases classes LogisticCompanyModel1.java and LogisticCompany1Repository.java
 
 - create rest-api /logistic endpoint to view logistic companies wich provides packages from seller to user. Plan is handle thouse data in LogisticUtility.java as node elements and provide user individual logistic route with shippment price and delivery time.
+
+Changes 8th february 2025:
+
+- develop generatePersonalLogisticShippmentForProduct - function in LogisticUtility.java. Function calculate now total shippment price and deliverytime for special product. 
+
+- add "logistic companies id" column in Product - table in database. Purpose is handle string of logistic companies id:s as string for each product and then parse it and compare with Logistic companies details.  
+
+- Now each product can have individual logistic route for shippment, but seller should add this route manually by knowing each logistic companies route from seller to buyer, because I don't have an idea at the moment how to track route automatically.
+

@@ -1,6 +1,9 @@
 
 package com.example.springboot_demo4;
 
+import java.util.List;
+import java.lang.NullPointerException;
+
 public class LogisticUtility {
     
     private String shippmentModel = "";
@@ -40,13 +43,76 @@ public class LogisticUtility {
         return shippmentModel;
     }
 
-    String generatePersonalLogisticShippmentForProduct( String deliveryAddress ){
+    //address as parameter ? Seller will provide logistic route manually
+    String generatePersonalLogisticShippmentForProduct( List<LogisticCompanyModel1> logisticList, String logisticCompaniesAsStr ) {
 
         shippmentModel = "";
 
         //parse delivery address and identify from system -> use empty value now
         //because logistic node stuff is not done and we cannot calculate personal path
         //for each user to tell exactly shippment price and delivery time
+        //String logisticData [] = deliveryAddress.split(",");
+
+        double shippingPrice = 0.0;
+        int delayInSeconds = 0;
+
+        String jsonLogisticsNodesArray = "[]";
+        String shippingInfo = "Seller don't accept refund";
+        int priorityOrder = 1;
+
+
+       String [] logisticCompanies;
+       
+       try{
+
+           if( logisticCompaniesAsStr.length() != 0 && logisticCompaniesAsStr.contains(",") ){
+
+                logisticCompanies = logisticCompaniesAsStr.split(",");
+
+            } else {
+
+                String tmp = "-1,-1";   
+                logisticCompanies = tmp.split(",");
+
+            }
+
+       } catch ( NullPointerException noLogisticRoute ){
+
+           String tmp = "-1,-1";   
+           logisticCompanies = tmp.split(",");
+
+       }
+
+        for( LogisticCompanyModel1 logisticElement : logisticList) {
+         
+            for( int arrayIndx = 0; arrayIndx < logisticCompanies.length; arrayIndx++ ){
+            
+                if( logisticCompanies[arrayIndx].equals(logisticElement.getCompanyId()) ){
+                    
+                    try{
+
+                        shippingPrice += logisticElement.getTransitionPrice();
+                        delayInSeconds += logisticElement.getCompanyLogisticDelay();
+
+                    } catch ( Exception notValidValue) {
+
+                        System.out.println("Error in parsering logistic company values!");
+
+                    }  
+
+                }
+
+            }
+        
+        }
+
+        shippmentModel = "";
+        shippmentModel += "{\"totalShippingPrice\":"+shippingPrice+",";
+        shippmentModel += "\"totalPriorityOrder\":"+"\""+ priorityOrder + "\""+",";
+        shippmentModel += "\"totalLogisticDelayTimeInSeconds\":"+"\""+ delayInSeconds + "\""+",";
+        shippmentModel += "\"totalShippingInfo\":"+"\""+ shippingInfo + "\""+",";
+        shippmentModel += "\"totalLogisticsNodeArray\":"+"\""+ jsonLogisticsNodesArray + "\""+"";
+        shippmentModel += "}";
 
       return this.shippmentModel;  
     }

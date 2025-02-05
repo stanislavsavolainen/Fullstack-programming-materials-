@@ -29,8 +29,10 @@ mysql> desc shop_product1;
 | shipping_price_same_country | double       | YES  |     | NULL    |                |
 | shipping_price_world        | double       | YES  |     | NULL    |                |
 | shipping_data_warehouse     | varchar(255) | YES  |     | NULL    |                |
+| logistic_companies_ids      | varchar(255) | YES  |     | NULL    |                |
 +-----------------------------+--------------+------+-----+---------+----------------+
-26 rows in set (0,09 sec)
+27 rows in set (0,00 sec)
+
 
 */
 
@@ -396,6 +398,19 @@ public class ProductModel1 {
 
 	//=====================================================
 	
+	@Column(name="logistic_companies_ids")
+	String logisticsAsString;
+
+	public String getListOfLogisticsAsString() {
+		return this.logisticsAsString;
+	}
+
+	public void setListOfLogisticsAsString(String paramLogisticsAsString) {
+		this.logisticsAsString = paramLogisticsAsString;
+	}
+
+	//=====================================================
+	
 	public String getModelAsJSON(){
 		
 		String result = "";
@@ -411,6 +426,7 @@ public class ProductModel1 {
 		result += "\"shippingPriceEurope\":"+"\""+ this.shippingPriceEurope + "\""+",";
 		result += "\"shippingPriceWorld\":"+"\""+ this.shippingPriceWorld + "\""+",";
 		result += "\"shippingDataWareHouse\":" + "\"" + this.shippingDataWareHouse  + "\"" + ",";
+		result += "\"logisticsAsString\":" + "\"" + this.logisticsAsString  + "\"" + ",";
 		result += "\"sellerUUID\":"+"\""+ this.sellerUUID + "\""+",";
 		result += "\"sellerQualityScore\":"+"\""+ this.sellerQualityScore+ "\""+",";
 		result += "\"productQualityScore\":"+"\""+ this.productQualityScore + "\""+",";

@@ -69,6 +69,9 @@ public class OnlineShopController1 {
 	@RequestMapping(value="/product/{productUUID}")
 	public String getProductByUUID(@PathVariable String productUUID){
 
+		//provide list of all logistic companies to product to filter relevant data
+		List<LogisticCompanyModel1> logisticList = (List<LogisticCompanyModel1>) logisticObjects.findAll();
+
 		List<ProductModel1> productList = (List<ProductModel1>) productObjects.findAll();
 		ProductModel1 responseModel = null;
 		LogisticUtility shippmentForProduct = new LogisticUtility();
@@ -77,8 +80,10 @@ public class OnlineShopController1 {
 		
 			if( productElement.getProductUUID().equals(productUUID) ){
 				
+				String logisticCompaniesStr = productElement.getListOfLogisticsAsString();
+				
 				//convert shippment data warehouse json issue to base64 for http-response transfering
-				byte [] b64encode = Base64.getEncoder().encode( (shippmentForProduct.generateDefaultLogisticShippmentForProduct()).getBytes() );
+				byte [] b64encode = Base64.getEncoder().encode( (shippmentForProduct.generatePersonalLogisticShippmentForProduct(logisticList , logisticCompaniesStr )).getBytes() );
 				String b64str = new String(b64encode);
 				productElement.setShippingDataWareHouse(b64str);
 				

@@ -19,6 +19,10 @@ if logistic company cannot handle fragile product properly, then navigate altern
 
 -> package size and weight not counted ?
 
+-> seller input logistic route manually depends on user location ? otherwise this is very complicated task to implement
+   if so, then update product database table by adding logistic route column
+   logist route is array of logist companies uuids ( package weight and size, always same price for each product at the moment)
+
 
 CREATE TABLE logistic_company1 ( 
 	row_id int(11) NOT NULL AUTO_INCREMENT,
@@ -277,5 +281,19 @@ Query OK, 3 rows affected (0,06 sec)
 Rows matched: 6  Changed: 3  Warnings: 0
 
 mysql> 
+
+
+mysql> ALTER TABLE shop_product1 ADD logistic_companies_ids VARCHAR(255);
+Query OK, 0 rows affected (1,00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> 
+
+mysql> UPDATE shop_product1 SET logistic_companies_ids = "uuid-1,uuid-4" WHERE row_id = 1;
+Query OK, 1 row affected (0,23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
 
 
