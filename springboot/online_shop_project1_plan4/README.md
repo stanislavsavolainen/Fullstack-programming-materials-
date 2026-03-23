@@ -8,3 +8,7 @@ Changes 12th march 2026:
 	
 -	add springboot project based on https://start.spring.io/
 	replace java 11 or 8 to java 21 and use 4.1.0 version of springboot based on march 2026, also replace database from mysql to mariadb
+	
+Changest 23rd march 2026:
+
+- Add old backend code to new project. Small modification required to make it work
