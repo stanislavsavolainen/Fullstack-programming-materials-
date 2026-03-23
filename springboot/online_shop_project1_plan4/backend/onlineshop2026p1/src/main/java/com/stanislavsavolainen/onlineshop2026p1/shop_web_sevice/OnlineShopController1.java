@@ -85,10 +85,10 @@ public class OnlineShopController1 {
 				String logisticCompaniesStr = productElement.getListOfLogisticsAsString();
 				
 				
-				//convert shippment data warehouse json issue to base64 for http-response transfering
-				//byte [] b64encode = Base64.getEncoder().encode( (shippmentForProduct.generatePersonalLogisticShippmentForProduct(logisticList , logisticCompaniesStr )).getBytes() );
-				//String b64str = new String(b64encode);
-				//productElement.setShippingDataWareHouse(b64str);
+				convert shippment data warehouse json issue to base64 for http-response transfering
+				byte [] b64encode = Base64.getEncoder().encode( (shippmentForProduct.generatePersonalLogisticShippmentForProduct(logisticList , logisticCompaniesStr )).getBytes() );
+				String b64str = new String(b64encode);
+				productElement.setShippingDataWareHouse(b64str);
 				
 				responseModel = productElement;
 			}

@@ -45,7 +45,7 @@ public class LogisticUtility {
     }
 
     //address as parameter ? Seller will provide logistic route manually
-    String generatePersonalLogisticShippmentForProduct( List<LogisticCompanyModel1> logisticList, String logisticCompaniesAsStr ) {
+    public String generatePersonalLogisticShippmentForProduct( List<LogisticCompanyModel1> logisticList, String logisticCompaniesAsStr ) {
 
         shippmentModel = "";
 
